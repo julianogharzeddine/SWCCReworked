@@ -3,8 +3,8 @@ var baseURL;
 
 $(document).ready(function () {
 
-    baseURL = 'https://SRV-K2FIVE:4446/api/workflow/v1'
-    
+    baseURL = 'https://SRV-K2FIVE:4446/api/workflow/v1/'
+
     $(document).click(function () {
         translate()
     })
@@ -157,7 +157,7 @@ function createNotificationIcon() {
 
     $.ajax({
         type: 'GET',
-        url: `${baseURL}api/workflow/v1/Tasks`,
+        url: `${baseURL}`,
         dataType: 'json',
         crossDomain: false,
         beforeSend: function (xhr) {
