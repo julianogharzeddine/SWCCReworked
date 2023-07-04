@@ -464,7 +464,7 @@ function getFromDictionary(text, toLanguage) {
     return 'Translation not found';
 }
 
-function renderTasks() {
+function renderTasks(tasks) {
 
     var htmlSnippet = ""
 
