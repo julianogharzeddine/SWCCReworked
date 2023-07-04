@@ -34,28 +34,28 @@ $(document).ready(function () {
             break
     }
 
-    // Translating the Page On Load
+     // Translating the Page On Load
 
-    dictionary = [
-        { "English": "Investigations Management", "Arabic": "إدارة القضايا و التحقيقات", "French": "Aff. Juridiques" },
-        { "English": "Proceed Against Institution", "Arabic": "إجراء ضد مؤسسة", "French": "Procéder Contre Inst." },
-        { "English": "Proceed With Institution", "Arabic": "إجراء مع المؤسسة", "French": "Procéder Avec Inst." },
-        { "English": "Request Investigation", "Arabic": "إجراء تحقيق", "French": "Demander Enquête" },
-        { "English": "Conflict Of Interest Procedure", "Arabic": "إجراء تضارب المصالح", "French": "Procédure Conflit Intérêt" },
-        { "English": "Contract Study Procedures", "Arabic": "إجراءات دراسة العقود", "French": "Procédures Étude Contrats" },
-        { "English": "Click Here", "Arabic": "إضغط هنا", "French": "Cliquer" },
-        { "English": "Conduct Investigation", "Arabic": "إجراء تحقيق", "French": "Mener Enquête" },
-        { "English": "Investigation Requests", "Arabic": "طلبات التحقيق", "French": "Demandes D'Enquête" },
-        { "English": "Submit Complaint", "Arabic": "تقديم شكوى", "French": "Soumettre Plainte" },
+     dictionary = [
         { "English": "New", "Arabic": "الجديدة", "French": "Nouveau" },
         { "English": "Active", "Arabic": "النشطة", "French": "Actif" },
         { "English": "Completed", "Arabic": "المكتملة", "French": "Terminé" },
         { "English": "Created By", "Arabic": "انشا من قبل", "French": "Créé Par" },
-        { "English": "Investigation Status", "Arabic": "حالة التحقيق", "French": "Statut Enquête" },
+        { "English": "Status", "Arabic": "الحالة", "French": "Statut" },
         { "English": "Subject", "Arabic": "الموضوع", "French": "Sujet" },
-        { "English": "out of", "Arabic": "من", "French": "de" }
-    ];
+        { "English": "Purchase", "Arabic": "طلب شراء", "French": "Achat" },
+        { "English": "Sales", "Arabic": "المبيعات", "French": "Ventes" },
+        { "English": "Marketing", "Arabic": "التسويق", "French": "Marketing" },
+        { "English": "Requisitions", "Arabic": "الطلبات", "French": "Demandes" },
+        { "English": "Our Services", "Arabic": "خدماتنا المختلفة", "French": "Nos Services" },
+        { "English": "out of", "Arabic": "من", "French": "de" },
+        { "English": "Purchase No", "Arabic": "رقم الطلب", "French": "Numero" },
+        { "English": "Today", "Arabic": "اليوم", "French": "Auj" },
+        { "English": "Wed", "Arabic": "الأربعاء", "French": "Mer" },
+        { "English": "Thu", "Arabic": "الخميس", "French": "Jeu" }
+       
 
+    ];
 
     // Wait for the card-wrapper div to render successfully
 
@@ -136,36 +136,37 @@ function renderInvestOptions() {
 }
 
 
-function createNotificationIcon() {
 
-$('body').append(`<div class="taskDD">
+function createNotificationIcon() {
+    $('.taskDD').remove()
+    $('body').append(`<div class="taskDD">
 <div>
   <div id="notificationCounter">
     <p id="redCircle">3</p>
   </div>
-  <img id="bellicon" src="https://srv-k2five/Runtime/Image.ashx?ImID=150274">
+  <img id="bellicon" src="https://srv-k2five/designer/Image.ashx?ImID=170283">
 </div>
 
 <div id="dropdownContent" style="/* margin-top: 3px; */">
-  <a href="https://srv-k2five/Runtime/Runtime/Form/Review.Form/?SerialNo=39319_332&ServiceID=9c42e00c-db7b-479a-adda-7f762a815da2&Task=%D9%85%D9%83%D8%AA%D8%A8%20%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%81%D8%B8" target="_self">
-    <div class="date-icon" style="background-color: #0066cc;">اليوم</div>
+  <a href="https://srv-k2five/Runtime/Runtime/Form/PurchaseRequisition.ReveiwForm/?SerialNo=41381_9&ServiceID=ab1a44db-1147-49c0-9085-5479ab84cf6d" target="_self">
+    <div class="date-icon translatable" style="background-color: #0066cc;">اليوم</div>
     <div class="task-details">
-      <h4>وكيل المحافظ للشؤون القانونية والحوكمة</h4>
-      <p>IAD - 001071 : رقم الطلب </p>
+      <h4>Check stock availability</h4>
+      <p>PR - 001005</p>
     </div>
   </a>
-  <a href="task2.html" target="_self">
-    <div class="date-icon" style="background-color: #0066cc;">الأربعاء</div>
+  <a href="https://srv-k2five/Runtime/Runtime/Form/PurchaseRequisition.ReveiwForm/?SerialNo=41381_9&ServiceID=ab1a44db-1147-49c0-9085-5479ab84cf6d" target="_self">
+    <div class="date-icon translatable" style="background-color: #0066cc;">الأربعاء</div>
     <div class="task-details">
-      <h4>تشكيل اللجنة</h4>
-      <p>IAD - 001073 : رقم الطلب </p>
+      <h4>PR-SoW</h4>
+      <p>PR - 001002</p>
     </div>
   </a>
-  <a href="task3.html" target="_self">
-    <div class="date-icon" style="background-color: #0066cc;">الخميس</div>
+  <a href="https://srv-k2five/Runtime/Runtime/Form/PurchaseRequisition.ReveiwForm/?SerialNo=41381_9&ServiceID=ab1a44db-1147-49c0-9085-5479ab84cf6d" target="_self">
+    <div class="date-icon translatable" style="background-color: #0066cc;">الخميس</div>
     <div class="task-details">
-      <h4>وكيل المحافظ للشؤون القانونية والحوكمة</h4>
-      <p>IAD - 001074 : رقم الطلب </p>
+      <h4>Request necessary approvals</h4>
+      <p>PR - 001003</p>
     </div>
   </a>
 </div>
@@ -330,7 +331,6 @@ function waitForLegalWrapperRender() {
     }
 }
 
-
 function translate() {
     let LSLang = localStorage.getItem('selected_language')
     let targetLang = ""
@@ -343,11 +343,18 @@ function translate() {
             $('.runtime-form').css('left', '')
             $('.runtime-form').css('left', '20%')
             $('.counterCard').css('flex-direction', 'row-reverse')
+            $('.dateWrapper').css('flex-direction', 'row-reverse')
             $('.card-rows').css('flex-direction', 'row-reverse')
             $('.cardHeader').css('flex-direction', 'row')
-            $('.dateWrapper').css('flex-direction', 'row')
+            $('.investNoStatusWrap').css('flex-direction', 'row')
             $('#legalservices-card-wrapper').css('direction', 'ltr')
             $('#card-wrapper').css('direction', 'ltr')
+            $('.taskDD a').css('flex-direction', 'row')
+            $('.task-details p').css({
+                'text-align': 'left',
+                'direction': 'rtl'
+            })
+            $(".task-details h4").css("text-align", "left")
             break
         case 'ar-SA':
             targetLang = 'Arabic'
@@ -355,12 +362,19 @@ function translate() {
             $('[name="Sidebar"]').css('right', '0')
             $('[name="Sidebar"]').css('left', '')
             $('.runtime-form').css('left', '5%')
-            $('.counterCard').css('flex-direction', 'row')
-            $('.dateWrapper').css('flex-direction', 'row-reverse')
+            $('.counterCard').css('flex-direction', 'row-reverse')
+            $('.dateWrapper').css('flex-direction', 'row')
             $('.card-rows').css('flex-direction', 'row-reverse')
-            $('.cardHeader').css('flex-direction', 'row-reverse')
+            $('.cardHeader').css('flex-direction', 'row')
+            $('.investNoStatusWrap').css('flex-direction', 'row')
             $('#legalservices-card-wrapper').css('direction', 'rtl')
             $('#card-wrapper').css('direction', 'rtl')
+            $('.taskDD a').css('flex-direction', 'row-reverse')
+            $('.task-details p').css({
+                'text-align': 'right',
+                'direction': 'ltr'
+            })
+            $(".task-details h4").css("text-align", "right")
             break
         case 'fr-FR':
             targetLang = 'French'
@@ -374,6 +388,12 @@ function translate() {
             $('.dateWrapper').css('flex-direction', 'row')
             $('#legalservices-card-wrapper').css('direction', 'ltr')
             $('#card-wrapper').css('direction', 'ltr')
+            $('.taskDD a').css('flex-direction', 'row')
+            $('.task-details p').css({
+                'text-align': 'left',
+                'direction': 'rtl'
+            })
+            $(".task-details h4").css("text-align", "left")
             break
     }
 
@@ -414,3 +434,4 @@ function renderTasks() {
 
     $('#myDropdown').append(htmlSnippet)
 }
+
