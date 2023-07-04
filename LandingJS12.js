@@ -464,18 +464,3 @@ function getFromDictionary(text, toLanguage) {
     return 'Translation not found';
 }
 
-function renderTasks(tasks) {
-
-    var htmlSnippet = ""
-
-    tasks.forEach(function (task) {
-        var taskHtml = '<a href="task' + task.id + '.html" target="_self">' +
-            '<div class="date-icon" style="background-color: ' + task.color + ';">' +
-            task.date.ar + '</div>' +
-            '<div class="task-details"><h4>' + task.title.ar + '</h4><p>ID: ' +
-            task.id + '</p></div></a>';
-        htmlSnippet += taskHtml;
-    });
-
-    $('#myDropdown').append(htmlSnippet)
-}
