@@ -1,4 +1,5 @@
 var dictionary;
+var baseURL;
 
 $(document).ready(function () {
 
@@ -36,25 +37,34 @@ $(document).ready(function () {
 
      // Translating the Page On Load
 
-     dictionary = [
+    dictionary = [
+        { "English": "Investigations Management", "Arabic": "إدارة القضايا و التحقيقات", "French": "Aff. Juridiques" },
+        { "English": "Proceed Against Institution", "Arabic": "إجراء ضد مؤسسة", "French": "Procéder Contre Inst." },
+        { "English": "Proceed With Institution", "Arabic": "إجراء مع المؤسسة", "French": "Procéder Avec Inst." },
+        { "English": "Request Investigation", "Arabic": "إجراء تحقيق", "French": "Demander Enquête" },
+        { "English": "Conflict Of Interest Procedure", "Arabic": "إجراء تضارب المصالح", "French": "Procédure Conflit Intérêt" },
+        { "English": "Contract Study Procedures", "Arabic": "إجراءات دراسة العقود", "French": "Procédures Étude Contrats" },
+        { "English": "Click Here", "Arabic": "إضغط هنا", "French": "Cliquer" },
+        { "English": "Conduct Investigation", "Arabic": "إجراء تحقيق", "French": "Mener Enquête" },
+        { "English": "Investigation Requests", "Arabic": "طلبات التحقيق", "French": "Demandes D'Enquête" },
+        { "English": "Submit Complaint", "Arabic": "تقديم شكوى", "French": "Soumettre Plainte" },
         { "English": "New", "Arabic": "الجديدة", "French": "Nouveau" },
         { "English": "Active", "Arabic": "النشطة", "French": "Actif" },
         { "English": "Completed", "Arabic": "المكتملة", "French": "Terminé" },
         { "English": "Created By", "Arabic": "انشا من قبل", "French": "Créé Par" },
-        { "English": "Status", "Arabic": "الحالة", "French": "Statut" },
+        { "English": "Investigation Status", "Arabic": "حالة التحقيق", "French": "Statut Enquête" },
         { "English": "Subject", "Arabic": "الموضوع", "French": "Sujet" },
+        { "English": "out of", "Arabic": "من", "French": "de" },
+        { "English": "Status", "Arabic": "الحالة", "French": "Statut" },
         { "English": "Purchase", "Arabic": "طلب شراء", "French": "Achat" },
         { "English": "Sales", "Arabic": "المبيعات", "French": "Ventes" },
         { "English": "Marketing", "Arabic": "التسويق", "French": "Marketing" },
         { "English": "Requisitions", "Arabic": "الطلبات", "French": "Demandes" },
         { "English": "Our Services", "Arabic": "خدماتنا المختلفة", "French": "Nos Services" },
-        { "English": "out of", "Arabic": "من", "French": "de" },
         { "English": "Purchase No", "Arabic": "رقم الطلب", "French": "Numero" },
         { "English": "Today", "Arabic": "اليوم", "French": "Auj" },
         { "English": "Wed", "Arabic": "الأربعاء", "French": "Mer" },
         { "English": "Thu", "Arabic": "الخميس", "French": "Jeu" }
-       
-
     ];
 
     // Wait for the card-wrapper div to render successfully
@@ -137,40 +147,70 @@ function renderInvestOptions() {
 
 
 
+
 function createNotificationIcon() {
     $('.taskDD').remove()
-    $('body').append(`<div class="taskDD">
-<div>
-  <div id="notificationCounter">
-    <p id="redCircle">3</p>
-  </div>
-  <img id="bellicon" src="https://srv-k2five/designer/Image.ashx?ImID=170283">
-</div>
 
-<div id="dropdownContent" style="/* margin-top: 3px; */">
-  <a href="https://srv-k2five/Runtime/Runtime/Form/PurchaseRequisition.ReveiwForm/?SerialNo=41381_9&ServiceID=ab1a44db-1147-49c0-9085-5479ab84cf6d" target="_self">
-    <div class="date-icon translatable" style="background-color: #0066cc;">اليوم</div>
-    <div class="task-details">
-      <h4>Check stock availability</h4>
-      <p>PR - 001005</p>
+    // Fetching the tasks from the Endpoint 
+
+    $.ajax({
+        type: 'GET',
+        url: `${baseURL}api/workflow/v1/Tasks`,
+        dataType: 'json',
+        crossDomain: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        },
+        success: function (json_data) {
+            let taskArray = json_data.tasks.filter((task) => {
+                return task
+            })
+            console.log(taskArray)
+            renderTasks(taskArray)
+        },
+        error: function () {
+            alert('Failed to Load Tasks !');
+        }
+    })
+
+}
+
+function renderTasks(tasks) {
+
+    const taskCount = tasks.length;
+
+    $('body').append(`
+<div class="taskDD">
+    <div>
+        <div id="notificationCounter">
+            <p id="redCircle">${taskCount}</p>
+        </div>
+        <img id="bellicon" src="https://srv-k2five/designer/Image.ashx?ImID=170283">
     </div>
-  </a>
-  <a href="https://srv-k2five/Runtime/Runtime/Form/PurchaseRequisition.ReveiwForm/?SerialNo=41381_9&ServiceID=ab1a44db-1147-49c0-9085-5479ab84cf6d" target="_self">
-    <div class="date-icon translatable" style="background-color: #0066cc;">الأربعاء</div>
-    <div class="task-details">
-      <h4>PR-SoW</h4>
-      <p>PR - 001002</p>
+    <div id="dropdownContent">
     </div>
-  </a>
-  <a href="https://srv-k2five/Runtime/Runtime/Form/PurchaseRequisition.ReveiwForm/?SerialNo=41381_9&ServiceID=ab1a44db-1147-49c0-9085-5479ab84cf6d" target="_self">
-    <div class="date-icon translatable" style="background-color: #0066cc;">الخميس</div>
-    <div class="task-details">
-      <h4>Request necessary approvals</h4>
-      <p>PR - 001003</p>
-    </div>
-  </a>
-</div>
 </div>`)
+
+    tasks.map((task) => {
+
+        const dateObj = new Date(task.taskStartDate);
+        const options = { weekday: 'long' };
+        const dayName = new Intl.DateTimeFormat('en-US', options).format(dateObj);
+        const firstThreeDigits = dayName.slice(0, 3);
+
+
+        $('#dropdownContent').append(`
+      <a href = "${task.viewFlowURL}" target = "_self" >
+        <div class="date-icon ">${firstThreeDigits}</div>
+        <div class="task-details">
+          <h4>${task.activityName}</h4>
+          <p>${task.serialNumber}</p>
+        </div>
+      </a>
+`)
+    })
 
 }
 
