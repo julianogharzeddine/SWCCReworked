@@ -2,6 +2,7 @@ var dictionary;
 var baseURL;
 
 $(document).ready(function () {
+
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
     $(document).click(function () {
@@ -36,7 +37,7 @@ $(document).ready(function () {
             break
     }
 
-    // Translating the Page On Load
+     // Translating the Page On Load
 
     dictionary = [
         { "English": "Investigations Management", "Arabic": "إدارة القضايا و التحقيقات", "French": "Aff. Juridiques" },
@@ -67,7 +68,6 @@ $(document).ready(function () {
         { "English": "Wed", "Arabic": "الأربعاء", "French": "Mer" },
         { "English": "Thu", "Arabic": "الخميس", "French": "Jeu" }
     ];
-
 
     // Wait for the card-wrapper div to render successfully
 
@@ -149,34 +149,7 @@ function renderInvestOptions() {
 
 
 
-function createNotificationIcon() {
-    $('.taskDD').remove()
 
-    // Fetching the tasks from the Endpoint 
-
-    $.ajax({
-        type: 'GET',
-        url: `${baseURL}api/workflow/v1/Tasks`,
-        dataType: 'json',
-        crossDomain: false,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-        },
-        success: function (json_data) {
-            let taskArray = json_data.tasks.filter((task) => {
-                return task
-            })
-            console.log(taskArray)
-            renderTasks(taskArray)
-        },
-        error: function () {
-            alert('Failed to Load Tasks !');
-        }
-    })
-
-}
 
 function renderTasks(tasks) {
 
@@ -244,7 +217,7 @@ function renderInvestCards() {
         var statusColor = row[5] !== undefined ? row[5] : '';
 
         cardWrapper.append(`
-            < div class="cardItem" >
+        <div class="cardItem">
           <div class="cardHeader">
           <div class="investNoStatusWrap">
           <div class="status" style="background-color: ${statusColor};"></div>
@@ -269,8 +242,8 @@ function renderInvestCards() {
               <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
             </div>
           </div>
-        </div >
-            `);
+        </div>
+      `);
     });
 }
 
@@ -322,11 +295,11 @@ function createReqCounters() {
     let [activeNo, newNo, completedNo] = fetchReqStatuses()
     let totalcounter = $("[name='Count Data Label']").text();
     let content = `
-            < div class="Complete counterCard" >
+  <div class="Complete counterCard">
       <p id="completeCounter" class="counterCircle">${completedNo}</p>
       <p class="counterLabel translatable">المكتملة</p>
       <p class="totalcounter"><span class='translatable'>من </span> ${totalcounter}</p>
-  </div >
+  </div>
   <div class="Active counterCard">
       <p id="activeCounter" class="counterCircle">${activeNo}</p>
       <p class="counterLabel translatable">النشطة</p>
@@ -337,7 +310,7 @@ function createReqCounters() {
       <p class="counterLabel translatable">الجديدة</p>
       <p class="totalcounter"><span class='translatable'>من </span> ${totalcounter}</p>
   </div>
-        `
+  `
     $("#reqCounter").html("")
     $("#reqCounter").append(content)
 }
@@ -345,7 +318,7 @@ function createReqCounters() {
 function renderLegalServicesCards() {
     $('#legalservices-card-wrapper').html("")
     $('#legalservices-card-wrapper').append(`
-            < div class="cardItem" >
+    <div class="cardItem">
     <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/379143894_750x422.jpg" class='titleImage'>
     <p class="cardTitle translatable">إجراء ضد مؤسسة</p>
 </div>
@@ -362,7 +335,7 @@ function renderLegalServicesCards() {
 <div class="cardItem">
     <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/pexels-photo.jpg" class='titleImage'>
     <p class="cardTitle translatable">إجراءات دراسة العقود</p></div>
-        `)
+  `)
 }
 
 function waitForLegalWrapperRender() {
@@ -463,4 +436,18 @@ function getFromDictionary(text, toLanguage) {
     return 'Translation not found';
 }
 
+function renderTasks() {
 
+    var htmlSnippet = ""
+
+    tasks.forEach(function (task) {
+        var taskHtml = '<a href="task' + task.id + '.html" target="_self">' +
+            '<div class="date-icon" style="background-color: ' + task.color + ';">' +
+            task.date.ar + '</div>' +
+            '<div class="task-details"><h4>' + task.title.ar + '</h4><p>ID: ' +
+            task.id + '</p></div></a>';
+        htmlSnippet += taskHtml;
+    });
+
+    $('#myDropdown').append(htmlSnippet)
+}
