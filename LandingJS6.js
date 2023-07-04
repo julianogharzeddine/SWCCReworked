@@ -3,6 +3,8 @@ var baseURL;
 
 $(document).ready(function () {
 
+    baseURL = 'https://SRV-K2FIVE:4446/api/workflow/v1'
+    
     $(document).click(function () {
         translate()
     })
