@@ -1,5 +1,5 @@
-var dictionary;
-var baseURL;
+var dictionary; // definining the dictionary
+var baseURL;   // fetching the base URL
 
 $(document).ready(function () {
 
@@ -8,8 +8,6 @@ $(document).ready(function () {
     $(document).click(function () {
         translate()
     })
-
-
     let LSLang = localStorage.getItem('selected_language')
 
 
@@ -125,6 +123,7 @@ $(document).ready(function () {
         $('#dropdownContent').toggle()
     });
 
+    renderSidebar()
 })
 
 function renderInvestOptions() {
@@ -148,7 +147,7 @@ function renderInvestOptions() {
 }
 
 
-
+// Dynamically rendering the tasks
 
 function createNotificationIcon() {
     $('.taskDD').remove()
@@ -216,12 +215,19 @@ function renderTasks(tasks) {
 
 }
 
-
-
+// Redirection function
 
 function goTo(href) {
     window.open(href, "_self")
 }
+
+
+function renderSidebar(){
+$("[name='Sidebar']").append(`<div class='SideBarContents'>Hello</div>`)
+}
+
+
+
 
 function renderInvestCards() {
     var cardWrapper = $("#card-wrapper");
