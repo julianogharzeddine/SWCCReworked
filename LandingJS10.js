@@ -150,6 +150,34 @@ function renderInvestOptions() {
 
 
 
+function createNotificationIcon() {
+    $('.taskDD').remove()
+
+    // Fetching the tasks from the Endpoint 
+
+    $.ajax({
+        type: 'GET',
+        url: `${baseURL}api/workflow/v1/Tasks`,
+        dataType: 'json',
+        crossDomain: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        },
+        success: function (json_data) {
+            let taskArray = json_data.tasks.filter((task) => {
+                return task
+            })
+            console.log(taskArray)
+            renderTasks(taskArray)
+        },
+        error: function () {
+            alert('Failed to Load Tasks !');
+        }
+    })
+
+}
 
 function renderTasks(tasks) {
 
