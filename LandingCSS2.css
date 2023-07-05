@@ -82,7 +82,31 @@ div[name="Sidebar"] {
 [name="Sidebar"] span {
     background: var(--secondarylight-bg-color) !important;
 }
+  
+.categoryItem img {
+    height :35px;
+    width : 35px;
+}
 
+.categoryItem {
+    display : flex ;
+    place-items : center ;
+    gap : 20px ;
+}
+
+.categoryName {
+    color : white !important ;
+    font-size : 16px !important;
+}
+
+
+#SidebarCategoryWrapper {
+    display : flex ;
+    flex-direction : column ;
+    gap : 20px ;
+    background : green ;
+    width : 95% ;
+}
 
 
 /* HEADER  STYLING */
@@ -635,3 +659,5 @@ input[name="Text Box"] {
     background: black !important;
     border-radius: 100%;
 }
+
+
