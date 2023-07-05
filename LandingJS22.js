@@ -250,7 +250,7 @@ function renderSidebar(data) {
             .then(function (data) {
 
                 console.log(data);
-                
+
                 if (data === []) {
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItem">
@@ -259,7 +259,7 @@ function renderSidebar(data) {
                 </div>`
                     )
                 } else {
-                    const subCategoriesHTML = subCategories.map((subCategory) => {
+                    const subCategoriesHTML = data.map((subCategory) => {
                         return `<div class="subcategoryItem">
                                 <p class='subcategoryName'>${subCategory.SubCategoryNameAr}</p>
                               </div>`;
