@@ -249,6 +249,8 @@ function renderSidebar(data) {
         fetchSubCategories(categoryID)
             .then(function (data) {
 
+                console.log(data);
+                
                 if (data === []) {
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItem">
@@ -320,10 +322,12 @@ function fetchSubCategories(categoryID) {
                 const filtered = json_data.value.filter((subCategory) => {
                     return subCategory.CategoryID === categoryID
                 })
+
+                console.log('The filtered subcategory' , filtered)
                 resolve(filtered);
             },
             error: function () {
-                reject('Failed to Load Tasks!');
+                reject('Failed to Load Subcategories!');
             }
         });
     });
