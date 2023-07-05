@@ -3,15 +3,25 @@ var baseURL;   // fetching the base URL
 
 $(document).ready(function () {
 
+
+    // fetching the baseURL to use it in subsequent API Calls
+
     baseURL = window.location.protocol + '//' + window.location.host + '/';
+
+
+    // Waiting to successfully fetch the categories to start rendering the Sidebar
 
     fetchMainCategories()
     .then(function(data) {
-      console.log("This is the data from the categories" , data); // Print the returned data to the console
+      renderSidebar(data)
     })
     .catch(function(error) {
       console.error(error);
     });
+
+
+
+
 
     $(document).click(function () {
         translate()
@@ -27,7 +37,6 @@ $(document).ready(function () {
 
     switch (LSLang1) {
         case 'en-US':
-
             $("a.dd-option label.dd-option-text:contains('Arabic')").click();
             $("a.dd-option label.dd-option-text:contains('English')").click();
             break
@@ -131,7 +140,7 @@ $(document).ready(function () {
         $('#dropdownContent').toggle()
     });
 
-    renderSidebar()
+
 })
 
 function renderInvestOptions() {
@@ -230,9 +239,18 @@ function goTo(href) {
 }
 
 
-function renderSidebar() {
+function renderSidebar(data) {
     $("#SidebarCategoryWrapepr").remove()
     $("[name='Sidebar']").append(`<div id="SidebarCategoryWrapper"></div>`)
+    data.map((category)=> {
+        $("#SidebarCategoryWrapper").append(
+        `<div class="categoryItem">
+          <img src='${category.CategoryImageURL}'>
+          <p class='translatable'>${category.CategoryNameAr}</p>
+        </div>`
+        )
+        
+    })
 }
 
 
