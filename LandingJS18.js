@@ -246,7 +246,7 @@ function renderSidebar(data) {
         $("#SidebarCategoryWrapper").append(
         `<div class="categoryItem">
           <img src='${category.CategoryImageURL}'>
-          <p class='categoryName translatable'>${category.CategoryNameAr}</p>
+          <p class='categoryName'>${category.CategoryNameAr}</p>
         </div>`
         )
         
