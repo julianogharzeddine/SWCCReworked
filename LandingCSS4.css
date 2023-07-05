@@ -96,7 +96,7 @@ div[name="Sidebar"] {
 
 .categoryName {
     color : white !important ;
-    font-size : 16px !important;
+    font-size : 20px !important;
 }
 
 
@@ -107,7 +107,17 @@ div[name="Sidebar"] {
     width : 95% ;
 }
 
+.subcategoriesWrapper {
+    display : flex ;
+    flex-direction : column ;
+    gap : 10px ;
+    margin : 10px 50px 0px ;
+}
 
+.subcategoryName {
+    font-size : 15px !important ;
+    color: #a7cffb !important;
+} 
 /* HEADER  STYLING */
 
 div[name="Navbar"] {
