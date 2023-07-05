@@ -253,9 +253,11 @@ function renderSidebar(data) {
 
                 if (data === []) {
                     $("#SidebarCategoryWrapper").append(
-                        `<div class="categoryItem">
+                        `<div class="categoryItemWrapper">
+                        <div class="categoryItem">
                   <img src='${category.CategoryImageURL}'>
                   <p class='categoryName'>${category.CategoryNameAr}</p>
+                </div>
                 </div>`
                     )
                 } else {
@@ -266,11 +268,14 @@ function renderSidebar(data) {
                     }).join('');
 
                     $("#SidebarCategoryWrapper").append(
-                        `<div class="categoryItem">
+                        `<div class="categoryItemWrapper">
+                        <div class="categoryItem">
                         <img src='${category.CategoryImageURL}'>
                         <p class='categoryName'>${category.CategoryNameAr}</p>
-                        <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
-                      </div>`
+                      </div>
+                      <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
+                      </div>
+                      `
                     );
                 }
             })
