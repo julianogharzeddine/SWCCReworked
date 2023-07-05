@@ -103,8 +103,7 @@ div[name="Sidebar"] {
 #SidebarCategoryWrapper {
     display : flex ;
     flex-direction : column ;
-    gap : 20px ;
-    background : green ;
+    gap : 30px ;
     width : 95% ;
 }
 
