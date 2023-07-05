@@ -12,12 +12,12 @@ $(document).ready(function () {
     // Waiting to successfully fetch the categories to start rendering the Sidebar
 
     fetchMainCategories()
-    .then(function(data) {
-      renderSidebar(data)
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
+        .then(function (data) {
+            renderSidebar(data)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
 
 
 
@@ -242,41 +242,92 @@ function goTo(href) {
 function renderSidebar(data) {
 
     $("[name='Sidebar']").append(`<div id="SidebarCategoryWrapper"></div>`)
-    data.map((category)=> {
-        $("#SidebarCategoryWrapper").append(
-        `<div class="categoryItem">
-          <img src='${category.CategoryImageURL}'>
-          <p class='categoryName'>${category.CategoryNameAr}</p>
-        </div>`
-        )
-        
+    data.map((category) => {
+
+        const categoryID = category.ID
+
+        fetchSubCategories(categoryID)
+            .then(function (data) {
+
+                if (data.length == 0) {
+                    $("#SidebarCategoryWrapper").append(
+                        `<div class="categoryItem">
+                  <img src='${category.CategoryImageURL}'>
+                  <p class='categoryName'>${category.CategoryNameAr}</p>
+                </div>`
+                    )
+                } else {
+                    const subCategoriesHTML = subCategories.map((subCategory) => {
+                        return `<div class="subcategoryItem">
+                                <p class='subcategoryName'>${subCategory.SubCategoryNameAr}</p>
+                              </div>`;
+                    }).join('');
+
+                    $("#SidebarCategoryWrapper").append(
+                        `<div class="categoryItem">
+                        <img src='${category.CategoryImageURL}'>
+                        <p class='categoryName'>${category.CategoryNameAr}</p>
+                        <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
+                      </div>`
+                    );
+                }
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+
+
+
     })
 }
 
 
 function fetchMainCategories() {
-    return new Promise(function(resolve, reject) {
-      $.ajax({
-        type: 'GET',
-        url: 'https://srv-k2five/api/odatav4/v4/Categories_SMO',
-        dataType: 'json',
-        crossDomain: false,
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-          xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-          xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-        },
-        success: function(json_data) {
-          resolve(json_data.value);
-        },
-        error: function() {
-          reject('Failed to Load Tasks!');
-        }
-      });
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://srv-k2five/api/odatav4/v4/Categories_SMO',
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                resolve(json_data.value);
+            },
+            error: function () {
+                reject('Failed to Load Tasks!');
+            }
+        });
     });
-  }
-  
+}
 
+function fetchSubCategories(categoryID) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: 'https://srv-k2five/api/odatav4/v4/SubCategories_SMO',
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                const filtered = json_data.value.filter((subCategory) => {
+                    return subCategory.CategoryID === categoryID
+                })
+                resolve(filtered);
+            },
+            error: function () {
+                reject('Failed to Load Tasks!');
+            }
+        });
+    });
+}
 
 function renderInvestCards() {
     var cardWrapper = $("#card-wrapper");
