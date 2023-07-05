@@ -240,7 +240,7 @@ function goTo(href) {
 
 
 function renderSidebar(data) {
-    $("#SidebarCategoryWrapepr").remove()
+
     $("[name='Sidebar']").append(`<div id="SidebarCategoryWrapper"></div>`)
     data.map((category)=> {
         $("#SidebarCategoryWrapper").append(
