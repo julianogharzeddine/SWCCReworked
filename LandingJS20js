@@ -249,7 +249,7 @@ function renderSidebar(data) {
         fetchSubCategories(categoryID)
             .then(function (data) {
 
-                if (data.length == 0) {
+                if (data === []) {
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItem">
                   <img src='${category.CategoryImageURL}'>
