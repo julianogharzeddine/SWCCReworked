@@ -5,6 +5,14 @@ $(document).ready(function () {
 
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
+    fetchMainCategories()
+    .then(function(data) {
+      console.log("This is the data from the categories" , data); // Print the returned data to the console
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+
     $(document).click(function () {
         translate()
     })
@@ -35,7 +43,7 @@ $(document).ready(function () {
             break
     }
 
-     // Translating the Page On Load
+    // Translating the Page On Load
 
     dictionary = [
         { "English": "Investigations Management", "Arabic": "إدارة القضايا و التحقيقات", "French": "Aff. Juridiques" },
@@ -222,11 +230,34 @@ function goTo(href) {
 }
 
 
-function renderSidebar(){
-$("[name='Sidebar']").append(`<div class='SideBarContents'>Hello</div>`)
+function renderSidebar() {
+    $("#SidebarCategoryWrapepr").remove()
+    $("[name='Sidebar']").append(`<div id="SidebarCategoryWrapper"></div>`)
 }
 
 
+function fetchMainCategories() {
+    return new Promise(function(resolve, reject) {
+      $.ajax({
+        type: 'GET',
+        url: 'https://srv-k2five/api/odatav4/v4/Categories_SMO',
+        dataType: 'json',
+        crossDomain: false,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+          xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+          xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        },
+        success: function(json_data) {
+          resolve(json_data.value);
+        },
+        error: function() {
+          reject('Failed to Load Tasks!');
+        }
+      });
+    });
+  }
+  
 
 
 function renderInvestCards() {
