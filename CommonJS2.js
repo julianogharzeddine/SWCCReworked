@@ -169,7 +169,7 @@ function fetchMainCategories() {
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: 'GET',
-            url: 'https://srv-k2five/api/odatav4/v4/Categories_SMO',
+            url: `${baseURL}api/odatav4/v4/Categories_SMO`,
             dataType: 'json',
             crossDomain: false,
             beforeSend: function (xhr) {
@@ -191,7 +191,7 @@ function fetchSubCategories(categoryID) {
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: 'GET',
-            url: 'https://srv-k2five/api/odatav4/v4/SubCategories_SMO',
+            url: `${baseURL}api/odatav4/v4/SubCategories_SMO`,
             dataType: 'json',
             crossDomain: false,
             beforeSend: function (xhr) {
