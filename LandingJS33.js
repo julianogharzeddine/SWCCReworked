@@ -1,7 +1,16 @@
 var dictionary; // definining the dictionary
 var baseURL;   // fetching the base URL
+var redStatus = ["new", "New", "جديد"]
+var greenStatus = ["اكتمال التحقيق"]
+var orangeStatus = ["بإنتظار اعداد التقرير", "بانتظار المراجعة"]
+var dateIconURL = "https://srv-k2five/Designer/Image.ashx?ImID=110252"
 
 $(document).ready(function () {
+
+    // Fetching the baseURL to use it in subsequent API Calls
+
+    baseURL = window.location.protocol + '//' + window.location.host + '/';
+
 
     $(document).click(function () {
         translate()
@@ -74,8 +83,6 @@ $(document).ready(function () {
     // Showing Investigation Options
 
     $(document).on('click', '#createInvestigationButton', function () {
-        $("[name='showTalabatTahkik hiddenButton']").trigger('click')
-
         // Rendering Investigation buttons which shows the actions that can be taken
         renderInvestOptions()
     })
@@ -83,36 +90,114 @@ $(document).ready(function () {
     // Showing all the investigations in the custom cards
 
     $(document).on('click', '#showAllInvestigations', function () {
-        $("[name='showAllInvestigations hiddenButton']").trigger('click')
 
         // Creating the request counters
+
         createReqCounters()
 
-        // Hiding the custom cards
 
-        $('#card-wrapper').css('visibility', 'visible')
-        $('#card-wrapper').css('height', 'fit-content')
-
-        renderInvestCards()
-
-    })
-
-    // Hiding everything else when showing tasks
-
-    $('[name="MyTasks ButtonNoBorder"]').click(function () {
-        $('#card-wrapper').css('visibility', 'hidden')
-        $('#card-wrapper').css('height', '0')
-    })
-
-    $('[name="Text Box"]').on("input", function () {
-
-        setTimeout(function () {
-            renderInvestCards()
-        }, 1000)
+        fetchInvestigations()
+            .then(function (data) {
+                waitForInvestWrapperRender(data)
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
 
     })
+
 
 })
+
+
+
+
+// Redirection function
+
+function goTo(href) {
+    window.open(href, "_self")
+}
+
+
+// Wait for the Card Wrapper
+
+function waitForInvestWrapperRender(data) {
+    if ($('#card-wrapper').length > 0) {
+        renderInvestCards(data);
+    } else {
+        setTimeout(waitForInvestWrapperRender, 500);
+    }
+}
+
+
+// Fetching investigation details 
+
+function fetchInvestigations() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: `${baseURL}api/odatav4/v4/RequestView_1`,
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                resolve(json_data.value);
+            },
+            error: function () {
+                reject('Failed to Load Investigations!');
+            }
+        });
+    });
+}
+
+
+function renderInvestCards(data) {
+
+    data.map((investigation) => {
+
+        let status = investigation.Status
+        let refNo = investigation.RefNo
+        let creationDate = investigation.CreatedOn
+        let creator = investigation.CreatedBy 
+        let subject = investigation.InvestigationSubject
+
+        $('#card-wrapper').append(`
+        <div class="cardItem">
+          <div class="cardHeader">
+          <div class="investNoStatusWrap">
+          <div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div>
+            <div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div>
+          </div>
+          <div class='dateWrapper'> 
+          <div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div>
+          <img src='${dateIconURL}'/>
+          </div>
+          </div>
+          <div class="cardBody">
+            <div class="card-rows">
+              <p class="reqCreator labelVal">${creator}</p>
+              <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
+            </div>
+            <div class="card-rows">
+              <p class="reqCreator labelVal">${status}</p>
+              <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
+            </div>
+            <div class="card-rows">
+              <p class="reqSubject labelVal">${subject}</p>
+              <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
+            </div>
+          </div>
+        </div>
+        `)
+
+    })
+
+}
+
 
 function renderInvestOptions() {
 
@@ -134,96 +219,6 @@ function renderInvestOptions() {
   `)
 }
 
-
-// Redirection function
-
-function goTo(href) {
-    window.open(href, "_self")
-}
-
-
-
-
-function renderInvestCards() {
-    var cardWrapper = $("#card-wrapper");
-    if (cardWrapper.length === 0) {
-        var gridBody = $('div[name="RequestsInventory"]');
-        $('<div id="card-wrapper"></div>').insertAfter(gridBody);
-        cardWrapper = $("#card-wrapper");
-    }
-
-    cardWrapper.html("")
-    var rowObjects = fetchRowValues();
-
-
-    rowObjects.forEach(function (row) {
-
-        var creatorName = row[0] !== undefined ? row[0] : '';
-        var creationDate = row[1] !== undefined ? row[1] : '';
-        var investStatus = row[2] !== undefined ? row[2] : '';
-        var subject = row[3] !== undefined ? row[3] : '';
-        var investNo = row[4] !== undefined ? row[4] : '';
-        var statusColor = row[5] !== undefined ? row[5] : '';
-
-        cardWrapper.append(`
-        <div class="cardItem">
-          <div class="cardHeader">
-          <div class="investNoStatusWrap">
-          <div class="status" style="background-color: ${statusColor};"></div>
-            <div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${investNo}'>${investNo}</a></div>
-          </div>
-          <div class='dateWrapper'> 
-          <div class="date">${creationDate}</div>
-          <img src='https://srv-k2five/Designer/Image.ashx?ImID=110252' />
-          </div>
-          </div>
-          <div class="cardBody">
-            <div class="card-rows">
-              <p class="reqCreator labelVal">${creatorName}</p>
-              <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
-            </div>
-            <div class="card-rows">
-              <p class="reqCreator labelVal">${investStatus}</p>
-              <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
-            </div>
-            <div class="card-rows">
-              <p class="reqSubject labelVal">${subject}</p>
-              <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
-            </div>
-          </div>
-        </div>
-      `);
-    });
-}
-
-function fetchRowValues() {
-
-    let rowObjects = []
-
-    let rows = $('div[name="RequestsInventory"]').find('.grid-body-content').find('.grid-content-table').find('tbody').find('tr')
-
-    rows.each(function () {
-
-        let tds = $(this).find('td').find('.runtime-list-item-wrap')
-        let emptyObj = {}
-        let index = 0
-
-        tds.each(function () {
-
-            if ($(this).text() == ".") {
-                emptyObj[index] = $(this).css("background-color")
-            } else {
-                emptyObj[index] = $(this).text()
-            }
-
-            index++
-        })
-
-        rowObjects.push(emptyObj)
-    })
-
-    return rowObjects
-}
 
 function fetchReqStatuses() {
 
@@ -304,7 +299,7 @@ function translate() {
     switch (LSLang) {
         case 'en-US':
             targetLang = 'English'
-             $('.taskDD').css('left' , '72%')
+            $('.taskDD').css('left', '72%')
             $('[name="Sidebar"]').css('right', '')
             $('[name="Sidebar"]').css('left', '0')
             $('.runtime-form').css('left', '')
@@ -325,7 +320,7 @@ function translate() {
             break
         case 'ar-SA':
             targetLang = 'Arabic'
-            $('.taskDD').css('left' , '20%')
+            $('.taskDD').css('left', '20%')
             $('[name="Sidebar"]').css('left', '')
             $('[name="Sidebar"]').css('right', '0')
             $('[name="Sidebar"]').css('left', '')
@@ -346,7 +341,7 @@ function translate() {
             break
         case 'fr-FR':
             targetLang = 'French'
-            $('.taskDD').css('right' , '72%')
+            $('.taskDD').css('right', '72%')
             $('[name="Sidebar"]').css('right', '')
             $('[name="Sidebar"]').css('left', '0')
             $('.runtime-form').css('left', '')
