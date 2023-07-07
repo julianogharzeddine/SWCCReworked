@@ -19,9 +19,10 @@ $(document).ready(function () {
             console.error(error);
         });
 
+    // Appending the listeners to the generated categories and subcategories
 
 
-
+    
 
     $(document).click(function () {
         translate()
@@ -247,14 +248,14 @@ function renderSidebar(data) {
         const categoryID = category.ID
 
         fetchSubCategories(categoryID)
-            .then(function (data) {
+            .then(function(data) {
 
                 console.log(data);
 
                 if (data === []) {
                     $("#SidebarCategoryWrapper").append(
-                        `<div class="categoryItemWrapper">
-                        <div class="categoryItem">
+                        `<div class="categoryItemWrapper" >
+                        <div class="categoryItem" data-index="${category.ID}">
                   <img src='${category.CategoryImageURL}'>
                   <p class='categoryName'>${category.CategoryNameAr}</p>
                 </div>
@@ -262,7 +263,7 @@ function renderSidebar(data) {
                     )
                 } else {
                     const subCategoriesHTML = data.map((subCategory) => {
-                        return `<div class="subcategoryItem">
+                        return `<div class="subcategoryItem" data-index="${subCategory.ID}">
                                 <p class='subcategoryName'>${subCategory.SubCategoryNameAr}</p>
                               </div>`;
                     }).join('');
