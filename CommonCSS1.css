@@ -38,13 +38,6 @@ body {
     background-color: var(--bg-color) !important;
 }
 
-.runtime-form {
-    position: absolute !important;
-    top: 100px;
-    left: 5%;
-    width: 70% !important;
-}
-
 
 /* SIDE BAR STYLING */
 
