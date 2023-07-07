@@ -106,7 +106,8 @@ function goTo(href) {
 }
 
 function renderCards() {
-    $('#sectionBrowser').html('p class="sectionBrowserTitle" id="OurDepartments">أقسامنا المختلفة</p>')
+    $('#sectionBrowser').html('')
+    $('#sectionBrowser').append('<p class="sectionBrowserTitle" id="OurDepartments">أقسامنا المختلفة</p>')
     $("#sectionBrowser").append("<div id='card-wrapper'></div>")
 
     $('#card-wrapper').append(`
