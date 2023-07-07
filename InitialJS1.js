@@ -177,7 +177,7 @@ function translateToEnglish() {
     $("[name='Sidebar']").css('right', '')
     $("[name='Sidebar']").css('left', '0')
     $(".form").css('right', '')
-    $(".form").css('left', '32%')
+    $(".form").css('left', '22%')
 }
 
 function translateToArabic() {
@@ -196,7 +196,7 @@ function translateToArabic() {
     $("[name='Sidebar']").css('left', '')
     $("[name='Sidebar']").css('right', '0')
     $(".form").css('left', '')
-    $(".form").css('right', '20%')
+    $(".form").css('right', '21%')
 }
 
 
