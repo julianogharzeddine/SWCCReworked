@@ -106,6 +106,7 @@ function goTo(href) {
 }
 
 function renderCards() {
+
     $('#sectionBrowser').html('')
     $('#sectionBrowser').append('<p class="sectionBrowserTitle" id="OurDepartments">أقسامنا المختلفة</p>')
     $("#sectionBrowser").append("<div id='card-wrapper'></div>")
@@ -162,7 +163,7 @@ function renderCards() {
 }
 
 function waitForWrapperRender() {
-    if ($('#card-wrapper').length > 0) {
+    if ($('#sectionBrowser').length > 0) {
         // Call your function here
         renderCards();
     } else {
