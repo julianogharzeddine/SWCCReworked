@@ -269,7 +269,7 @@ function renderSidebar(data) {
                     }).join('');
 
                     $("#SidebarCategoryWrapper").append(
-                        `<div class="categoryItemWrapper" data-cat="${category.ID}>
+                        `<div class="categoryItemWrapper" data-cat="${category.ID}">
                         <div class="categoryItem">
                         <img src='${category.CategoryImageURL}'>
                         <p class='categoryName'>${category.CategoryNameAr}</p>
