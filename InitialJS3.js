@@ -1,6 +1,14 @@
+var baseURL;   // fetching the base URL
+
+
 $(document).ready(function () {
 
+    // Fetching the baseURL to use it in subsequent API Calls
+
+    baseURL = window.location.protocol + '//' + window.location.host + '/';
+
     // Wait for the card-wrapper div to render successfully
+
     waitForWrapperRender();
     createModal()
 
@@ -67,7 +75,7 @@ $(document).ready(function () {
 
 function renderNewService(serviceName) {
     $('#card-wrapper').append(
-    `<div class="cardItem" onclick="goTo('https://srv-k2five/Designer/Runtime/Form/LandingPage/')">
+        `<div class="cardItem" onclick="goTo('https://srv-k2five/Designer/Runtime/Form/LandingPage/')">
      <div class="infoIconContainer">
         <img src="https://srv-k2five/Designer/Runtime/File.ashx?_path=gj%2FkK8xKydFGIaBuABcSOduRX2c%3D%5Cinformation-button.png&_filerequestdata=_4XeJqbaWuJp0syOgJHEA8of-kLRzEyrnXA94YOkjasqBnsOTQgJXJ-Ybt28RDf8-rNsOJTV6GFCRJMwfDiB-T1qyY65WRx0Csth2wTf9JOReKkiiOYspbS7vEwYNJBIywx1kBd-LFpHYtIPS0xUdrkixdScIEVBKIgcyqXW3WD2a1CNZt1TjOmkHTF0prdAe6Kyil_9PHynI0KFBGfxlSpFuMC_LFnUMkZaxgfFrVy1zuKMnYwsZLNdUnn1Fg3F02l-Z5JDdXl-ChygqFDt0QT0TpYjnxCCkjbfYOS8_pU1&_height=32&_width=32&_controltype=image&XSRFToken=4399624675727584330"
             class='infoIcon'>
@@ -98,8 +106,9 @@ function goTo(href) {
 }
 
 function renderCards() {
+    $('#sectionBrowser').html('p class="sectionBrowserTitle" id="OurDepartments">أقسامنا المختلفة</p>')
+    $("#sectionBrowser").append("<div id='card-wrapper'></div>")
 
-    $('#card-wrapper').html("")
     $('#card-wrapper').append(`
     <div class="cardItem" onclick="goTo('https://srv-k2five/Designer/Runtime/Form/LandingPage/')">
     <div class="infoIconContainer">
@@ -178,7 +187,7 @@ function translateToEnglish() {
     $("[name='Sidebar']").css('left', '0')
     $(".form").css('right', '')
     $(".form").css('left', '22%')
-    $('.taskDD').css('left' , '72%')
+    $('.taskDD').css('left', '72%')
 }
 
 function translateToArabic() {
@@ -198,7 +207,7 @@ function translateToArabic() {
     $("[name='Sidebar']").css('right', '0')
     $(".form").css('left', '')
     $(".form").css('right', '21%')
-    $('.taskDD').css('left' , '19%')
+    $('.taskDD').css('left', '19%')
 }
 
 
