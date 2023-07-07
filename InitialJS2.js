@@ -178,6 +178,7 @@ function translateToEnglish() {
     $("[name='Sidebar']").css('left', '0')
     $(".form").css('right', '')
     $(".form").css('left', '22%')
+    $('.taskDD').css('left' , '72%')
 }
 
 function translateToArabic() {
@@ -197,6 +198,7 @@ function translateToArabic() {
     $("[name='Sidebar']").css('right', '0')
     $(".form").css('left', '')
     $(".form").css('right', '21%')
+    $('.taskDD').css('left' , '19%')
 }
 
 
