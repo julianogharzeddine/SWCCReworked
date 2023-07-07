@@ -255,7 +255,7 @@ function renderSidebar(data) {
                 if (data === []) {
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItemWrapper" >
-                        <div class="categoryItem" data-index="${category.ID}">
+                        <div class="categoryItem" data-cat="${category.ID}">
                   <img src='${category.CategoryImageURL}'>
                   <p class='categoryName'>${category.CategoryNameAr}</p>
                 </div>
@@ -263,13 +263,13 @@ function renderSidebar(data) {
                     )
                 } else {
                     const subCategoriesHTML = data.map((subCategory) => {
-                        return `<div class="subcategoryItem" data-index="${subCategory.ID}">
+                        return `<div class="subcategoryItem" data-subcat="${subCategory.ID}">
                                 <p class='subcategoryName'>${subCategory.SubCategoryNameAr}</p>
                               </div>`;
                     }).join('');
 
                     $("#SidebarCategoryWrapper").append(
-                        `<div class="categoryItemWrapper">
+                        `<div class="categoryItemWrapper" data-cat="${category.ID}>
                         <div class="categoryItem">
                         <img src='${category.CategoryImageURL}'>
                         <p class='categoryName'>${category.CategoryNameAr}</p>
