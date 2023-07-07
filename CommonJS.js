@@ -33,6 +33,9 @@ $(document).ready(function () {
         targetRadio.trigger('click')
     })
 
+    $(document).on('click', '#bellicon', function () {
+        $('#dropdownContent').toggle()
+    });
     
     // Creating Notification Icon
 
