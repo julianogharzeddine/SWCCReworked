@@ -1,5 +1,5 @@
 var dictionary; // definining the dictionary
-
+var baseURL;   // fetching the base URL
 
 $(document).ready(function () {
 
@@ -304,6 +304,7 @@ function translate() {
     switch (LSLang) {
         case 'en-US':
             targetLang = 'English'
+             $('.taskDD').css('left' , '72%')
             $('[name="Sidebar"]').css('right', '')
             $('[name="Sidebar"]').css('left', '0')
             $('.runtime-form').css('left', '')
@@ -324,6 +325,7 @@ function translate() {
             break
         case 'ar-SA':
             targetLang = 'Arabic'
+            $('.taskDD').css('left' , '20%')
             $('[name="Sidebar"]').css('left', '')
             $('[name="Sidebar"]').css('right', '0')
             $('[name="Sidebar"]').css('left', '')
@@ -344,6 +346,7 @@ function translate() {
             break
         case 'fr-FR':
             targetLang = 'French'
+            $('.taskDD').css('right' , '72%')
             $('[name="Sidebar"]').css('right', '')
             $('[name="Sidebar"]').css('left', '0')
             $('.runtime-form').css('left', '')
