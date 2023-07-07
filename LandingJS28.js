@@ -21,8 +21,18 @@ $(document).ready(function () {
 
     // Appending the listeners to the generated categories and subcategories
 
+    $(document).on('click', '.categoryItem', function () {
+        var selectionIndex = $(this).data("cat")
+        var targetRadio = $('[name="CategoriesDropdown"]').find(`input[type='radio'][value='${selectionIndex}']`);
+        targetRadio.click()
+    })
 
-    
+    $(document).on('click', '.subcategoryItem', function () {
+        var selectionIndex = $(this).data("subcat")
+        var targetRadio = $('[name="SubcategoriesDropdown"]').find(`input[type='radio'][value='${selectionIndex}']`);
+        targetRadio.click()
+    })
+
 
     $(document).click(function () {
         translate()
@@ -248,7 +258,7 @@ function renderSidebar(data) {
         const categoryID = category.ID
 
         fetchSubCategories(categoryID)
-            .then(function(data) {
+            .then(function (data) {
 
                 console.log(data);
 
@@ -269,8 +279,8 @@ function renderSidebar(data) {
                     }).join('');
 
                     $("#SidebarCategoryWrapper").append(
-                        `<div class="categoryItemWrapper" data-cat="${category.ID}">
-                        <div class="categoryItem">
+                        `<div class="categoryItemWrapper" ">
+                        <div class="categoryItem" data-cat="${category.ID}>
                         <img src='${category.CategoryImageURL}'>
                         <p class='categoryName'>${category.CategoryNameAr}</p>
                       </div>
@@ -329,7 +339,7 @@ function fetchSubCategories(categoryID) {
                     return subCategory.CategoryID === categoryID
                 })
 
-                console.log('The filtered subcategory' , filtered)
+                console.log('The filtered subcategory', filtered)
                 resolve(filtered);
             },
             error: function () {
