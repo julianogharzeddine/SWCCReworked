@@ -17,6 +17,10 @@ $(document).ready(function () {
             console.error(error);
         });
 
+   // Creating Notification Icon
+
+    createNotificationIcon()
+
     // Appending the listeners to the generated categories and subcategories
 
     $(document).on('click', '.categoryItem', function () {
@@ -36,10 +40,8 @@ $(document).ready(function () {
     $(document).on('click', '#bellicon', function () {
         $('#dropdownContent').toggle()
     });
-    
-    // Creating Notification Icon
 
-    createNotificationIcon()
+ 
 
 })
 
