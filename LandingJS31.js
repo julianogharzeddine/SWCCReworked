@@ -1,5 +1,5 @@
 var dictionary; // definining the dictionary
-var baseURL;   // fetching the base URL
+
 
 $(document).ready(function () {
 
