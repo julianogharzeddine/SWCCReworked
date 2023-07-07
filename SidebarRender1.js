@@ -33,6 +33,11 @@ $(document).ready(function () {
         targetRadio.trigger('click')
     })
 
+    
+    // Creating Notification Icon
+
+    createNotificationIcon()
+
 })
 
 
