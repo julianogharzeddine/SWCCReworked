@@ -1,3 +1,14 @@
+
+/* Form Boundaries */
+
+.runtime-form {
+    position: absolute !important;
+    top: 100px;
+    left: 5%;
+    width: 70% !important;
+}
+
+
 /* SECTION BROWSER STYLING */
 
 .sectionBrowser {
@@ -19,6 +30,18 @@
 /* INVESTIGATIONS CUSTOM CARDS STYLING */
 
 
+#InvestigationCards {
+    width: 90% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, 34ex);
+    place-items: center !important;
+    grid-row-gap: 30px !important;
+    overflow-y: auto !important;
+    direction: rtl;
+    padding: 30px;
+    justify-content: center;
+}
+
 #InvestigationCards .cardItem {
     padding: 20px !important;
     height: 237px !important;
@@ -33,17 +56,6 @@
     box-sizing: border-box !important;
 }
 
-#InvestigationCards {
-    width: 90% !important;
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, 34ex);
-    place-items: center !important;
-    grid-row-gap: 30px !important;
-    overflow-y: auto !important;
-    direction: rtl;
-    padding: 30px;
-    justify-content: center;
-}
 
 .cardItem {
     position: relative;
