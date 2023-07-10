@@ -105,15 +105,7 @@ $(document).ready(function () {
             });
 
 
-        // Creating the investigation cards
-
-        fetchInvestigations()
-            .then(function (data) {
-                waitForInvestWrapperRender(data)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+        initiateFetchInvestigations()
 
     })
 
@@ -124,18 +116,17 @@ $(document).ready(function () {
     $(document).on('click', '.counterCard', function () {
 
         investStatus = $(this).data("status")
+        initiateFetchInvestigations()
 
 
-        // Creating the investigation cards
+    })
 
-        fetchInvestigations()
-            .then(function (data) {
-                waitForInvestWrapperRender(data)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
 
+    // Counter cards listeners 
+
+    $(document).on('input', '[name="SearchBox"]', function () {
+        searchKeyword = $(this).val()
+        initiateFetchInvestigations()
     })
 
 
@@ -151,6 +142,20 @@ function goTo(href) {
     window.open(href, "_self")
 }
 
+
+function initiateFetchInvestigations() {
+
+    // Creating the investigation cards
+
+    fetchInvestigations()
+        .then(function (data) {
+            waitForInvestWrapperRender(data)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
+}
 
 // Wait for the Card Wrapper
 
