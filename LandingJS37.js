@@ -12,6 +12,7 @@ $(document).ready(function () {
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
 
+
     $(document).click(function () {
         translate()
     })
@@ -93,8 +94,16 @@ $(document).ready(function () {
 
         // Creating the request counters
 
-        createReqCounters()
+        fetchCounters()
+            .then(function (data) {
+                renderCounterButtons(data)
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
 
+
+        // Creating the investigation cards
 
         fetchInvestigations()
             .then(function (data) {
@@ -155,22 +164,89 @@ function fetchInvestigations() {
 }
 
 
+// Rendering Investigation Cards
+
 function renderInvestCards(data) {
 
-    
+
     data.map((investigation) => {
 
         let status = investigation.Status
         let refNo = investigation.RefNo
         let creationDate = investigation.CreatedOn
-        let creator = investigation.CreatedBy 
+        let creator = investigation.CreatedBy
         let subject = investigation.InvestigationSubject
 
         $('#card-wrapper').append(`<div class="cardItem"><div class="cardHeader"><div class="investNoStatusWrap"><div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div> <div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div> </div> <div class='dateWrapper'><div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div><img src='${dateIconURL}'/></div></div><div class="cardBody"><div class="card-rows"><p class="reqCreator labelVal">${creator}</p><p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p> </div> <div class="card-rows"><p class="reqCreator labelVal">${status}</p><p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p></div><div class="card-rows"><p class="reqSubject labelVal">${subject}</p><p class="reqSubjectLabel labelTitle translatable">الموضوع</p></div></div></div>`)
-    
+
 
     })
 
+}
+
+
+// Fetching request counters 
+
+function fetchCounters() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: `${baseURL}api/odatav4/v4/RequestView_1`,
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                resolve(json_data.value);
+            },
+            error: function () {
+                reject('Failed to Load Counters !');
+            }
+        });
+    });
+}
+
+
+// Rendering the counter buttons
+
+function renderCounterButtons(data) {
+
+    let completedNo = 0
+    let activeNo = 0
+    let newNo = 0
+    let totalReq = data.length
+
+    data.map((investigation) => {
+
+        if (redStatus.includes(investigation.Status)) newNo++
+        else if (greenStatus.includes(investigation.Status)) completedNo++
+        else activeNo++
+
+        totalReq++
+    })
+
+    let content = `
+  <div class="Complete counterCard">
+      <p id="completeCounter" class="counterCircle">${completedNo}</p>
+      <p class="counterLabel translatable">المكتملة</p>
+      <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
+  </div>
+  <div class="Active counterCard">
+      <p id="activeCounter" class="counterCircle">${activeNo}</p>
+      <p class="counterLabel translatable">النشطة</p>
+      <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
+  </div>
+  <div class="New counterCard">
+      <p id="newCounter" class="counterCircle">${newNo}</p>
+      <p class="counterLabel translatable">الجديدة</p>
+      <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
+  </div>
+  `
+    $("#reqCounter").html("")
+    $("#reqCounter").append(content)
 }
 
 
@@ -209,30 +285,6 @@ function fetchReqStatuses() {
     return [activeNo, newNo, completedNo]
 }
 
-function createReqCounters() {
-
-    let [activeNo, newNo, completedNo] = fetchReqStatuses()
-    let totalcounter = $("[name='Count Data Label']").text();
-    let content = `
-  <div class="Complete counterCard">
-      <p id="completeCounter" class="counterCircle">${completedNo}</p>
-      <p class="counterLabel translatable">المكتملة</p>
-      <p class="totalcounter"><span class='translatable'>من </span> ${totalcounter}</p>
-  </div>
-  <div class="Active counterCard">
-      <p id="activeCounter" class="counterCircle">${activeNo}</p>
-      <p class="counterLabel translatable">النشطة</p>
-      <p class="totalcounter"><span class='translatable'>من </span> ${totalcounter}</p>
-  </div>
-  <div class="New counterCard">
-      <p id="newCounter" class="counterCircle">${newNo}</p>
-      <p class="counterLabel translatable">الجديدة</p>
-      <p class="totalcounter"><span class='translatable'>من </span> ${totalcounter}</p>
-  </div>
-  `
-    $("#reqCounter").html("")
-    $("#reqCounter").append(content)
-}
 
 function renderLegalServicesCards() {
     $('#legalservices-card-wrapper').html("")
