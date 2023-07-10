@@ -59,7 +59,7 @@
 
 .cardItem {
     position: relative;
-    height: 200px;
+    height: 230px;
     width: 90%;
     padding: 6px;
     border-radius: var(--standard-border-radius);
@@ -136,6 +136,7 @@
 .investNoStatusWrap {
     display: flex;
     flex-direction: row-reverse;
+    align-items : center ;
     gap: 10px;
 }
 
