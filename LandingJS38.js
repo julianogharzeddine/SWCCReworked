@@ -4,6 +4,8 @@ var redStatus = ["new", "New", "جديد"]
 var greenStatus = ["اكتمال التحقيق"]
 var orangeStatus = ["بإنتظار اعداد التقرير", "بانتظار المراجعة"]
 var dateIconURL = "https://srv-k2five/Designer/Image.ashx?ImID=110252"
+var investStatus = "All"
+var searchKeyword = ""
 
 $(document).ready(function () {
 
@@ -132,7 +134,7 @@ function goTo(href) {
 
 function waitForInvestWrapperRender(data) {
     if ($('#card-wrapper').length > 0) {
-        renderInvestCards(data);
+        renderInvestCards(data, investStatus, searchKeyword);
     } else {
         setTimeout(waitForInvestWrapperRender, 500);
     }
@@ -166,7 +168,7 @@ function fetchInvestigations() {
 
 // Rendering Investigation Cards
 
-function renderInvestCards(data) {
+function renderInvestCards(data, investStatus, keyword) {
 
 
     data.map((investigation) => {
@@ -177,7 +179,89 @@ function renderInvestCards(data) {
         let creator = investigation.CreatedBy
         let subject = investigation.InvestigationSubject
 
-        $('#card-wrapper').append(`<div class="cardItem"><div class="cardHeader"><div class="investNoStatusWrap"><div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div> <div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div> </div> <div class='dateWrapper'><div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div><img src='${dateIconURL}'/></div></div><div class="cardBody"><div class="card-rows"><p class="reqCreator labelVal">${creator}</p><p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p> </div> <div class="card-rows"><p class="reqCreator labelVal">${status}</p><p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p></div><div class="card-rows"><p class="reqSubject labelVal">${subject}</p><p class="reqSubjectLabel labelTitle translatable">الموضوع</p></div></div></div>`)
+        let containsKeyword =
+            refNo.toLowerCase().includes(keyword.toLowerCase()) ||
+            creationDate.toLowerCase().includes(keyword.toLowerCase()) ||
+            creator.toLowerCase().includes(keyword.toLowerCase()) ||
+            subject.toLowerCase().includes(keyword.toLowerCase());
+
+        let targetArray = []
+
+        switch (investStatus) {
+            case ("Completed"): targetArray = greenStatus
+            case ("Active"): targetArray = orangeStatus
+            case ("New"): targetArray = redStatus
+            default : targetArray = []
+
+        }
+
+        if (containsKeyword) {
+            if (investStatus = "All") {
+                $('#card-wrapper').append(`
+                <div class="cardItem">
+          <div class="cardHeader">
+            <div class="investNoStatusWrap">
+              <div class="status" style="background-color: ${redStatus.includes(status) ? " red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div>
+              <div class="investNo">
+                <a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a>
+              </div>
+            </div>
+            <div class='dateWrapper'>
+              <div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div>
+              <img src='${dateIconURL}' />
+            </div>
+          </div>
+          <div class="cardBody">
+            <div class="card-rows">
+              <p class="reqCreator labelVal">${creator}</p>
+              <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
+            </div>
+            <div class="card-rows">
+              <p class="reqCreator labelVal">${status}</p>
+              <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
+            </div>
+            <div class="card-rows">
+              <p class="reqSubject labelVal">${subject}</p>
+              <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
+            </div>
+          </div>
+        </div>`)
+            } else {
+                if (targetArray.includes(status)) {
+                    $('#card-wrapper').append(`
+                    <div class="cardItem">
+              <div class="cardHeader">
+                <div class="investNoStatusWrap">
+                  <div class="status" style="background-color: ${redStatus.includes(status) ? " red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div>
+                  <div class="investNo">
+                    <a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a>
+                  </div>
+                </div>
+                <div class='dateWrapper'>
+                  <div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div>
+                  <img src='${dateIconURL}' />
+                </div>
+              </div>
+              <div class="cardBody">
+                <div class="card-rows">
+                  <p class="reqCreator labelVal">${creator}</p>
+                  <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
+                </div>
+                <div class="card-rows">
+                  <p class="reqCreator labelVal">${status}</p>
+                  <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
+                </div>
+                <div class="card-rows">
+                  <p class="reqSubject labelVal">${subject}</p>
+                  <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
+                </div>
+              </div>
+            </div>`)
+                }
+            }
+        }
+
+
 
 
     })
