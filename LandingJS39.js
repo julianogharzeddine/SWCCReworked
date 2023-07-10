@@ -118,6 +118,29 @@ $(document).ready(function () {
     })
 
 
+    // Counter cards listeners 
+
+
+    $(document).on('click', '.counterCard', function () {
+
+        investStatus = $(this).data("status")
+
+        console.log(investStatus)
+
+        // Creating the investigation cards
+
+        fetchInvestigations()
+            .then(function(data) {
+                waitForInvestWrapperRender(data)
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+
+    })
+
+
+
 })
 
 
@@ -191,72 +214,16 @@ function renderInvestCards(data, investStatus, keyword) {
             case ("Completed"): targetArray = greenStatus
             case ("Active"): targetArray = orangeStatus
             case ("New"): targetArray = redStatus
-            default : targetArray = []
+            default: targetArray = []
 
         }
 
         if (containsKeyword) {
             if (investStatus = "All") {
-                $('#card-wrapper').append(`
-                <div class="cardItem">
-          <div class="cardHeader">
-            <div class="investNoStatusWrap">
-              <div class="status" style="background-color: ${redStatus.includes(status) ? " red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div>
-              <div class="investNo">
-                <a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a>
-              </div>
-            </div>
-            <div class='dateWrapper'>
-              <div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div>
-              <img src='${dateIconURL}' />
-            </div>
-          </div>
-          <div class="cardBody">
-            <div class="card-rows">
-              <p class="reqCreator labelVal">${creator}</p>
-              <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
-            </div>
-            <div class="card-rows">
-              <p class="reqCreator labelVal">${status}</p>
-              <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
-            </div>
-            <div class="card-rows">
-              <p class="reqSubject labelVal">${subject}</p>
-              <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
-            </div>
-          </div>
-        </div>`)
+                $('#card-wrapper').append(`<div class="cardItem"><div class="cardHeader"><div class="investNoStatusWrap"><div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div><div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div></div><div class='dateWrapper'><div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div><img src='${dateIconURL}' /></div></div><div class="cardBody"><div class="card-rows"><p class="reqCreator labelVal">${creator}</p><p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p></div><div class="card-rows"><p class="reqCreator labelVal">${status}</p><p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p></div><div class="card-rows"><p class="reqSubject labelVal">${subject}</p><p class="reqSubjectLabel labelTitle translatable">الموضوع</p></div></div></div>`);
             } else {
                 if (targetArray.includes(status)) {
-                    $('#card-wrapper').append(`
-                    <div class="cardItem">
-              <div class="cardHeader">
-                <div class="investNoStatusWrap">
-                  <div class="status" style="background-color: ${redStatus.includes(status) ? " red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div>
-                  <div class="investNo">
-                    <a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a>
-                  </div>
-                </div>
-                <div class='dateWrapper'>
-                  <div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div>
-                  <img src='${dateIconURL}' />
-                </div>
-              </div>
-              <div class="cardBody">
-                <div class="card-rows">
-                  <p class="reqCreator labelVal">${creator}</p>
-                  <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
-                </div>
-                <div class="card-rows">
-                  <p class="reqCreator labelVal">${status}</p>
-                  <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
-                </div>
-                <div class="card-rows">
-                  <p class="reqSubject labelVal">${subject}</p>
-                  <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
-                </div>
-              </div>
-            </div>`)
+                    $('#card-wrapper').append(`<div class="cardItem"><div class="cardHeader"><div class="investNoStatusWrap"><div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div><div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div></div><div class='dateWrapper'><div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div><img src='${dateIconURL}' /></div></div><div class="cardBody"><div class="card-rows"><p class="reqCreator labelVal">${creator}</p><p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p></div><div class="card-rows"><p class="reqCreator labelVal">${status}</p><p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p></div><div class="card-rows"><p class="reqSubject labelVal">${subject}</p><p class="reqSubjectLabel labelTitle translatable">الموضوع</p></div></div></div>`);
                 }
             }
         }
@@ -313,17 +280,17 @@ function renderCounterButtons(data) {
     })
 
     let content = `
-  <div class="Complete counterCard">
+  <div class="Complete counterCard" data-status="Complete">
       <p id="completeCounter" class="counterCircle">${completedNo}</p>
       <p class="counterLabel translatable">المكتملة</p>
       <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
   </div>
-  <div class="Active counterCard">
+  <div class="Active counterCard" data-status="Active">
       <p id="activeCounter" class="counterCircle">${activeNo}</p>
       <p class="counterLabel translatable">النشطة</p>
       <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
   </div>
-  <div class="New counterCard">
+  <div class="New counterCard" data-status="New">
       <p id="newCounter" class="counterCircle">${newNo}</p>
       <p class="counterLabel translatable">الجديدة</p>
       <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
