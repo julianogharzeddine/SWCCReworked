@@ -193,7 +193,8 @@ function fetchInvestigations() {
 function renderInvestCards(data, investStatus, keyword) {
 
     $('#card-wrapper').html("")
-
+   console.log("Invest Status : " , investStatus)
+   
     data.map((investigation) => {
 
         let status = investigation.Status
@@ -211,7 +212,7 @@ function renderInvestCards(data, investStatus, keyword) {
         let targetArray = []
 
 
-        console.log("Invest Status : " , investStatus)
+      
 
         switch (investStatus) {
             case ("Completed"): targetArray = greenStatus
