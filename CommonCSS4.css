@@ -56,47 +56,48 @@ div[name="Sidebar"] {
 [name="Sidebar"] span {
     background: var(--secondarylight-bg-color) !important;
 }
-  
+
 .categoryItem img {
-    height :35px;
-    width : 35px;
+    height: 35px;
+    width: 35px;
 }
 
 .categoryItem {
-    display : flex ;
-    place-items : center ;
-    gap : 20px ;
+    display: flex;
+    place-items: center;
+    gap: 20px;
 }
 
 .categoryName {
-    color : white !important ;
-    font-size : 23px !important;
+    color: white !important;
+    font-size: 23px !important;
 }
 
 
 #SidebarCategoryWrapper {
-    display : flex ;
-    flex-direction : column ;
-    gap : 30px ;
-    width : 93% ;
-    margin : 0px 10px
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 93%;
+    margin: 0px 10px
 }
 
 .subcategoriesWrapper {
-    display : flex ;
-    flex-direction : column ;
-    gap : 10px ;
-    margin : 10px 50px 0px ;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 50px 0px;
 }
 
 .subcategoryName {
-    font-size : 18px !important ;
+    font-size: 18px !important;
     color: #a7cffb !important;
-} 
+}
 
-.categoryItem , .subcategoryItem {
-    width : fit-content ;
-    cursor : pointer ;
+.categoryItem,
+.subcategoryItem {
+    width: fit-content;
+    cursor: pointer;
 }
 
 /* HEADER  STYLING */
@@ -111,7 +112,7 @@ div[name="Navbar"] {
 }
 
 div[name="Navbar"] * {
-    background-color : white !important ;
+    background-color: white !important;
 }
 
 [name="UserName"] {
@@ -276,8 +277,8 @@ div[name*="Worklist Card WT"] span.text-underline {
     border: 1px solid lightgray;
     background: var(--white);
     border-radius: var(--standard-border-radius);
-     height : 550px;
-    overflow : scroll ;
+    height: 550px;
+    overflow: scroll;
 }
 
 
@@ -303,7 +304,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
-    max-width : 320px;
+    max-width: 320px;
     text-overflow: ellipsis;
 }
 
@@ -343,9 +344,9 @@ div[name*="Worklist Card WT"] span.text-underline {
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    padding : 1px; 
+    padding: 1px;
     font-size: 12px;
-    padding : 1px;
+    padding: 1px;
     text-align: center;
     line-height: 20px;
 }
@@ -359,3 +360,12 @@ div[name*="Worklist Card WT"] span.text-underline {
     border-radius: 100%;
 }
 
+
+input[name="SearchBox"] {
+    height: 35px !important;
+    margin: 0px 15px !important;
+}
+
+[name*='View'] {
+    background: var(--bg-color) !important;
+}
