@@ -125,7 +125,6 @@ $(document).ready(function () {
 
         investStatus = $(this).data("status")
 
-        console.log(investStatus)
 
         // Creating the investigation cards
 
@@ -210,6 +209,9 @@ function renderInvestCards(data, investStatus, keyword) {
             subject.toLowerCase().includes(keyword.toLowerCase());
 
         let targetArray = []
+
+
+        console.log("Invest Status : " , investStatus)
 
         switch (investStatus) {
             case ("Completed"): targetArray = greenStatus
