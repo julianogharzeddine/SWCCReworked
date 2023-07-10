@@ -125,7 +125,7 @@ $(document).ready(function () {
 
         investStatus = $(this).data("status")
 
-
+       
         // Creating the investigation cards
 
         fetchInvestigations()
@@ -193,7 +193,7 @@ function fetchInvestigations() {
 function renderInvestCards(data, investStatus, keyword) {
 
     $('#card-wrapper').html("")
-   console.log("Invest Status : " , investStatus)
+    console.log("Invest Status Before Mapping : " , investStatus)
 
     data.map((investigation) => {
 
@@ -202,6 +202,8 @@ function renderInvestCards(data, investStatus, keyword) {
         let creationDate = investigation.CreatedOn
         let creator = investigation.CreatedBy
         let subject = investigation.InvestigationSubject
+
+        console.log("Invest Status In the Loop : " , investStatus)
 
         let containsKeyword =
             refNo.toLowerCase().includes(keyword.toLowerCase()) ||
