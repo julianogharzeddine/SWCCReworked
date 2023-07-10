@@ -215,10 +215,10 @@ function renderInvestCards(data, investStatus, keyword) {
       
 
         switch (investStatus) {
-            case ("Completed"): targetArray = greenStatus
-            case ("Active"): targetArray = orangeStatus
-            case ("New"): targetArray = redStatus
-            default: targetArray = []
+            case ("Completed"): targetArray = greenStatus; break ;
+            case ("Active"): targetArray = orangeStatus; break ;
+            case ("New"): targetArray = redStatus; break ;
+            default: targetArray = []; break ;
         }
 
         console.log(targetArray)
