@@ -156,7 +156,7 @@ function goTo(href) {
 
 function waitForInvestWrapperRender(data) {
     if ($('#card-wrapper').length > 0) {
-        renderInvestCards(data, investStatus, searchKeyword);
+        renderInvestCards(data);
     } else {
         setTimeout(waitForInvestWrapperRender, 500);
     }
@@ -190,7 +190,7 @@ function fetchInvestigations() {
 
 // Rendering Investigation Cards
 
-function renderInvestCards(data, investStatus, keyword) {
+function renderInvestCards(data) {
 
     $('#card-wrapper').html("")
     console.log("Invest Status Before Mapping : ", investStatus)
@@ -206,10 +206,10 @@ function renderInvestCards(data, investStatus, keyword) {
         console.log("Invest Status In the Loop : ", investStatus)
 
         let containsKeyword =
-            refNo.toLowerCase().includes(keyword.toLowerCase()) ||
-            creationDate.toLowerCase().includes(keyword.toLowerCase()) ||
-            creator.toLowerCase().includes(keyword.toLowerCase()) ||
-            subject.toLowerCase().includes(keyword.toLowerCase());
+            refNo.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+            creationDate.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+            creator.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+            subject.toLowerCase().includes(searchKeyword.toLowerCase());
 
         let targetArray = []
 
