@@ -265,7 +265,7 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 .taskDD {
     position: fixed !important;
-    width: 480px;
+    width: 410px;
     top: 80px;
     left: 18%;
     z-index: 100 !important;
@@ -277,7 +277,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     border: 1px solid lightgray;
     background: var(--white);
     border-radius: var(--standard-border-radius);
-    height: 550px;
+    height: 410px;
     overflow: scroll;
 }
 
@@ -304,7 +304,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 320px;
+    max-width: 260px;
     text-overflow: ellipsis;
 }
 
