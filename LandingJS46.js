@@ -125,14 +125,14 @@ $(document).ready(function () {
 
         investStatus = $(this).data("status")
 
-       
+
         // Creating the investigation cards
 
         fetchInvestigations()
-            .then(function(data) {
+            .then(function (data) {
                 waitForInvestWrapperRender(data)
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.error(error);
             });
 
@@ -193,7 +193,7 @@ function fetchInvestigations() {
 function renderInvestCards(data, investStatus, keyword) {
 
     $('#card-wrapper').html("")
-    console.log("Invest Status Before Mapping : " , investStatus)
+    console.log("Invest Status Before Mapping : ", investStatus)
 
     data.map((investigation) => {
 
@@ -203,7 +203,7 @@ function renderInvestCards(data, investStatus, keyword) {
         let creator = investigation.CreatedBy
         let subject = investigation.InvestigationSubject
 
-        console.log("Invest Status In the Loop : " , investStatus)
+        console.log("Invest Status In the Loop : ", investStatus)
 
         let containsKeyword =
             refNo.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -213,14 +213,18 @@ function renderInvestCards(data, investStatus, keyword) {
 
         let targetArray = []
 
-
-      
-
         switch (investStatus) {
-            case ("Completed"): targetArray = greenStatus; break ;
-            case ("Active"): targetArray = orangeStatus; break ;
-            case ("New"): targetArray = redStatus; break ;
-            default: targetArray = []; break ;
+            case "Complete":
+                targetArray = greenStatus;
+                break;
+            case "Active":
+                targetArray = orangeStatus;
+                break;
+            case "New":
+                targetArray = redStatus;
+                break;
+            default: targetArray = [];
+                break;
         }
 
         console.log(targetArray)
