@@ -241,7 +241,8 @@ function renderInvestCards(data) {
 
     })
 
-    if(filteredResults === 0)   $('#card-wrapper').append("No Items Found")
+    if(filteredResults === 0)   $('#noInvestigationsFound').text("No Items Found")
+    else $('#noInvestigationsFound').text("")
 
 }
 
