@@ -93,6 +93,12 @@ div[name="Sidebar"] {
     font-size : 18px !important ;
     color: #a7cffb !important;
 } 
+
+.categoryItem , .subcategoryItem {
+    width : fit-content ;
+    cursor : pointer ;
+}
+
 /* HEADER  STYLING */
 
 div[name="Navbar"] {
@@ -352,18 +358,4 @@ div[name*="Worklist Card WT"] span.text-underline {
     background: black !important;
     border-radius: 100%;
 }
-
-
-
-
-/* Search Textbox Styling - To be reviewed */
-
-input[name="Text Box"] {
-
-    width: 50ex !important;
-    height : 38px !important;
-    margin : 0px 15px !important ;
-}
-
-
 
