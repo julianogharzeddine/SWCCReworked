@@ -194,7 +194,7 @@ function renderInvestCards(data, investStatus, keyword) {
 
     $('#card-wrapper').html("")
    console.log("Invest Status : " , investStatus)
-   
+
     data.map((investigation) => {
 
         let status = investigation.Status
@@ -219,8 +219,9 @@ function renderInvestCards(data, investStatus, keyword) {
             case ("Active"): targetArray = orangeStatus
             case ("New"): targetArray = redStatus
             default: targetArray = []
-
         }
+
+        console.log(targetArray)
 
 
 
