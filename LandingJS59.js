@@ -143,10 +143,11 @@ $(document).ready(function () {
 
 
         let categoryName = $(this).find('.categoryName').text()
+        let categoryID  = $(this).data("cat")
 
         fetchSubCategoriesJoin()
             .then(function (data) {
-                renderSubCategoryCards(data, categoryName)
+                renderSubCategoryCards(data, categoryName , categoryID)
             })
             .catch(function (error) {
                 console.error(error);
@@ -382,7 +383,7 @@ function renderInvestOptions() {
 
 // Rendering the SubCategory Cards
 
-function renderSubCategoryCards(data, categoryName) {
+function renderSubCategoryCards(data, categoryName , categoryID) {
 
     $('#subcategories-card-wrapper').html("")
     $('#subcategories-card-wrapper').append(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
