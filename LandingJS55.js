@@ -15,16 +15,16 @@ $(document).ready(function () {
 
     // Add click event listener to each counterCard
 
-    $('.counterCard').click(function () {
+    $(document).on("click", ".counterCard", function () {
 
         // Remove 'Darker' class from all counterCard divs
 
         $('.counterCard').removeClass('Darker');
 
         // Add 'Darker' class to the clicked counterCard div
-        
+
         $(this).addClass('Darker');
-    });
+    })
 
     $(document).click(function () {
         translate()
