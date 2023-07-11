@@ -1,491 +1,293 @@
-var dictionary; // definining the dictionary
-var baseURL;   // fetching the base URL
-var redStatus = ["new", "New", "جديد"]
-var greenStatus = ["اكتمال التحقيق"]
-var orangeStatus = ["بإنتظار اعداد التقرير", "بانتظار المراجعة"]
-var dateIconURL = "https://srv-k2five/Designer/Image.ashx?ImID=110252"
-var investStatus = "All"
-var searchKeyword = ""
 
-$(document).ready(function () {
+/* Form Boundaries */
 
-    // Fetching the baseURL to use it in subsequent API Calls
-
-    baseURL = window.location.protocol + '//' + window.location.host + '/';
-
-    // Add click event listener to each counterCard
-
-    $(document).on("click", ".counterCard", function () {
-
-        // Remove 'Darker' class from all counterCard divs
-
-        $('.counterCard').removeClass('Darker');
-
-        // Add 'Darker' class to the clicked counterCard div
-
-        $(this).addClass('Darker');
-    })
-
-    $(document).click(function () {
-        translate()
-    })
-
-    let LSLang = localStorage.getItem('selected_language')
-
-
-    if (LSLang == null || LSLang == 'undefined') {
-        localStorage.setItem('selected_language', 'ar-SA')
-    }
-
-    let LSLang1 = localStorage.getItem('selected_language')
-
-    switch (LSLang1) {
-        case 'en-US':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('English')").click();
-            break
-        case 'ar-SA':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            break
-        case 'fr-FR':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('Français')").click();
-            break
-        default:
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            break
-    }
-
-    // Translating the Page On Load
-
-    dictionary = [
-        { "English": "Investigations Management", "Arabic": "إدارة القضايا و التحقيقات", "French": "Aff. Juridiques" },
-        { "English": "Proceed Against Institution", "Arabic": "إجراء ضد مؤسسة", "French": "Procéder Contre Inst." },
-        { "English": "Proceed With Institution", "Arabic": "إجراء مع المؤسسة", "French": "Procéder Avec Inst." },
-        { "English": "Request Investigation", "Arabic": "إجراء تحقيق", "French": "Demander Enquête" },
-        { "English": "Conflict Of Interest Procedure", "Arabic": "إجراء تضارب المصالح", "French": "Procédure Conflit Intérêt" },
-        { "English": "Contract Study Procedures", "Arabic": "إجراءات دراسة العقود", "French": "Procédures Étude Contrats" },
-        { "English": "Click Here", "Arabic": "إضغط هنا", "French": "Cliquer" },
-        { "English": "Conduct Investigation", "Arabic": "إجراء تحقيق", "French": "Mener Enquête" },
-        { "English": "Investigation Requests", "Arabic": "طلبات التحقيق", "French": "Demandes D'Enquête" },
-        { "English": "Submit Complaint", "Arabic": "تقديم شكوى", "French": "Soumettre Plainte" },
-        { "English": "New", "Arabic": "الجديدة", "French": "Nouveau" },
-        { "English": "Active", "Arabic": "النشطة", "French": "Actif" },
-        { "English": "Completed", "Arabic": "المكتملة", "French": "Terminé" },
-        { "English": "Created By", "Arabic": "انشا من قبل", "French": "Créé Par" },
-        { "English": "Investigation Status", "Arabic": "حالة التحقيق", "French": "Statut Enquête" },
-        { "English": "Subject", "Arabic": "الموضوع", "French": "Sujet" },
-        { "English": "out of", "Arabic": "من", "French": "de" },
-        { "English": "Status", "Arabic": "الحالة", "French": "Statut" },
-        { "English": "Purchase", "Arabic": "طلب شراء", "French": "Achat" },
-        { "English": "Sales", "Arabic": "المبيعات", "French": "Ventes" },
-        { "English": "Marketing", "Arabic": "التسويق", "French": "Marketing" },
-        { "English": "Requisitions", "Arabic": "الطلبات", "French": "Demandes" },
-        { "English": "Our Services", "Arabic": "خدماتنا المختلفة", "French": "Nos Services" },
-        { "English": "Purchase No", "Arabic": "رقم الطلب", "French": "Numero" },
-        { "English": "Today", "Arabic": "اليوم", "French": "Auj" },
-        { "English": "Wed", "Arabic": "الأربعاء", "French": "Mer" },
-        { "English": "Thu", "Arabic": "الخميس", "French": "Jeu" }
-    ];
-
-
-
-
-    // Showing Investigation Options
-
-    $(document).on('click', '#createInvestigationButton', function () {
-        // Rendering Investigation buttons which shows the actions that can be taken
-        renderInvestOptions()
-    })
-
-    // Showing all the investigations in the custom cards
-
-    $(document).on('click', '#showAllInvestigations', function () {
-
-        // Creating the request counters
-
-        fetchCounters()
-            .then(function (data) {
-                renderCounterButtons(data)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-
-
-        initiateFetchInvestigations()
-
-    })
-
-
-    // Counter cards listeners 
-
-
-    $(document).on('click', '.counterCard', function () {
-
-        investStatus = $(this).data("status")
-        initiateFetchInvestigations()
-
-    })
-
-
-    // Counter cards listeners 
-
-    $(document).on('input', '[name="SearchBox"]', function () {
-        searchKeyword = $(this).val()
-        initiateFetchInvestigations()
-    })
-
-
-    // Counter cards listeners 
-
-    $(document).on('click', '.categoryItem', function () {
-
-
-        let categoryName = $(this).find('.categoryName').text()
-        let categoryID = $(this).data("cat")
-
-        fetchSubCategoriesJoin()
-            .then(function (data) {
-                renderSubCategoryCards(data, categoryName, categoryID)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-    })
-
-
-})
-
-
-
-
-// Redirection function
-
-function goTo(href) {
-    window.open(href, "_self")
+.runtime-form {
+    position: absolute !important;
+    top: 100px;
+    left: 5%;
+    width: 70% !important;
 }
 
 
-function initiateFetchInvestigations() {
+/* SECTION BROWSER STYLING */
 
-    // Creating the investigation cards
-
-    fetchInvestigations()
-        .then(function (data) {
-            waitForInvestWrapperRender(data)
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
-
+.sectionBrowser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    padding: 20px !important;
+    background: var(--bg-color);
 }
 
-// Wait for the Card Wrapper
-
-function waitForInvestWrapperRender(data) {
-    if ($('#card-wrapper').length > 0) {
-        renderInvestCards(data);
-    } else {
-        setTimeout(waitForInvestWrapperRender, 500);
-    }
+.sectionBrowserTitle {
+    font-size: var(--section-title-size) !important;
+    font-weight: bold !important;
+    text-align: center;
 }
 
 
-// Fetching investigation details 
+/* INVESTIGATIONS CUSTOM CARDS STYLING */
 
-function fetchInvestigations() {
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            type: 'GET',
-            url: `${baseURL}api/odatav4/v4/RequestView_1`,
-            dataType: 'json',
-            crossDomain: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            },
-            success: function (json_data) {
-                resolve(json_data.value);
-            },
-            error: function () {
-                reject('Failed to Load Investigations!');
-            }
-        });
-    });
+
+#InvestigationCards {
+    width: 90% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, 34ex);
+    place-items: center !important;
+    grid-row-gap: 30px !important;
+    overflow-y: auto !important;
+    direction: rtl;
+    padding: 30px;
+    justify-content: center;
+}
+
+#InvestigationCards .cardItem {
+    padding: 20px !important;
+    height: 237px !important;
+    border-radius: 2.5ex !important;
+    box-shadow: 0px 13px 25px #0000002B !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    place-items: center !important;
+    padding-bottom: 25px !important;
+    box-sizing: border-box !important;
 }
 
 
-// Rendering Investigation Cards
+.cardItem {
+    position: relative;
+    height: 230px;
+    width: 90%;
+    padding: 6px;
+    border-radius: var(--standard-border-radius);
+    box-shadow: var(--carditem-shadow) !important;
+    background: var(--white);
+}
 
-function renderInvestCards(data) {
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 0.2px solid #d5d6d4;
+    padding: 10px;
+}
 
-    $('#card-wrapper').html("")
-    let filteredResults = 0;
+.card-rows {
+    display: flex;
+    flex-direction: row-reverse;
+}
 
-    data.map((investigation) => {
+.investNo a {
+    color: var(--secondarylight-bg-color);
+    font-weight: bold;
+    font-size: 16px !important;
+}
 
-        let status = investigation.Status
-        let refNo = investigation.RefNo
-        let creationDate = investigation.CreatedOn
-        let creator = investigation.CreatedBy
-        let subject = investigation.InvestigationSubject
+.date {
+    color: var(--secondarylight-bg-color);
+    font-weight: bold;
+    font-size: 16px !important;
+}
 
-        let containsKeyword =
-            refNo.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-            creationDate.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-            creator.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-            subject.toLowerCase().includes(searchKeyword.toLowerCase());
+.cardItem p {
+    width: 100%;
+    text-align: center !important;
+    text-wrap: balance;
+    height: 4.9ex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        let targetArray = []
+.labelVal {
+    color: var(--secondarydark-bg-color) !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
 
-        switch (investStatus) {
-            case "Complete":
-                targetArray = greenStatus;
-                break;
-            case "Active":
-                targetArray = orangeStatus;
-                break;
-            case "New":
-                targetArray = redStatus;
-                break;
-            default: targetArray = [];
-                break;
-        }
+.status {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+}
 
-        console.log(targetArray)
+/* Requests Cards */
 
-        if (containsKeyword) {
-            if (investStatus == "All" || targetArray.includes(status)) {
-                $('#card-wrapper').append(`<div class="cardItem"><div class="cardHeader"><div class="investNoStatusWrap"><div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div><div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div></div><div class='dateWrapper'><div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div><img src='${dateIconURL}' /></div></div><div class="cardBody"><div class="card-rows"><p class="reqCreator labelVal">${creator}</p><p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p></div><div class="card-rows"><p class="reqCreator labelVal">${status}</p><p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p></div><div class="card-rows"><p class="reqSubject labelVal">${subject}</p><p class="reqSubjectLabel labelTitle translatable">الموضوع</p></div></div></div>`);
-                filteredResults++
-            }
-        }
+#card-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    grid-row-gap: 20px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
 
-    })
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80%;
+}
 
-    if (filteredResults === 0) $('#noInvestigationsFound').text("No Items Found")
-    else $('#noInvestigationsFound').text("")
+.investNoStatusWrap {
+    display: flex;
+    flex-direction: row;
+    align-items : center ;
+    gap: 10px;
+}
 
+.labelTitle {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: gray !important;
 }
 
 
-
-// Fetching subcategories
-
-function fetchSubCategoriesJoin() {
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            type: 'GET',
-            url: `${baseURL}api/odatav4/v4/CategoriesJoins`,
-            dataType: 'json',
-            crossDomain: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            },
-            success: function (json_data) {
-                resolve(json_data.value);
-            },
-            error: function () {
-                reject('Failed to Load Counters !');
-            }
-        });
-    });
+.dateWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    place-items: center;
 }
 
-// Fetching request counters 
-
-function fetchCounters() {
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            type: 'GET',
-            url: `${baseURL}api/odatav4/v4/RequestView_1`,
-            dataType: 'json',
-            crossDomain: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            },
-            success: function (json_data) {
-                resolve(json_data.value);
-            },
-            error: function () {
-                reject('Failed to Load Counters !');
-            }
-        });
-    });
-}
-
-
-// Rendering the counter buttons
-
-function renderCounterButtons(data) {
-
-    let completedNo = 0
-    let activeNo = 0
-    let newNo = 0
-    let totalReq = data.length
-
-    data.map((investigation) => {
-
-        if (redStatus.includes(investigation.Status)) newNo++
-        else if (greenStatus.includes(investigation.Status)) completedNo++
-        else activeNo++
-
-        totalReq++
-    })
-
-    let content = `
-  <div class="Complete counterCard" data-status="Complete">
-      <p id="completeCounter" class="counterCircle">${completedNo}</p>
-      <p class="counterLabel translatable">المكتملة</p>
-      <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
-  </div>
-  <div class="Active counterCard" data-status="Active">
-      <p id="activeCounter" class="counterCircle">${activeNo}</p>
-      <p class="counterLabel translatable">النشطة</p>
-      <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
-  </div>
-  <div class="New counterCard" data-status="New">
-      <p id="newCounter" class="counterCircle">${newNo}</p>
-      <p class="counterLabel translatable">الجديدة</p>
-      <p class="totalcounter"><span class='translatable'>من </span> ${totalReq}</p>
-  </div>
-  `
-    $("#reqCounter").html("")
-    $("#reqCounter").append(content)
-}
-
-
-function renderInvestOptions() {
-
-    $('#InvestigationCards').html("")
-    $('#InvestigationCards').append(`
-  <div class="cardItem" id='showAllInvestigations'>
-      <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/gavel-lawyer-books-isolated-white-justice-law-legal-concept-d-illustration-91106772-transformed.webp" class='titleImage'>
-      <p class="cardTitle translatable">طلبات التحقيق</p>
-  </div>
-  <div class="cardItem" onclick="goTo('https://srv-k2five/Runtime/Runtime/Form/Submit.Form/')">
-      <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/2000x1000_legal2.jpg" class='titleImage'>
-      <p class="cardTitle translatable">إجراء تحقيق</p>
-  </div>
-  <div class="cardItem"  onclick="goTo('https://srv-k2five/Runtime/Runtime/Form/InitialForm.Form/')">
-      <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/how-to-file-a-complaint.jpg" class='titleImage'>
-      <p class="cardTitle translatable">تقديم شكوى</p>
-  </div>
-  
-  `)
-}
-
-// Rendering the SubCategory Cards
-
-function renderSubCategoryCards(data, categoryName, categoryID) {
+#noInvestigationsFound {
+    font-size : 15pt;
+    font-weight :  bold ;
+    text-align : center ;
+    color : red;
     
-    $(".sectionBrowserTitle").remove()
-    $('#sectionBrowser').append(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
-    $('#subcategories-card-wrapper').html("")
+}
 
-    data.map((item) => {
-        if (item.CategoryID === categoryID) {
-            $('#subcategories-card-wrapper').append(`<div class="cardItem"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
-        }
-    })
+/* REQUEST COUNTER STYLING */
 
+.Complete {
+    background: var(--secondarylight-bg-color);
+}
+
+.Active {
+    background: var(--secondarydark-bg-color);
+}
+
+.New {
+    background: var(--secondarydark-bg-color);
+}
+
+.totalcounter {
+    color: var(--white) !important;
+    font-size: 2ex !important;
+}
+
+#reqCounter {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 40px !important;
+    height: fit-content !important;
+    padding: 20px 5% 20px 60px !important;
+    box-sizing: border-box !important;
+}
+
+.counterCircle {
+    display: flex !important;
+    justify-content: center !important;
+    place-items: center !important;
+    height: 40px !important;
+    width: 40px !important;
+    padding: 3px !important;
+    border-radius: 100% !important;
+    box-sizing: border-box !important;
+    font-weight: bold !important;
+    font-size: 35px !important;
+    color: var(--white) !important;
+}
+
+.counterCard {
+    display: flex !important;
+    place-items: center !important;
+    justify-content: space-around;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    width: 251px !important;
+    height: 105px !important;
+    cursor: pointer;
+    flex-direction: column !important;
+    padding: 2ex;
+}
+
+.counterLabel {
+    color: var(--white) !important;
+    font-size: 18px !important;
 }
 
 
-function translate() {
-    let LSLang = localStorage.getItem('selected_language')
-    let targetLang = ""
 
-    switch (LSLang) {
-        case 'en-US':
-            targetLang = 'English'
-            $('.taskDD').css('left', '72%')
-            $('[name="Sidebar"]').css('right', '')
-            $('[name="Sidebar"]').css('left', '0')
-            $('.runtime-form').css('left', '')
-            $('.runtime-form').css('left', '20%')
-            $('.counterCard').css('flex-direction', 'row-reverse')
-            $('.dateWrapper').css('flex-direction', 'row-reverse')
-            $('.card-rows').css('flex-direction', 'row-reverse')
-            $('.cardHeader').css('flex-direction', 'row')
-            $('.investNoStatusWrap').css('flex-direction', 'row')
-            $('#subcategories-card-wrapper').css('direction', 'ltr')
-            $('#card-wrapper').css('direction', 'ltr')
-            $('.taskDD a').css('flex-direction', 'row')
-            $('.task-details p').css({
-                'text-align': 'left',
-                'direction': 'rtl'
-            })
-            $(".task-details h4").css("text-align", "left")
-            break
-        case 'ar-SA':
-            targetLang = 'Arabic'
-            $('.taskDD').css('left', '20%')
-            $('[name="Sidebar"]').css('left', '')
-            $('[name="Sidebar"]').css('right', '0')
-            $('[name="Sidebar"]').css('left', '')
-            $('.runtime-form').css('left', '5%')
-            $('.counterCard').css('flex-direction', 'row-reverse')
-            $('.dateWrapper').css('flex-direction', 'row')
-            $('.card-rows').css('flex-direction', 'row-reverse')
-            $('.cardHeader').css('flex-direction', 'row')
-            $('.investNoStatusWrap').css('flex-direction', 'row')
-            $('#subcategories-card-wrapper').css('direction', 'rtl')
-            $('#card-wrapper').css('direction', 'rtl')
-            $('.taskDD a').css('flex-direction', 'row-reverse')
-            $('.task-details p').css({
-                'text-align': 'right',
-                'direction': 'ltr'
-            })
-            $(".task-details h4").css("text-align", "right")
-            break
-        case 'fr-FR':
-            targetLang = 'French'
-            $('.taskDD').css('right', '72%')
-            $('[name="Sidebar"]').css('right', '')
-            $('[name="Sidebar"]').css('left', '0')
-            $('.runtime-form').css('left', '')
-            $('.runtime-form').css('left', '20%')
-            $('.counterCard').css('flex-direction', 'row-reverse')
-            $('.card-rows').css('flex-direction', 'row-reverse')
-            $('.cardHeader').css('flex-direction', 'row')
-            $('.dateWrapper').css('flex-direction', 'row')
-            $('#subcategories-card-wrapper').css('direction', 'ltr')
-            $('#card-wrapper').css('direction', 'ltr')
-            $('.taskDD a').css('flex-direction', 'row')
-            $('.task-details p').css({
-                'text-align': 'left',
-                'direction': 'rtl'
-            })
-            $(".task-details h4").css("text-align", "left")
-            break
-    }
+/* OPTIONS STYLING , NOTE THAT #subcategories-card-wrapper should be changed from JS */
 
-    let toTranslate = $('.translatable')
 
-    toTranslate.each(function () {
-        $(this).text(getFromDictionary(($(this).text().trim()), targetLang))
-    })
-
+#subcategories-card-wrapper {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    place-items: center !important;
+    grid-row-gap: 30px !important;
+    overflow-y: auto !important;
+    direction: rtl;
+    padding: 30px;
 }
 
-function getFromDictionary(text, toLanguage) {
-    for (var i = 0; i < dictionary.length; i++) {
 
-        var entry = dictionary[i];
+#subcategories-card-wrapper .cardItem {
+    display: flex !important;
+    flex-direction: column !important;
+    place-items: center !important;
+    box-sizing: border-box !important;
+    padding: 15px !important;
+    height: 237px !important;
+    border-radius: var(--standard-border-radius) !important;
+    box-shadow: var(--option-cards-shadow) !important;
+    background: var(--white) !important;
+    cursor: pointer;
+    max-width: 260px !important;
+}
 
-        if (entry.English === text) return entry[toLanguage];
-        if (entry.Arabic === text) return entry[toLanguage];
-        if (entry.French === text) return entry[toLanguage];
+.cardItem .titleImage {
+    width: 96.6% !important;
+    height: 108px !important;
+    border-radius: 25px !important;
+    max-width: 350px !important;
+    cursor: pointer;
+}
 
-    }
+.cardTitle {
+    width: 95% !important;
+    text-align: center !important;
+    letter-spacing: 0px !important;
+    font-size: var(--card-title-font-size) !important;
+    font-weight: bold !important;
+    margin-top: 15px !important;
+}
 
-    return 'Translation not found';
+
+.toolbar-wrapper {
+    height: 0px !important;
+    display: none !important;
+    background: var(--bg-color) !important;
+}
+
+.single {
+    background: var(--bg-color) !important;
+}
+
+
+.Darker {
+  transform : scale(1.13);
+  transition :  0.3s ease ;
+  filter : brightness(0.9)
 }
 
