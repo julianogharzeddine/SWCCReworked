@@ -88,11 +88,7 @@ $(document).ready(function () {
         { "English": "Thu", "Arabic": "الخميس", "French": "Jeu" }
     ];
 
-    // Wait for the card-wrapper div to render successfully
 
-    setTimeout(function () {
-        renderLegalServicesCards()
-    }, 2000)
 
 
     // Showing Investigation Options
@@ -398,15 +394,6 @@ function renderSubCategoryCards(data, categoryName) {
 
 }
 
-function waitForLegalWrapperRender() {
-    if ($("[name='LegalServicesDL']").length > 0) {
-        // Call your function here
-        renderLegalServicesCards()
-    } else {
-        // Retry after a delay
-        setTimeout(waitForLegalWrapperRender, 200);
-    }
-}
 
 function translate() {
     let LSLang = localStorage.getItem('selected_language')
