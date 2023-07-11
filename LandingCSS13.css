@@ -227,10 +227,10 @@
 
 
 
-/* OPTIONS STYLING , NOTE THAT legalservices-card-wrapper should be changed from JS */
+/* OPTIONS STYLING , NOTE THAT #subcategories-card-wrapper should be changed from JS */
 
 
-#legalservices-card-wrapper {
+#subcategories-card-wrapper {
     width: 100% !important;
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
@@ -242,7 +242,7 @@
 }
 
 
-#legalservices-card-wrapper .cardItem {
+#subcategories-card-wrapper .cardItem {
     display: flex !important;
     flex-direction: column !important;
     place-items: center !important;
