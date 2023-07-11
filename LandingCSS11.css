@@ -274,8 +274,6 @@
 }
 
 
-
-
 .toolbar-wrapper {
     height: 0px !important;
     display: none !important;
@@ -286,4 +284,10 @@
     background: var(--bg-color) !important;
 }
 
+
+.Darker {
+  transform : scale(1.13);
+  transition :  0.3s ease ;
+  filter : brightness(0.9)
+}
 
