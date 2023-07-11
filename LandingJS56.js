@@ -130,7 +130,6 @@ $(document).ready(function () {
         investStatus = $(this).data("status")
         initiateFetchInvestigations()
 
-
     })
 
 
@@ -141,6 +140,22 @@ $(document).ready(function () {
         initiateFetchInvestigations()
     })
 
+
+    // Counter cards listeners 
+
+    $(document).on('click', '.categoryItem', function () {
+
+
+        let categoryName = $(this).find('.categoryName').text()
+
+        fetchSubCategories()
+            .then(function (data) {
+                renderSubCategoryCards(data, categoryName)
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    })
 
 
 })
@@ -259,6 +274,31 @@ function renderInvestCards(data) {
 }
 
 
+
+// Fetching subcategories
+
+function fetchSubCategories() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: `${baseURL}api/odatav4/v4/CategoriesJoins`,
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                resolve(json_data.value);
+            },
+            error: function () {
+                reject('Failed to Load Counters !');
+            }
+        });
+    });
+}
+
 // Fetching request counters 
 
 function fetchCounters() {
@@ -344,43 +384,18 @@ function renderInvestOptions() {
   `)
 }
 
+// Rendering the SubCategory Cards
 
-function fetchReqStatuses() {
+function renderSubCategoryCards(data, categoryName) {
 
-    let activeNo = $("span[name='Active']").text()
-    let newNo = $("span[name='New']").text()
-    let completedNo = $("span[name='Completed']").text()
+    $('#subcategories-card-wrapper').html("")
+    $('#subcategories-card-wrapper').append(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
+    data.map((item) => {
+        if (item.CategoryID === categoryID) {
+            $('#subcategories-card-wrapper').append(`<div class="cardItem"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+        }
+    })
 
-    $("span[name='Active']").css("visibility", "hidden !important");
-    $("span[name='New']").css("visibility", "hidden !important");
-    $("span[name='Completed']").css("visibility", "hidden !important");
-
-
-    return [activeNo, newNo, completedNo]
-}
-
-
-function renderLegalServicesCards() {
-    $('#legalservices-card-wrapper').html("")
-    $('#legalservices-card-wrapper').append(`
-    <div class="cardItem">
-    <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/379143894_750x422.jpg" class='titleImage'>
-    <p class="cardTitle translatable">إجراء ضد مؤسسة</p>
-</div>
-<div class="cardItem">
-    <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/court-inquest-adobestock_184306582.jpg" class='titleImage'>
-    <p class="cardTitle translatable">إجراء مع المؤسسة</p>
-</div>
-<div class="cardItem" id='createInvestigationButton'>
-    <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/0-6.jpg" class='titleImage'>
-    <p class="cardTitle translatable">إجراء تحقيق</p></div>
-<div class="cardItem">
-    <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/conflict-of-interest-25e7ab7068414ab080d7563821681049.jpg" class='titleImage'>
-    <p class="cardTitle translatable">إجراء تضارب المصالح</p></div>
-<div class="cardItem">
-    <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/pexels-photo.jpg" class='titleImage'>
-    <p class="cardTitle translatable">إجراءات دراسة العقود</p></div>
-  `)
 }
 
 function waitForLegalWrapperRender() {
@@ -410,7 +425,7 @@ function translate() {
             $('.card-rows').css('flex-direction', 'row-reverse')
             $('.cardHeader').css('flex-direction', 'row')
             $('.investNoStatusWrap').css('flex-direction', 'row')
-            $('#legalservices-card-wrapper').css('direction', 'ltr')
+            $('#subcategories-card-wrapper').css('direction', 'ltr')
             $('#card-wrapper').css('direction', 'ltr')
             $('.taskDD a').css('flex-direction', 'row')
             $('.task-details p').css({
@@ -431,7 +446,7 @@ function translate() {
             $('.card-rows').css('flex-direction', 'row-reverse')
             $('.cardHeader').css('flex-direction', 'row')
             $('.investNoStatusWrap').css('flex-direction', 'row')
-            $('#legalservices-card-wrapper').css('direction', 'rtl')
+            $('#subcategories-card-wrapper').css('direction', 'rtl')
             $('#card-wrapper').css('direction', 'rtl')
             $('.taskDD a').css('flex-direction', 'row-reverse')
             $('.task-details p').css({
@@ -451,7 +466,7 @@ function translate() {
             $('.card-rows').css('flex-direction', 'row-reverse')
             $('.cardHeader').css('flex-direction', 'row')
             $('.dateWrapper').css('flex-direction', 'row')
-            $('#legalservices-card-wrapper').css('direction', 'ltr')
+            $('#subcategories-card-wrapper').css('direction', 'ltr')
             $('#card-wrapper').css('direction', 'ltr')
             $('.taskDD a').css('flex-direction', 'row')
             $('.task-details p').css({
