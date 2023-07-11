@@ -144,7 +144,7 @@ $(document).ready(function () {
 
         let categoryName = $(this).find('.categoryName').text()
 
-        fetchSubCategories()
+        fetchSubCategoriesJoin()
             .then(function (data) {
                 renderSubCategoryCards(data, categoryName)
             })
@@ -273,7 +273,7 @@ function renderInvestCards(data) {
 
 // Fetching subcategories
 
-function fetchSubCategories() {
+function fetchSubCategoriesJoin() {
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: 'GET',
