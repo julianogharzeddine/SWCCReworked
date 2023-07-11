@@ -386,7 +386,7 @@ function renderInvestOptions() {
 function renderSubCategoryCards(data, categoryName, categoryID) {
 
     $(".sectionBrowserTitle").remove()
-    $('.sectionBrowser').append(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
+    $('.sectionBrowser').prepend(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
 
     $('#subcategories-card-wrapper').html("")
     data.map((item) => {
