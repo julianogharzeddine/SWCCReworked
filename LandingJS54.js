@@ -13,11 +13,23 @@ $(document).ready(function () {
 
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
+    // Add click event listener to each counterCard
 
+    $('.counterCard').click(function () {
+
+        // Remove 'Darker' class from all counterCard divs
+
+        $('.counterCard').removeClass('Darker');
+
+        // Add 'Darker' class to the clicked counterCard div
+        
+        $(this).addClass('Darker');
+    });
 
     $(document).click(function () {
         translate()
     })
+
     let LSLang = localStorage.getItem('selected_language')
 
 
@@ -241,7 +253,7 @@ function renderInvestCards(data) {
 
     })
 
-    if(filteredResults === 0)   $('#noInvestigationsFound').text("No Items Found")
+    if (filteredResults === 0) $('#noInvestigationsFound').text("No Items Found")
     else $('#noInvestigationsFound').text("")
 
 }
