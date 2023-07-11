@@ -384,11 +384,11 @@ function renderInvestOptions() {
 // Rendering the SubCategory Cards
 
 function renderSubCategoryCards(data, categoryName, categoryID) {
-    
-    $(".sectionBrowserTitle").remove()
-    $('#sectionBrowser').append(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
-    $('#subcategories-card-wrapper').html("")
 
+    $(".sectionBrowserTitle").remove()
+    $('.sectionBrowser').append(`<p class="sectionBrowserTitle translatable">${categoryName}</p>`)
+
+    $('#subcategories-card-wrapper').html("")
     data.map((item) => {
         if (item.CategoryID === categoryID) {
             $('#subcategories-card-wrapper').append(`<div class="cardItem"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
