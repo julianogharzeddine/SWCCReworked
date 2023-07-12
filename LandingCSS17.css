@@ -369,8 +369,3 @@ input[name="SearchBox"] {
 [name*='View'] {
     background: var(--bg-color) !important;
 }
-
-[name*='hiddenButton'] {
-    visibility: hidden !important;
-}
-
