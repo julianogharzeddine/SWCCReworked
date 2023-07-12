@@ -165,16 +165,6 @@ $(document).ready(function () {
 
 })
 
-
-
-
-// Redirection function
-
-function goTo(href) {
-    window.open(href, "_self")
-}
-
-
 function initiateFetchInvestigations() {
 
     // Creating the investigation cards
@@ -371,6 +361,9 @@ function renderCounterButtons(data) {
 
 function renderInvestOptions() {
 
+    $("#subOptions").find('.sectionBrowserTitle').remove()
+    $("#subOptions").prepend(`<p class="sectionBrowserTitle translatable">إجراء تحقيق</p>`)
+
     $('#InvestigationCards').html("")
     $('#InvestigationCards').append(`
   <div class="cardItem" id='showAllInvestigations'>
@@ -399,8 +392,15 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
     $('#subcategories-card-wrapper').html("")
     data.map((item) => {
         if (item.CategoryID === categoryID) {
-            $('#subcategories-card-wrapper').append(`<div class="cardItem"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+
+            if(item.ID === 3) {
+                $('#subcategories-card-wrapper').append(`<div class="cardItem" id="createInvestigationButton"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+            }else{
+                $('#subcategories-card-wrapper').append(`<div class="cardItem"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+            }
+          
         }
+
     })
 
 }
