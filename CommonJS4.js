@@ -1,5 +1,7 @@
 var baseURL;   // fetching the base URL
 
+
+
 $(document).ready(function () {
     
     // Fetching the baseURL to use it in subsequent API Calls
@@ -44,6 +46,13 @@ $(document).ready(function () {
  
 
 })
+
+
+function goTo(href) {
+    if (href) {
+        window.open(href, "_self")
+    }
+}
 
 
 // Dynamically rendering the tasks
@@ -102,7 +111,7 @@ function renderTasks(tasks) {
 
 
         $('#dropdownContent').append(`
-      <a href = "${task.viewFlowURL}" target = "_self" >
+      <a href = "${task.formURL}" target = "_self" >
         <div class="date-icon ">${firstThreeDigits}</div>
         <div class="task-details">
           <h4>${task.activityName}</h4>
@@ -214,4 +223,54 @@ function fetchSubCategories(categoryID) {
     });
 }
 
+function renderInvestCards() {
+    var cardWrapper = $("#card-wrapper");
+    if (cardWrapper.length === 0) {
+        var gridBody = $('div[name="RequestsInventory"]');
+        $('<div id="card-wrapper"></div>').insertAfter(gridBody);
+        cardWrapper = $("#card-wrapper");
+    }
 
+    cardWrapper.html("")
+    var rowObjects = fetchRowValues();
+
+
+    rowObjects.forEach(function (row) {
+
+        var creatorName = row[0] !== undefined ? row[0] : '';
+        var creationDate = row[1] !== undefined ? row[1] : '';
+        var investStatus = row[2] !== undefined ? row[2] : '';
+        var subject = row[3] !== undefined ? row[3] : '';
+        var investNo = row[4] !== undefined ? row[4] : '';
+        var statusColor = row[5] !== undefined ? row[5] : '';
+
+        cardWrapper.append(`
+        <div class="cardItem">
+          <div class="cardHeader">
+          <div class="investNoStatusWrap">
+          <div class="status" style="background-color: ${statusColor};"></div>
+            <div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${investNo}'>${investNo}</a></div>
+          </div>
+          <div class='dateWrapper'> 
+          <div class="date">${creationDate}</div>
+          <img src='https://srv-k2five/Designer/Image.ashx?ImID=110252' />
+          </div>
+          </div>
+          <div class="cardBody">
+            <div class="card-rows">
+              <p class="reqCreator labelVal">${creatorName}</p>
+              <p class="reqCreatorLabel labelTitle translatable">انشا من قبل</p>
+            </div>
+            <div class="card-rows">
+              <p class="reqCreator labelVal">${investStatus}</p>
+              <p class="reqCreatorLabel labelTitle translatable">حالة التحقيق</p>
+            </div>
+            <div class="card-rows">
+              <p class="reqSubject labelVal">${subject}</p>
+              <p class="reqSubjectLabel labelTitle translatable">الموضوع</p>
+            </div>
+          </div>
+        </div>
+      `);
+    });
+}
