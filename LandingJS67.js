@@ -154,6 +154,13 @@ $(document).ready(function () {
             });
     })
 
+    $(document).on('click', '.sectionBrowser .cardItem', function () {
+        var selectionIndex = $(this).data("subcat")
+        var targetRadio = $('[name="SubcategoriesDropdown"]').find(`input[type='radio'][value='${selectionIndex}']`);
+        targetRadio.trigger('click')
+    })
+
+    
     fetchSubCategoriesJoin()
         .then(function (data) {
             renderSubCategoryCards(data, "إدارة القضايا والتحقيقات", 1)
@@ -394,9 +401,9 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
         if (item.CategoryID === categoryID) {
 
             if(item.ID === 3) {
-                $('#subcategories-card-wrapper').append(`<div class="cardItem" id="createInvestigationButton"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+                $('#subcategories-card-wrapper').append(`<div class="cardItem" id="createInvestigationButton" data-subcat="${item.ID}"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
             }else{
-                $('#subcategories-card-wrapper').append(`<div class="cardItem"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+                $('#subcategories-card-wrapper').append(`<div class="cardItem" data-subcat="${item.ID}><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
             }
           
         }
