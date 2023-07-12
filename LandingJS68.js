@@ -403,7 +403,7 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
             if(item.ID === 3) {
                 $('#subcategories-card-wrapper').append(`<div class="cardItem" id="createInvestigationButton" data-subcat="${item.ID}"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
             }else{
-                $('#subcategories-card-wrapper').append(`<div class="cardItem" data-subcat="${item.ID}><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
+                $('#subcategories-card-wrapper').append(`<div class="cardItem" data-subcat="${item.ID}"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
             }
           
         }
