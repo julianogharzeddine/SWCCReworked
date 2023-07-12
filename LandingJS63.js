@@ -154,6 +154,14 @@ $(document).ready(function () {
             });
     })
 
+    fetchSubCategoriesJoin()
+        .then(function (data) {
+            renderSubCategoryCards(data, "إدارة القضايا والتحقيقات", 1)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
 
 })
 
