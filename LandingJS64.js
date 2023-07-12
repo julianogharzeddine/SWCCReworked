@@ -26,9 +26,9 @@ $(document).ready(function () {
         $(this).addClass('Darker');
     })
 
-    $(document).click(function () {
-        translate()
-    })
+  //  $(document).click(function () {
+  //      translate()
+  //  })
 
     let LSLang = localStorage.getItem('selected_language')
 
