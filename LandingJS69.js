@@ -115,6 +115,8 @@ $(document).ready(function () {
 
         initiateFetchInvestigations()
 
+        $("[name='ShowRequests hiddenButton']").trigger("click")
+
     })
 
 
