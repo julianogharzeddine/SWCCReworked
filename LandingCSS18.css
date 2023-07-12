@@ -1,0 +1,296 @@
+
+/* Form Boundaries */
+
+.runtime-form {
+    position: absolute !important;
+    top: 100px;
+    left: 5%;
+    width: 70% !important;
+}
+
+
+/* SECTION BROWSER STYLING */
+
+.sectionBrowser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    padding: 20px !important;
+    background: var(--bg-color);
+}
+
+.sectionBrowserTitle {
+    font-size: var(--section-title-size) !important;
+    font-weight: bold !important;
+    text-align: center;
+}
+
+
+/* INVESTIGATIONS CUSTOM CARDS STYLING */
+
+
+#InvestigationCards {
+    width: 90% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, 34ex);
+    place-items: center !important;
+    grid-row-gap: 30px !important;
+    overflow-y: auto !important;
+    direction: rtl;
+    padding: 30px;
+    justify-content: center;
+}
+
+#InvestigationCards .cardItem {
+    padding: 20px !important;
+    height: 237px !important;
+    border-radius: 2.5ex !important;
+    box-shadow: 0px 13px 25px #0000002B !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    place-items: center !important;
+    padding-bottom: 25px !important;
+    box-sizing: border-box !important;
+}
+
+
+.cardItem {
+    position: relative;
+    height: 230px;
+    width: 90%;
+    padding: 6px;
+    border-radius: var(--standard-border-radius);
+    box-shadow: var(--carditem-shadow) !important;
+    background: var(--white);
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 0.2px solid #d5d6d4;
+    padding: 10px;
+}
+
+.card-rows {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.investNo a {
+    color: var(--secondarylight-bg-color);
+    font-weight: bold;
+    font-size: 16px !important;
+}
+
+.date {
+    color: var(--secondarylight-bg-color);
+    font-weight: bold;
+    font-size: 16px !important;
+}
+
+.cardItem p {
+    width: 100%;
+    text-align: center !important;
+    text-wrap: balance;
+    height: 4.9ex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.labelVal {
+    color: var(--secondarydark-bg-color) !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+.status {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+}
+
+/* Requests Cards */
+
+#card-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    grid-row-gap: 20px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80%;
+}
+
+.investNoStatusWrap {
+    display: flex;
+    flex-direction: row;
+    align-items : center ;
+    gap: 10px;
+}
+
+.labelTitle {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: gray !important;
+}
+
+
+.dateWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    place-items: center;
+}
+
+#noInvestigationsFound {
+    font-size : 15pt;
+    font-weight :  bold ;
+    text-align : center ;
+    color : red;
+    
+}
+
+/* REQUEST COUNTER STYLING */
+
+.Complete {
+    background: var(--secondarylight-bg-color);
+}
+
+.Active {
+    background: var(--secondarydark-bg-color);
+}
+
+.New {
+    background: var(--secondarydark-bg-color);
+}
+
+.totalcounter {
+    color: var(--white) !important;
+    font-size: 2ex !important;
+}
+
+#reqCounter {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 40px !important;
+    height: fit-content !important;
+    padding: 20px 5% 20px 60px !important;
+    box-sizing: border-box !important;
+}
+
+.counterCircle {
+    display: flex !important;
+    justify-content: center !important;
+    place-items: center !important;
+    height: 40px !important;
+    width: 40px !important;
+    padding: 3px !important;
+    border-radius: 100% !important;
+    box-sizing: border-box !important;
+    font-weight: bold !important;
+    font-size: 35px !important;
+    color: var(--white) !important;
+}
+
+.counterCard {
+    display: flex !important;
+    place-items: center !important;
+    justify-content: space-around;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    width: 251px !important;
+    height: 105px !important;
+    cursor: pointer;
+    flex-direction: column !important;
+    padding: 2ex;
+}
+
+.counterLabel {
+    color: var(--white) !important;
+    font-size: 18px !important;
+}
+
+
+
+/* OPTIONS STYLING , NOTE THAT #subcategories-card-wrapper should be changed from JS */
+
+
+#subcategories-card-wrapper {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    place-items: center !important;
+    grid-row-gap: 30px !important;
+    overflow-y: auto !important;
+    direction: rtl;
+    padding: 30px;
+}
+
+
+#subcategories-card-wrapper .cardItem {
+    display: flex !important;
+    flex-direction: column !important;
+    place-items: center !important;
+    box-sizing: border-box !important;
+    padding: 15px !important;
+    height: 237px !important;
+    border-radius: var(--standard-border-radius) !important;
+    box-shadow: var(--option-cards-shadow) !important;
+    background: var(--white) !important;
+    cursor: pointer;
+    max-width: 260px !important;
+}
+
+.cardItem .titleImage {
+    width: 96.6% !important;
+    height: 108px !important;
+    border-radius: 25px !important;
+    max-width: 350px !important;
+    cursor: pointer;
+}
+
+.cardTitle {
+    width: 95% !important;
+    text-align: center !important;
+    letter-spacing: 0px !important;
+    font-size: var(--card-title-font-size) !important;
+    font-weight: bold !important;
+    margin-top: 15px !important;
+}
+
+
+.toolbar-wrapper {
+    height: 0px !important;
+    display: none !important;
+    background: var(--bg-color) !important;
+}
+
+.single {
+    background: var(--bg-color) !important;
+}
+
+
+.Darker {
+  transform : scale(1.13);
+  transition :  0.3s ease ;
+  filter : brightness(0.9)
+}
+
+[name*='hiddenButton'] {
+    visibility: hidden !important;
+}
