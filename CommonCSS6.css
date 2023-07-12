@@ -18,10 +18,10 @@
     --sidebar-boxshadow: 0px 0px 20px var(--secondarylight-bg-color);
     --white: #ffffff;
     --standard-border-radius: 2.5ex;
-    --carditem-shadow: 0px 0px 20px #70d96640;
+    --carditem-shadow: 0px 0px 20px #6676d940;
     --section-title-size: 40px;
-    --option-cards-shadow: 0px 13px 25px #0000002B;
-    --worklist-shadow: 0px 0px 15px #7cb66d40;
+    --option-cards-shadow: 0px 13px 25px #0000002b;
+    --worklist-shadow: 0px 0px 15px #6d6db640;
     --card-title-font-size: 23px;
     --worklist-row-even-color: #eeeeee;
     --searchtextbox-border-color: #c2c2c2;
