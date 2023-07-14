@@ -26,9 +26,9 @@ $(document).ready(function () {
         $(this).addClass('Darker');
     })
 
-  //  $(document).click(function () {
-  //      translate()
-  //  })
+    //  $(document).click(function () {
+    //      translate()
+    //  })
 
     let LSLang = localStorage.getItem('selected_language')
 
@@ -147,13 +147,16 @@ $(document).ready(function () {
         let categoryName = $(this).find('.categoryName').text()
         let categoryID = $(this).data("cat")
 
-        fetchSubCategoriesJoin()
-            .then(function (data) {
-                renderSubCategoryCards(data, categoryName, categoryID)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+        if (categoryID != 4) {
+            fetchSubCategoriesJoin()
+                .then(function (data) {
+                    renderSubCategoryCards(data, categoryName, categoryID)
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
+
     })
 
     $(document).on('click', '.sectionBrowser .cardItem', function () {
@@ -162,7 +165,7 @@ $(document).ready(function () {
         targetRadio.trigger('click')
     })
 
-    
+
     fetchSubCategoriesJoin()
         .then(function (data) {
             renderSubCategoryCards(data, "إدارة القضايا والتحقيقات", 1)
@@ -402,12 +405,12 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
     data.map((item) => {
         if (item.CategoryID === categoryID) {
 
-            if(item.ID === 3) {
+            if (item.ID === 3) {
                 $('#subcategories-card-wrapper').append(`<div class="cardItem" id="createInvestigationButton" data-subcat="${item.ID}"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
-            }else{
+            } else {
                 $('#subcategories-card-wrapper').append(`<div class="cardItem" data-subcat="${item.ID}"><img src="${item.SubCategoryImage}" class='titleImage'><p class="cardTitle translatable">${item.SubCategoryNameAr}</p></div>`)
             }
-          
+
         }
 
     })
