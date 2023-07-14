@@ -24,6 +24,8 @@
     font-size: var(--section-title-size) !important;
     font-weight: bold !important;
     text-align: center;
+    width : 95% ;
+    text-align : right ;
 }
 
 
