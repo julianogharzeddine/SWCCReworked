@@ -24,9 +24,13 @@
     font-size: var(--section-title-size) !important;
     font-weight: bold !important;
     text-align: center;
-    width : 95% ;
+}
+
+.sectionBrowser .sectionBrowserTitle {
+       width : 95% ;
     text-align : right ;
 }
+
 
 
 /* INVESTIGATIONS CUSTOM CARDS STYLING */
