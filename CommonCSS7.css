@@ -104,7 +104,7 @@ div[name="Sidebar"] {
 
 div[name="Navbar"] {
     position: fixed !important;
-    top: 48px;
+    top: 60px;
     width: 100%;
     right: 0;
     z-index: 1 !important;
@@ -266,10 +266,9 @@ div[name*="Worklist Card WT"] span.text-underline {
 .taskDD {
     position: fixed !important;
     width: 410px;
-    top: 80px;
+    top: 95px;
     left: 18%;
     z-index: 100 !important;
-
 }
 
 #dropdownContent {
