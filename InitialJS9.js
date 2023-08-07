@@ -20,91 +20,91 @@ $(document).ready(function () {
         });
 
 
-    })
+})
 
-    function waitForWrapperRender(data) {
-        if ($('#sectionBrowser').length > 0) {
-            renderTiles(data);
-        } else {
-            setTimeout(waitForWrapperRender, 500);
-        }
+function waitForWrapperRender(data) {
+    if ($('#sectionBrowser').length > 0) {
+        renderTiles(data);
+    } else {
+        setTimeout(waitForWrapperRender, 500);
     }
+}
 
-    function fetchTiles() {
+function fetchTiles() {
 
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                type: 'GET',
-                url: `${baseURL}api/odatav4/v4/sections_SMO`,
-                dataType: 'json',
-                crossDomain: false,
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-                    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                },
-                success: function (json_data) {
-                    resolve(json_data.value);
-                },
-                error: function () {
-                    reject('Failed to Load Service Tiles!');
-                }
-            });
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: `${baseURL}api/odatav4/v4/sections_SMO`,
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                resolve(json_data.value);
+            },
+            error: function () {
+                reject('Failed to Load Service Tiles!');
+            }
         });
-    }
+    });
+}
 
-    function renderTiles(data) {
+function renderTiles(data) {
 
-        $('#sectionBrowser').html('')
-        $('#sectionBrowser').append('<p class="sectionBrowserTitle" id="OurDepartments">أقسامنا المختلفة</p>')
-        $("#sectionBrowser").append("<div id='card-wrapper'></div>")
+    $('#sectionBrowser').html('')
+    $('#sectionBrowser').append(`<p class="sectionBrowserTitle" id="OurDepartments"> ${currentLanguage == "AR" ? "أقسامنا المختلفة" : "Our Departments"}</p>`)
+    $("#sectionBrowser").append("<div id='card-wrapper'></div>")
 
-        data.map((tile) => {
-            $("#card-wrapper").append(`
+    data.map((tile) => {
+        $("#card-wrapper").append(`
           <div class="cardItem" onclick="goTo('${tile.ServiceURL ?? ""}')">
           <div class="infoIconContainer">
           <img src="${infoIconURL}"
             class='infoIcon'>
           </div>
           <img src="${tile.ServiceImage}" class='titleImage'>
-          <p class="cardTitle" id='LegalAffairs'>${tile.ServiceNameAR}</p>
+          <p class="cardTitle" id='LegalAffairs'>${currentLanguage == "AR" ? tile.ServiceNameAR : tile.ServiceNameEN}</p>
           </div>
         `)
-        })
+    })
+}
+
+function goTo(href) {
+    if (href) {
+        window.open(href, "_self")
     }
+}
 
-    function goTo(href) {
-        if (href) {
-            window.open(href, "_self")
-        }
+
+
+// Translating the Page On Load
+
+setTimeout(function () {
+    let LSLang = localStorage.getItem('selected_language')
+
+    switch (LSLang) {
+        case 'en-US':
+            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
+            $("a.dd-option label.dd-option-text:contains('English')").click();
+            break
+        case 'ar-SA':
+            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
+            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
+            break
+        case 'fr-FR':
+            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
+            $("a.dd-option label.dd-option-text:contains('Français')").click();
+            break
+        default:
+            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
+
+            break
     }
-
-
-
-    // Translating the Page On Load
-
-    setTimeout(function () {
-        let LSLang = localStorage.getItem('selected_language')
-
-        switch (LSLang) {
-            case 'en-US':
-                $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-                $("a.dd-option label.dd-option-text:contains('English')").click();
-                break
-            case 'ar-SA':
-                $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-                $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-                break
-            case 'fr-FR':
-                $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-                $("a.dd-option label.dd-option-text:contains('Français')").click();
-                break
-            default:
-                $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-
-                break
-        }
-    }, 2000)
+}, 2000)
 
 
 
