@@ -1,13 +1,18 @@
 var baseURL;   // fetching the base URL
 
 $(document).ready(function () {
-    
-    // Fetching the baseURL to use it in subsequent API Calls
 
-    if(!baseURL) baseURL = window.location.protocol + '//' + window.location.host + '/';
-     
+    // Fetching the baseURL to use it in subsequent API Calls
+    if (!baseURL) baseURL = window.location.protocol + '//' + window.location.host + '/';
+
+    // Creating the notification Icon
     createNotificationIcon()
-    
+
+    // On click listener for the notification icon
+    $(document).on('click', '#bellicon', function () {
+        $('#dropdownContent').toggle()
+    });
+
 })
 
 // Dynamically rendering the tasks
