@@ -19,41 +19,8 @@ $(document).ready(function () {
             console.error(error);
         });
 
-    createModal();
 
-    $(document).on('click', ".dd-container a", function () {
-        changeLanguage()
     })
-
-    $(document).on("click", "[name*='AddService']", function () {
-        $('.runtime-content').css('opacity', '0.6')
-        $('#modal').css('display', 'block')
-    })
-
-    $(document).on("click", "#closeModal", function () {
-        $('.runtime-content').css('opacity', '1')
-        $('#modal').css('display', 'none')
-    })
-
-
-    $(document).on("click", "#addService", function () {
-        $('.runtime-content').css('opacity', '1')
-        $('#modal').css('display', 'none')
-    })
-
-
-    $(document).on("click", "#addService", function () {
-
-        let serviceName = $("#serviceName").val()
-        let serviceLink = $("#serviceLink").val()
-
-
-        renderNewService(serviceName, serviceLink)
-
-        $("#serviceName").val("")
-        $("#serviceLink").val("")
-    })
-
 
     function waitForWrapperRender(data) {
         if ($('#sectionBrowser').length > 0) {
@@ -110,7 +77,6 @@ $(document).ready(function () {
         if (href) {
             window.open(href, "_self")
         }
-
     }
 
 
@@ -140,20 +106,6 @@ $(document).ready(function () {
         }
     }, 2000)
 
-})
-
-function renderNewService(serviceName) {
-    $('#card-wrapper').append(
-        `<div class="cardItem" onclick="goTo('https://srv-k2five/Designer/Runtime/Form/LandingPage/')">
-     <div class="infoIconContainer">
-        <img src="https://srv-k2five/Designer/Runtime/File.ashx?_path=gj%2FkK8xKydFGIaBuABcSOduRX2c%3D%5Cinformation-button.png&_filerequestdata=_4XeJqbaWuJp0syOgJHEA8of-kLRzEyrnXA94YOkjasqBnsOTQgJXJ-Ybt28RDf8-rNsOJTV6GFCRJMwfDiB-T1qyY65WRx0Csth2wTf9JOReKkiiOYspbS7vEwYNJBIywx1kBd-LFpHYtIPS0xUdrkixdScIEVBKIgcyqXW3WD2a1CNZt1TjOmkHTF0prdAe6Kyil_9PHynI0KFBGfxlSpFuMC_LFnUMkZaxgfFrVy1zuKMnYwsZLNdUnn1Fg3F02l-Z5JDdXl-ChygqFDt0QT0TpYjnxCCkjbfYOS8_pU1&_height=32&_width=32&_controltype=image&XSRFToken=4399624675727584330"
-            class='infoIcon'>
-    </div>
-        <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/mangment.jpg" class='titleImage'>
-        <p class="cardTitle" id='LegalAffairs'>${serviceName}</p>
-    </div>`)
-
-}
 
 
 function changeLanguage() {
@@ -211,26 +163,4 @@ function translateToArabic() {
     $(".form").css('left', '')
     $(".form").css('right', '21%')
     $('.taskDD').css('left', '19%')
-}
-
-
-function createModal() {
-    $('body').append(`
-<div id="modal">
-<div id="modalHeader">
-    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/CustomFiles@main/lettre-x.png" id="closeModal">
-</div>
-<div id="modalBody">
-    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/CustomFiles@main/newServiceIllustration.png"
-        id="modalIllustration">
-    <div id="controlsDiv">
-        <p class="modalLabel translatable">إسم الخدمة</p>
-        <input type="text" class='input' id="serviceName" />
-        <div class="modalLabel translatable">رابط الخدمة</div>
-        <input type="text" class='input' id="serviceLink" />
-        <div id="addService" class="translatable">إضافة</div>
-    </div>
-</div>
-</div>
-`)
 }
