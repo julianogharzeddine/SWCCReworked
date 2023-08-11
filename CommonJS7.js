@@ -45,3 +45,7 @@ function updateURL(keyword) {
         window.location.replace(newURL);
     }
 }
+
+function detectLanguage(){
+    currentLanguage == "AR" ? translateToArabic() : translateToEnglish()
+}
