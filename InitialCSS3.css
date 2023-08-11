@@ -1,24 +1,26 @@
 /* Form Boundaries */
 
+
 .form {
     background-color: #EBF3FD !important;
-    width: 80% !important;
+    width: 80% ;
     position: absolute !important;
+    top : 100px ;
     left : 9% ;
+   
 }
-
 
 /* Card Wrapper */
 
-#card-wrapper {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    place-items: center !important;
-    grid-row-gap: 30px !important;
-    overflow-y: auto !important;
-    direction: rtl;
-    padding: 50px !important;
+#categories-card-wrapper{
+    width: 100% ;
+    display: flex;
+    flex-wrap : wrap ;
+    place-items: center ;
+    justify-content : center ;
+    overflow : hidden ;
+    gap: 30px ;
+    padding: 50px ;
 }
 
 #sectionBrowser {
@@ -27,7 +29,7 @@
     flex-direction: column !important;
     justify-content: center !important;
     place-items: center !important;
-    margin-right: 30px !important
+  
 
 }
 
@@ -42,7 +44,6 @@
 
 .cardItem {
     padding: 15px !important;
-    width: 60% !important;
     min-width: 248px !important;
     height: 243px !important;
     border-radius: 2.5ex !important;
@@ -115,3 +116,23 @@ input[name="Text Box"] {
     padding: 5px !important;
     border-color: #c2c2c2 !important;
 }
+
+
+@media (max-width: 767px) {
+    .form {
+        width: 100%;
+        left: 0;
+        top : 0 ;
+    }
+
+    .taskDD {
+        display : none ;
+    }
+
+    [name="Navbar"] {
+        display : none ;
+    }
+}
+
+
+
