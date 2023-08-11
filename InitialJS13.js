@@ -8,7 +8,9 @@ $(document).ready(function () {
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
     initiateTiles()
-    detectLanguage()
+
+    setTimeout(detectLanguage , 7000)
+ 
 
 })
 
