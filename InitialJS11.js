@@ -67,7 +67,7 @@ function renderTiles(data) {
         let cardID = tile.JavaScriptID
 
         if (isActive && isDisplayable) {
-            $("#card-wrapper").append(`
+            $("#categories-card-wrapper").append(`
           <div class="cardItem" id="${cardID}"  ${isClickable ? `onclick="goTo('${tile.CategoryURL ?? ""}')"` : ""} >
           <div class="infoIconContainer">
           <img src="${infoIconURL}"
