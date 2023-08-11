@@ -7,17 +7,8 @@ $(document).ready(function () {
 
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
-    // Dynamically generating the service tiles
-    
-    fetchTiles()
-        .then(function (data) {
-            // Wait for the card-wrapper div to render successfully
-            waitForWrapperRender(data);
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
-
+    initiateTiles()
+    detectLanguage()
 
 })
 
@@ -28,6 +19,21 @@ function waitForWrapperRender(data) {
     } else {
         setTimeout(waitForWrapperRender, 500);
     }
+}
+
+function initiateTiles() {
+
+    // Dynamically generating the service tiles
+
+    fetchTiles()
+        .then(function (data) {
+            // Wait for the card-wrapper div to render successfully
+            waitForWrapperRender(data);
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
 }
 
 function fetchTiles() {
@@ -96,40 +102,11 @@ function isTrue(prop) {
 
 function translateToEnglish() {
 
-    $('.browseDepartmentDetails').text('Department Info')
-    $('.empNoWrap').css('flex-direction', 'row')
-    $('.empCountLabel').text('members')
-    $('#OurDepartments').text('Our Departments')
-    $('#IT').text("IT")
-    $('#Architecture').text("Architecture")
-    $('#Operations').text("Operations")
-    $('#Research').text("Research")
-    $("#Maintenance").text("Maintenance")
-    $('#LegalAffairs').text("Legal Affairs")
-    $('.cardTitle').css('transform', 'scale(0.8)')
-    $("[name='Sidebar']").css('right', '')
-    $("[name='Sidebar']").css('left', '0')
-    $(".form").css('right', '')
-    $(".form").css('left', '22%')
-    $('.taskDD').css('left', '72%')
+    $('.cardTitle').css('transform', 'scale(0.85)')
+    $('.taskDD').css('left', '76%')
 }
 
 function translateToArabic() {
-
-    $('.browseDepartmentDetails').text('تعرّف على القسم')
-    $('.empNoWrap').css('flex-direction', 'row-reverse')
-    $('.empCountLabel').text('فردًا في القسم')
-    $('#OurDepartments').text('أقسامنا المختلفة')
-    $('#IT').text("تكنولوجيا المعلومات")
-    $('#Architecture').text("الهندسة")
-    $('#Operations').text("العمليات")
-    $('#Research').text("الأبحاث")
-    $("#Maintenance").text("الصيانة")
-    $('#LegalAffairs').text("إدارة القضايا و التحقيقات")
-    $('.cardTitle').css('transform', 'scale(1.05)')
-    $("[name='Sidebar']").css('left', '')
-    $("[name='Sidebar']").css('right', '0')
-    $(".form").css('left', '')
-    $(".form").css('right', '21%')
+    $('.cardTitle').css('transform', 'scale(1)')
     $('.taskDD').css('left', '19%')
 }
