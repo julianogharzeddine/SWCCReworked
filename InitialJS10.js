@@ -7,9 +7,8 @@ $(document).ready(function () {
 
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
-
     // Dynamically generating the service tiles
-
+    
     fetchTiles()
         .then(function (data) {
             // Wait for the card-wrapper div to render successfully
@@ -21,6 +20,7 @@ $(document).ready(function () {
 
 
 })
+
 
 function waitForWrapperRender(data) {
     if ($('#sectionBrowser').length > 0) {
@@ -35,7 +35,7 @@ function fetchTiles() {
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: 'GET',
-            url: `${baseURL}api/odatav4/v4/sections_SMO`,
+            url: `${baseURL}api/odatav4/v4/Categories_SMO`,
             dataType: 'json',
             crossDomain: false,
             beforeSend: function (xhr) {
@@ -56,20 +56,30 @@ function fetchTiles() {
 function renderTiles(data) {
 
     $('#sectionBrowser').html('')
-    $('#sectionBrowser').append(`<p class="sectionBrowserTitle" id="OurDepartments"> ${currentLanguage == "AR" ? "أقسامنا المختلفة" : "Our Departments"}</p>`)
-    $("#sectionBrowser").append("<div id='card-wrapper'></div>")
+    $('#sectionBrowser').append(`<p class="sectionBrowserTitle"> ${currentLanguage == "AR" ? "أقسامنا المختلفة" : "Our Departments"}</p>`)
+    $("#sectionBrowser").append("<div id='categories-card-wrapper'></div>")
 
     data.map((tile) => {
-        $("#card-wrapper").append(`
-          <div class="cardItem" onclick="goTo('${tile.ServiceURL ?? ""}')">
+
+        let isActive = isTrue(tile.IsActive)
+        let isDisplayable = isTrue(tile.IsCardDisplayable)
+        let isClickable = isTrue(tile.isClickable)
+        let cardID = tile.JavaScriptID
+
+        if (isActive && isDisplayable) {
+            $("#card-wrapper").append(`
+          <div class="cardItem" id="${cardID}"  ${isClickable ? `onclick="goTo('${tile.CategoryURL ?? ""}')"` : ""} >
           <div class="infoIconContainer">
           <img src="${infoIconURL}"
             class='infoIcon'>
           </div>
-          <img src="${tile.ServiceImage}" class='titleImage'>
-          <p class="cardTitle" id='LegalAffairs'>${currentLanguage == "AR" ? tile.ServiceNameAR : tile.ServiceNameEN}</p>
+          <img src="${tile.CategoryImageURL}" class='titleImage' alt="ServiceImage.jpeg">
+          <p class="cardTitle">${currentLanguage == "AR" ? tile.CategoryNameAR : tile.CategoryNameEN}</p>
           </div>
         `)
+        }
+
+
     })
 }
 
@@ -79,50 +89,9 @@ function goTo(href) {
     }
 }
 
-
-
-// Translating the Page On Load
-
-setTimeout(function () {
-    let LSLang = localStorage.getItem('selected_language')
-
-    switch (LSLang) {
-        case 'en-US':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('English')").click();
-            break
-        case 'ar-SA':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            break
-        case 'fr-FR':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('Français')").click();
-            break
-        default:
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-
-            break
-    }
-}, 2000)
-
-
-
-function changeLanguage() {
-
-    setTimeout(function () {
-        var lang = localStorage.getItem("selected_language")
-
-        if (lang == "en-US") {
-            translateToEnglish()
-        } else if (lang == 'ar-SA') {
-            translateToArabic()
-        }
-    }, 500)
-
+function isTrue(prop) {
+    return prop == "true"
 }
-
-
 
 
 function translateToEnglish() {
