@@ -62,24 +62,29 @@ function renderTasks(tasks) {
     </div>
 </div>`)
 
-    tasks.map((task) => {
+tasks.map((task) => {
+    const dateObj = new Date(task.taskStartDate);
+    const options = { weekday: 'long' };
+    let dayName;
 
-        const dateObj = new Date(task.taskStartDate);
-        const options = { weekday: 'long' };
-        const dayName = new Intl.DateTimeFormat('en-US', options).format(dateObj);
-        const firstThreeDigits = dayName.slice(0, 3);
+    if (currentLanguage === "AR") {
+        dayName = new Intl.DateTimeFormat('ar-EG', options).format(dateObj); // Use the appropriate locale for Arabic
+    } else {
+        dayName = new Intl.DateTimeFormat('en-US', options).format(dateObj);
+        dayName = dayName.slice(0, 3);
+    }
 
+    $('#dropdownContent').append(`
+        <a href="${task.formURL}" target="_self">
+            <div class="date-icon">${dayName}</div>
+            <div class="task-details">
+                <h4>${task.activityName}</h4>
+                <p>${task.serialNumber}</p>
+            </div>
+        </a>
+    `);
+});
 
-        $('#dropdownContent').append(`
-      <a href = "${task.formURL}" target = "_self" >
-        <div class="date-icon ">${firstThreeDigits}</div>
-        <div class="task-details">
-          <h4>${task.activityName}</h4>
-          <p>${task.serialNumber}</p>
-        </div>
-      </a>
-`)
-    })
 
     translateNotifications()
 
