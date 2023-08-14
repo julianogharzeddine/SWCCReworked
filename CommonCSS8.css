@@ -267,7 +267,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     position: fixed !important;
     width: 410px;
     top: 95px;
-    left: 18%;
+    left: 20%;
     z-index: 100 !important;
 }
 
