@@ -53,8 +53,10 @@
     white-space: normal;
     padding : 20px 10px ;
     box-sizing : border-box ;
-    text-align : center ;
     font-size : 14px ;
+    display : flex ;
+    text-align : center ;
+    align-items : center
 }
 
 .sectionBrowserTitle {
