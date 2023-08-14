@@ -81,4 +81,11 @@ function renderTasks(tasks) {
 `)
     })
 
+    translateNotifications()
+
+}
+
+function translateNotifications() {
+    let taskDD = $('.taskDD')
+    currentLanguage == "AR" ? taskDD.css('left', '19%') : taskDD.css('left', '76%')
 }
