@@ -9,9 +9,6 @@ $(document).ready(function () {
 
     initiateTiles()
 
-    setTimeout(detectLanguage, 7000)
-
-
 })
 
 
