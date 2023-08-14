@@ -70,7 +70,7 @@ function renderTiles(data) {
         let isDisplayable = isTrue(tile.IsCardDisplayable)
         let isClickable = isTrue(tile.isClickable)
         let cardID = tile.JavaScriptID
-        let desc = tile.CategoryDescription
+        let desc = (currentLanguage == "AR" ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN )
 
         if (isActive && isDisplayable) {
             $("#categories-card-wrapper").append(`
