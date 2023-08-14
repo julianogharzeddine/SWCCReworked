@@ -103,5 +103,5 @@ function isTrue(prop) {
 
 function scaleText() {
     let titleText = $('.cardTitle')
-    currentLanguage == "AR" ? titleText.css('transform', 'scale(1)') : taskDD.css('transform', 'scale(0.85)')
+    currentLanguage == "AR" ? titleText.css('transform', 'scale(1)') : titleText.css('transform', 'scale(0.85)')
 }
