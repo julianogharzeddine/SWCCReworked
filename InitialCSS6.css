@@ -51,9 +51,10 @@
     width : 100% ;
     word-break: break-word;
     white-space: normal;
-    padding : 10px ;
+    padding : 20px 10px ;
     box-sizing : border-box ;
     text-align : center ;
+    font-size : 14px ;
 }
 
 .sectionBrowserTitle {
@@ -68,7 +69,7 @@
     position : relative ;
     padding: 15px !important;
     min-width: 248px !important;
-    height: 243px !important;
+    height: 250px !important;
     border-radius: 2.5ex !important;
     box-shadow: 0px 13px 25px #0000002B !important;
     background: #ffffff !important;
@@ -78,12 +79,16 @@
     place-items: center !important;
     box-sizing: border-box !important;
     cursor: pointer;
-    transition: all 0.2s ease !important;
+  
 }
 
 
 .cardItem:hover .overlay  {
     height : 100%;
+}
+
+.cardItem:hover .cardTitle  {
+  visibility : hidden ;
 }
 
 .cardItem .titleImage {
