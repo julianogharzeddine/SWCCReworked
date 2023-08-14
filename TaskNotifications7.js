@@ -58,7 +58,12 @@ function renderTasks(tasks) {
         </div>
         <img id="bellicon" src="https://srv-k2five/designer/Image.ashx?ImID=170283">
     </div>
+    <div id="taskDDMainWrapper">
+    <div id="tasksToolbarWrapper">
+    <p> Hello </p>
+    </div>
     <div id="dropdownContent">
+    </div>
     </div>
 </div>`)
 
