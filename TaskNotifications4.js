@@ -87,5 +87,20 @@ function renderTasks(tasks) {
 
 function translateNotifications() {
     let taskDD = $('.taskDD')
-    currentLanguage == "AR" ? (taskDD.css('left', '20%') , $("#bellicon").css("float" , "left")) : taskDD.css('left', '76%')
+
+    currentLanguage == "AR" ? (
+        taskDD.css('left', '20%')
+        , $("#bellicon").css("float", "right")
+        , $('.taskDD a').css('flex-direction', 'row')
+        , $('.task-details p').css('text-align', 'right')
+        , $(".taskDD").css("flex-direction", "row-reverse")
+    )
+        :
+        (
+              $("#bellicon").css("float", "left")
+            , $('.taskDD a').css('flex-direction', 'row-reverse')
+            , $('.task-details p').css('text-align', 'left')
+            , $(".taskDD").css("flex-direction", "row")
+            , taskDD.css('left', '45%')
+        )
 }
