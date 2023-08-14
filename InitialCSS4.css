@@ -29,9 +29,22 @@
     flex-direction: column !important;
     justify-content: center !important;
     place-items: center !important;
-  
-
 }
+
+.overlay {
+    position : absolute ; 
+    top : 0 ;
+    height : 100% ;
+    width : 100% ;
+    border-radius : inherit ;
+    transition : height 0.5s ease ;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.5px);
+}
+
+
 
 
 .sectionBrowserTitle {
@@ -43,6 +56,7 @@
 
 
 .cardItem {
+    position : relative ;
     padding: 15px !important;
     min-width: 248px !important;
     height: 243px !important;
