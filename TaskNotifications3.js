@@ -87,5 +87,5 @@ function renderTasks(tasks) {
 
 function translateNotifications() {
     let taskDD = $('.taskDD')
-    currentLanguage == "AR" ? taskDD.css('left', '19%') : taskDD.css('left', '76%')
+    currentLanguage == "AR" ? (taskDD.css('left', '20%') , $("#bellicon").css("float" , "left")) : taskDD.css('left', '76%')
 }
