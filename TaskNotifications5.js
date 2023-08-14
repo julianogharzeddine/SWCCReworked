@@ -97,10 +97,10 @@ function translateNotifications() {
     )
         :
         (
-              $("#bellicon").css("float", "left")
-            , $('.taskDD a').css('flex-direction', 'row-reverse')
+            $("#bellicon").css("float", "left")
+            , $('.taskDD a').css('flex-direction', 'row')
             , $('.task-details p').css('text-align', 'left')
-            , $(".taskDD").css("flex-direction", "row")
-            , taskDD.css('left', '45%')
+            , $(".taskDD").css("flex-direction", "row-reverse")
+            , $(".taskDD").css('left', '45%')
         )
 }
