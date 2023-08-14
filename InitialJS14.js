@@ -9,8 +9,8 @@ $(document).ready(function () {
 
     initiateTiles()
 
-    setTimeout(detectLanguage , 7000)
- 
+    setTimeout(detectLanguage, 7000)
+
 
 })
 
@@ -86,9 +86,9 @@ function renderTiles(data) {
           </div>
         `)
         }
-
-
     })
+
+    scaleText()
 }
 
 function goTo(href) {
@@ -101,14 +101,7 @@ function isTrue(prop) {
     return prop == "true"
 }
 
-
-function translateToEnglish() {
-
-    $('.cardTitle').css('transform', 'scale(0.85)')
-    $('.taskDD').css('left', '76%')
-}
-
-function translateToArabic() {
-    $('.cardTitle').css('transform', 'scale(1)')
-    $('.taskDD').css('left', '19%')
+function scaleText() {
+    let titleText = $('.cardTitle')
+    currentLanguage == "AR" ? titleText.css('transform', 'scale(1)') : taskDD.css('transform', 'scale(0.85)')
 }
