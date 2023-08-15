@@ -73,7 +73,6 @@ div[name="Sidebar"] {
     font-size: 23px !important;
 }
 
-
 #SidebarCategoryWrapper {
     display: flex;
     flex-direction: column;
@@ -107,16 +106,16 @@ div[name="Navbar"] {
     top: 60px;
     width: 100%;
     right: 0;
-    z-index: 1 !important;
+    z-index: 1;
     overflow: visible;
 }
 
 div[name="Navbar"] * {
-    background-color: white !important;
+    background-color: white;
 }
 
 [name="UserName"] {
-    color: var(--card-title-color) !important;
+    color: var(--card-title-color);
 }
 
 /* TRANSLATOR STYLING */
@@ -125,22 +124,12 @@ div[name="Navbar"] * {
     position: fixed !important;
     top: 0;
     left: 0;
-    z-index: 2 !important;
-}
-
-.dd-container {
-    margin-right: 100px;
-    margin-left: 100px;
+    z-index: 2;
 }
 
 [name="TranslatorHeader"] span {
     background: var(--secondarydark-bg-color) !important;
 }
-
-.dd-container span {
-    background: none !important;
-}
-
 
 /* WORKLIST STYLING */
 
@@ -238,6 +227,10 @@ div[name*="Worklist Card WT"] span.text-underline {
     border: 1px solid !important;
 }
 
+.OverdueImageDiv {
+    background: black !important;
+    border-radius: 100%;
+}
 
 
 /* SCROLLBAR STYLING */
@@ -264,13 +257,29 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 
 .taskDD {
-    position: fixed !important;
+    position: fixed;
     width: 500px;
     top: 95px;
     left: 20%;
-    z-index: 100 !important;
+    z-index: 100;
     display: flex;
     flex-direction: row-reverse;
+}
+
+.taskDD a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    gap: 30px;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 15px;
+
+}
+
+.taskDD a:hover {
+    background-color: #f1f1f1
 }
 
 #dropdownContent {
@@ -295,13 +304,6 @@ div[name*="Worklist Card WT"] span.text-underline {
     border-bottom: 1px solid lightgray;
 }
 
-
-.filterOptionWrapper span {
-    font-size: 15px;
-    font-weight: bold;
-
-}
-
 #taskSearchKeyword {
     outline: none;
     border: .5px solid lightgray;
@@ -311,12 +313,10 @@ div[name*="Worklist Card WT"] span.text-underline {
     width: 60%;
 }
 
-
 #taskSearchKeyword:focus {
     border: .5px solid #0066cc87;
     box-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
 }
-
 
 .filterOptionWrapper {
     display: flex;
@@ -324,6 +324,11 @@ div[name*="Worklist Card WT"] span.text-underline {
     gap: 5px;
     justify-content: center;
     align-items: center;
+}
+
+.filterOptionWrapper span {
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .filterOptionWrapper img {
@@ -359,6 +364,11 @@ div[name*="Worklist Card WT"] span.text-underline {
     background-color: var(--secondarylight-bg-color) !important;
 }
 
+.taskDate {
+    color: var(--secondarylight-bg-color) !important;
+    opacity: 0.8;
+}
+
 .task-details h4 {
     margin: 0;
     margin-bottom: 5px;
@@ -377,37 +387,13 @@ div[name*="Worklist Card WT"] span.text-underline {
     text-align: right;
 }
 
-
-.taskDate {
-    color : var(--secondarylight-bg-color) !important ;
-    opacity : 0.8 ;
-}
-
-.taskDD a:hover {
-    background-color: #f1f1f1
-}
-
 #NoTasksNotice {
-    color : red !important ;
-    text-align : center ;
-    margin-top : 40px ;
-    font-size : 20px ;
-    font-weight : bold ;
+    color: red !important;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
 }
-
-
-.taskDD a {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    border-radius: 15px;
-    gap: 30px;
-    border-bottom: 1px solid #f1f1f1;
-    padding: 15px;
-
-}
-
 
 #notificationCounter {
     position: relative;
@@ -433,11 +419,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     cursor: pointer !important;
 }
 
-.OverdueImageDiv {
-    background: black !important;
-    border-radius: 100%;
-}
-
+/* MISC */
 
 input[name="SearchBox"] {
     height: 35px !important;
