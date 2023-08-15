@@ -274,13 +274,13 @@ div[name*="Worklist Card WT"] span.text-underline {
 }
 
 #dropdownContent {
-    display: none;
     height: 360px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 #taskDDMainWrapper {
+    display: none;
     border: 1px solid lightgray;
     background: var(--white);
     border-radius: var(--standard-border-radius);
@@ -290,40 +290,52 @@ div[name*="Worklist Card WT"] span.text-underline {
     padding: 20px 10px;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    gap: 30px;
     border-bottom: 1px solid lightgray;
 }
 
 
-#taskSearchWrapper {
-    font-size: 14px;
+.filterOptionWrapper span {
+    font-size: 15px;
     font-weight: bold;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
+
 }
 
 #taskSearchKeyword {
     outline: none;
     border: .5px solid lightgray;
     border-radius: 5px;
-    height: 22px;
+    height: 20px;
     padding: 5px 10px;
-    width: 80%;
+    width: 60%;
 }
 
 
 #taskSearchKeyword:focus {
     border: .5px solid #0066cc87;
-    /* Focus border */
     box-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
-    /* Focus shadow */
 }
 
 
-#taskDateWrapper {
+.filterOptionWrapper {
     display: flex;
     flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterOptionWrapper img {
+    display: block;
+}
+
+#sortDescending {
+    opacity: 0.4
+}
+
+#sortAscending {
+    scale: 1.2;
 }
 
 .date-icon {
