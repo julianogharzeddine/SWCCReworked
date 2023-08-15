@@ -269,22 +269,62 @@ div[name*="Worklist Card WT"] span.text-underline {
     top: 95px;
     left: 20%;
     z-index: 100 !important;
-    display : flex ;
-    flex-direction : row-reverse;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 #dropdownContent {
     display: none;
+    height: 360px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#taskDDMainWrapper {
     border: 1px solid lightgray;
     background: var(--white);
     border-radius: var(--standard-border-radius);
-    height: 410px;
-    overflow-y: scroll;
-    overflow-x : hidden ;
-    margin : 0px 20px ;
-
 }
 
+#taskToolbarWrapper {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid lightgray;
+}
+
+
+#taskSearchWrapper {
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+#taskSearchKeyword {
+    outline: none;
+    border: .5px solid lightgray;
+    border-radius: 5px;
+    height: 22px;
+    padding: 5px 10px;
+    width: 80%;
+}
+
+
+#taskSearchKeyword:focus {
+    border: .5px solid #0066cc87;
+    /* Focus border */
+    box-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
+    /* Focus shadow */
+}
+
+
+#taskDateWrapper {
+    display: flex;
+    flex-direction: row;
+}
 
 .date-icon {
     margin-right: 15px;
@@ -310,7 +350,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     overflow: hidden;
     max-width: 260px;
     text-overflow: ellipsis;
-    direction : ltr ;
+    direction: ltr;
 }
 
 .task-details p {
@@ -334,8 +374,9 @@ div[name*="Worklist Card WT"] span.text-underline {
     gap: 30px;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px;
-   
+
 }
+
 
 #notificationCounter {
     position: relative;
