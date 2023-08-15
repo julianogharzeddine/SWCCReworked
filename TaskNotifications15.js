@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(document).on('click', '.sortingIcon', function () {
         let iconID = $(this).attr("id")
         if (iconID == "sortAscending" && sortingOrder != "ASC") setOrderAscending()
-        else if (sortingOrder != "DESC") setOrderDescending()
+        else if (iconID == "sortDescending" && sortingOrder != "DESC") setOrderDescending()
 
     });
 
