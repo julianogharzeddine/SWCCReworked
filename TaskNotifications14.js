@@ -17,7 +17,9 @@ $(document).ready(function () {
     // Click behaviors for the sorting icons 
     $(document).on('click', '.sortingIcon', function () {
         let iconID = $(this).attr("id")
-        iconID == "sortAscending" ? setOrderAscending() : setOrderDescending()
+        if (iconID == "sortAscending" && sortingOrder != "ASC") setOrderAscending()
+        else if (sortingOrder != "DESC") setOrderDescending()
+
     });
 
     // Click behaviors for the sorting icons 
