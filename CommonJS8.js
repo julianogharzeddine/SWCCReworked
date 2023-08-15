@@ -4,20 +4,25 @@ var currentLanguage;
 
 $(document).ready(function () {
 
+    // Fetching the current URL
     currentURL = window.location.href;
-
+    
+    // Default Language Keyword is set to RuntimeAR
     const runtimeKeyword = "RuntimeAR";
 
+    // Setting the language globally
     if (currentURL.includes(runtimeKeyword)) {
         currentLanguage = "AR"
     } else {
         currentLanguage = "EN"
     }
 
+    // Changing the language to english
     $("[name='EnglishFlag']").on("click", function () {
         updateURL("EnglishFlag");
     });
 
+      // Changing the language to arabic
     $("[name='ArabicFlag']").on("click", function () {
         updateURL("ArabicFlag");
     });
@@ -29,11 +34,13 @@ function updateURL(keyword) {
 
     let newURL;
 
+    // Switching to English Runtime
     if (keyword === "EnglishFlag") {
         if (currentURL.includes("RuntimeAR")) {
             newURL = currentURL.replace("RuntimeAR", "Runtime");
         }
 
+    // Switching to Arabic Runtime
     } else if (keyword === "ArabicFlag") {
         if (!currentURL.includes("RuntimeAR")) {
             newURL = currentURL.replace("Runtime", "RuntimeAR");
@@ -47,5 +54,9 @@ function updateURL(keyword) {
 }
 
 function detectLanguage(){
-    currentLanguage == "AR" ? translateToArabic() : translateToEnglish()
+    langIsAr() ? translateToArabic() : translateToEnglish()
+}
+
+function langIsAr(){
+    return currentLanguage == "AR"
 }
