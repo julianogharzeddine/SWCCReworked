@@ -1,0 +1,431 @@
+@font-face {
+    font-family: 'SWCC-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/julianogharzeddine/CustomFiles@main/SWCC-3-Medium.otf') format('opentype');
+    /* Adjust the path and font format */
+}
+
+* {
+    font-family: 'SWCC-Medium' !important;
+}
+
+:root {
+    --bg-color: #e5e6f6;
+    /* Main Background Color */
+    --secondarylight-bg-color: #0066cc;
+    /* Secondary Background Color - Used for sidebar , completed request , worklist headers (and button) */
+    --secondarydark-bg-color: #0066cc;
+    /* Secondary Dark Background Color - Used for translator header , buttons */
+    --sidebar-boxshadow: 0px 0px 20px var(--secondarylight-bg-color);
+    --white: #ffffff;
+    --standard-border-radius: 2.5ex;
+    --carditem-shadow: 0px 0px 20px #6676d940;
+    --section-title-size: 40px;
+    --option-cards-shadow: 0px 13px 25px #0000002b;
+    --worklist-shadow: 0px 0px 15px #6d6db640;
+    --card-title-font-size: 23px;
+    --worklist-row-even-color: #eeeeee;
+    --searchtextbox-border-color: #c2c2c2;
+    --card-title-color: #0066cc;
+}
+
+/* FORM BOUNDARIES STYLING */
+
+body {
+    background: var(--bg-color) !important;
+}
+
+.form {
+    background-color: var(--bg-color) !important;
+}
+
+
+/* SIDE BAR STYLING */
+
+div[name="Sidebar"] {
+    position: fixed !important;
+    right: 0;
+    top: 194px;
+    height: 100vh;
+    width: 330px !important;
+    background-color: var(--secondarylight-bg-color) !important;
+    box-shadow: var(--sidebar-boxshadow);
+    z-index: 1 !important;
+}
+
+
+[name="Sidebar"] span {
+    background: var(--secondarylight-bg-color) !important;
+}
+
+.categoryItem img {
+    height: 35px;
+    width: 35px;
+}
+
+.categoryItem {
+    display: flex;
+    place-items: center;
+    gap: 20px;
+}
+
+.categoryName {
+    color: white !important;
+    font-size: 23px !important;
+}
+
+#SidebarCategoryWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 93%;
+    margin: 0px 10px
+}
+
+.subcategoriesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 50px 0px;
+}
+
+.subcategoryName {
+    font-size: 18px !important;
+    color: #a7cffb !important;
+}
+
+.categoryItem,
+.subcategoryItem {
+    width: fit-content;
+    cursor: pointer;
+}
+
+/* HEADER  STYLING */
+
+div[name="Navbar"] {
+    position: fixed !important;
+    top: 60px;
+    width: 100%;
+    right: 0;
+    z-index: 1;
+    overflow: visible;
+}
+
+div[name="Navbar"] * {
+    background-color: white ;
+}
+
+[name="UserName"] {
+    color: var(--card-title-color);
+}
+
+/* TRANSLATOR STYLING */
+
+[name="TranslatorHeader"] {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 2 ;
+}
+
+[name="TranslatorHeader"] span {
+    background: var(--secondarydark-bg-color) !important;
+}
+
+/* WORKLIST STYLING */
+
+
+div[name*="Worklist Card WT"] table.nav {
+    margin-bottom: var(--standard-border-radius);
+    box-shadow: var(--worklist-shadow);
+    background: var(--white) !important
+}
+
+div[name*="Worklist Card WT"] * {
+    overflow: hidden !important;
+}
+
+div[name*="Worklist Card WT"] .SourceCodeFormsControlsWorklist {
+    background: var(--bg-color) !important;
+}
+
+div[name*="Worklist Card WT"] .worklist-grid-column-header,
+div[name*="Worklist Card WT"] .worklist-grid-column-header-cell-text,
+div[name*="Worklist Card WT"] .worklist-empty-grid-header {
+    background-color: var(--white) !important;
+}
+
+div[name*="Worklist Card WT"] .WorkListGridHeader {
+    background-color: var(--white) !important;
+}
+
+div[name*="Worklist Card WT"] .WorklistItemSectionCell {
+    box-shadow: var(--worklist-shadow) !important;
+    border-radius: 0ex 0ex var(--standard-border-radius) var(--standard-border-radius) !important;
+}
+
+div[name*="Worklist Card WT"] .worklist-grid-column-header-cell-text {
+    font-size: 2ex !important;
+    box-sizing: border-box !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+div[name*="Worklist Card WT"] .WorklistItemGridRow:nth-child(even) {
+    background: var(--worklist-row-even-color) !important;
+}
+
+div[name*="Worklist Card WT"] .WorklistItemGridRow:nth-child(odd) {
+    background: var(--white) !important;
+}
+
+div[name*="Worklist Card WT"] .WorkListGridHeader th span {
+    font-size: 2.1ex !important;
+    font-weight: bold !important;
+    color: var(--secondarylight-bg-color) !important;
+
+}
+
+div[name*="Worklist Card WT"] .worklistToolbarHeaderTextWrapper span {
+    font-size: 3.4ex !important;
+    font-weight: bold !important;
+    color: var(--card-title-color) !important;
+}
+
+div[name*="Worklist Card WT"] td.worklistToolbarHeaderTextWrapper {
+    padding: 1.2ex !important;
+}
+
+div[name*="Worklist Card WT"] .SourceCodeFormsControlsWorklist {
+    padding: 1.7ex;
+    box-sizing: border-box !important;
+    border: none !important;
+}
+
+div[name*="Worklist Card WT"] table.nav {
+    border-radius: var(--standard-border-radius) var(--standard-border-radius) 0ex 0ex !important;
+}
+
+div[name*="Worklist Card WT"] .WorkListGridTableBody {
+    border-radius: 0ex 0ex var(--standard-border-radius) var(--standard-border-radius);
+}
+
+div[name*="Worklist Card WT"] span.text-underline {
+    font-size: 1.8ex !important;
+}
+
+
+.LoadMoreHyperlink {
+    background: var(--secondarylight-bg-color) !important;
+    color: var(--white) !important;
+    border-radius: var(--standard-border-radius) !important;
+
+}
+
+.LoadMoreHyperlink:hover {
+    background: var(--white) !important;
+    color: var(--secondarylight-bg-color) !important;
+    border: 1px solid !important;
+}
+
+.OverdueImageDiv {
+    background: black !important;
+    border-radius: 100%;
+}
+
+
+/* SCROLLBAR STYLING */
+
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: var(---bg-color);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondarydark-bg-color);
+    border-radius: 5px;
+}
+
+
+/* Task Dropdown Styling */
+
+
+.taskDD {
+    position: fixed ;
+    width: 500px;
+    top: 95px;
+    left: 20%;
+    z-index: 100 ;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.taskDD a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    gap: 30px;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 15px;
+
+}
+
+.taskDD a:hover {
+    background-color: #f1f1f1
+}
+
+#dropdownContent {
+    height: 360px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#taskDDMainWrapper {
+    display: none;
+    border: 1px solid lightgray;
+    background: var(--white);
+    border-radius: var(--standard-border-radius);
+}
+
+#taskToolbarWrapper {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 30px;
+    border-bottom: 1px solid lightgray;
+}
+
+#taskSearchKeyword {
+    outline: none;
+    border: .5px solid lightgray;
+    border-radius: 5px;
+    height: 20px;
+    padding: 5px 10px;
+    width: 60%;
+}
+
+#taskSearchKeyword:focus {
+    border: .5px solid #0066cc87;
+    box-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
+}
+
+.filterOptionWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterOptionWrapper span {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.filterOptionWrapper img {
+    display: block;
+}
+
+#sortDescending {
+    scale: 1.2;
+}
+
+#sortAscending {
+    opacity: 0.4
+}
+
+.sortingIcon {
+    transition: scale 0.6s ease;
+    cursor: pointer;
+}
+
+.date-icon {
+    margin-right: 15px;
+    font-size: 0.8em;
+    align-self: center;
+    width: 45px;
+    padding: 6px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 15px;
+    background-color: var(--secondarylight-bg-color) !important;
+}
+
+.taskDate {
+    color : var(--secondarylight-bg-color) !important ;
+    opacity : 0.8 ;
+}
+
+.task-details h4 {
+    margin: 0;
+    margin-bottom: 5px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 260px;
+    text-overflow: ellipsis;
+    direction: ltr;
+}
+
+.task-details p {
+    margin: 0;
+    color: #888;
+    font-size: 14px;
+    text-align: right;
+}
+
+#NoTasksNotice {
+    color : red !important ;
+    text-align : center ;
+    margin-top : 40px ;
+    font-size : 20px ;
+    font-weight : bold ;
+}
+
+#notificationCounter {
+    position: relative;
+}
+
+#redCircle {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: red;
+    color: var(--white);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+    font-size: 12px;
+    padding: 1px;
+    text-align: center;
+    line-height: 20px;
+}
+
+#bellicon {
+    cursor: pointer !important;
+}
+
+/* MISC */
+
+input[name="SearchBox"] {
+    height: 35px !important;
+    margin: 0px 15px !important;
+}
+
+[name*='View'] {
+    background: var(--bg-color) !important;
+}
