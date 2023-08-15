@@ -377,6 +377,12 @@ div[name*="Worklist Card WT"] span.text-underline {
     text-align: right;
 }
 
+
+.taskDate {
+    color : var(--secondarylight-bg-color) !important ;
+    opacity : 0.8 ;
+}
+
 .taskDD a:hover {
     background-color: #f1f1f1
 }
