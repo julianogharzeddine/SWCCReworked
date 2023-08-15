@@ -90,24 +90,19 @@ function renderTasks(tasks) {
     }
 
     filteredTasks.map((task) => {
-        const dateObj = new Date(task.taskStartDate);
-        const options = { weekday: 'long' };
-        let dayName;
-
-        if (currentLanguage === "AR") {
-            dayName = new Intl.DateTimeFormat('ar-EG', options).format(dateObj); // Use the appropriate locale for Arabic
-        } else {
-            dayName = new Intl.DateTimeFormat('en-US', options).format(dateObj);
-            dayName = dayName.slice(0, 3);
-        }
+        let taskFormURL = task.formURL
+        let taskActivityName = task.activityName
+        let taskSerialNo = task.serialNumber
+        let taskDate = new Date(task.taskStartDate);
+        let dayName = getDayName(taskDate, { weekday: 'long' });
 
         $('#dropdownContent').append(`
-        <a href="${task.formURL}" target="_self">
+        <a href="${taskFormURL}" target="_self">
             <div class="date-icon">${dayName}</div>
             <div class="task-details">
-                <h4>${task.activityName}</h4>
-                <p>${task.serialNumber}</p>
-                <p class='taskDate'>${task.taskStartDate}</p>
+                <h4>${taskActivityName}</h4>
+                <p>${taskSerialNo}</p>
+                <p class='taskDate'>${formatDate(taskDate)}</p>
             </div>
         </a>
     `);
@@ -241,4 +236,27 @@ function setOrderDescending() {
 
     createNotificationIcon()
 
+}
+
+function formatDate(date) {
+    const dateObject = new Date(date);
+    const year = dateObject.getFullYear();
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+    const day = dateObject.getDate().toString().padStart(2, "0");
+
+    const formattedDate = `${year}/${month}/${day}`;
+    return formattedDate;
+}
+
+function getDayName(date, options) {
+
+    let dayName;
+
+    if (currentLanguage === "AR") {
+        dayName = new Intl.DateTimeFormat('ar-EG', options).format(date); // Use the appropriate locale for Arabic
+    } else {
+        dayName = new Intl.DateTimeFormat('en-US', options).format(date);
+        dayName = dayName.slice(0, 3);
+    }
+    return dayName;
 }
