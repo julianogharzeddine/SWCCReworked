@@ -1,5 +1,5 @@
 var baseURL;   // fetching the base URL
-var sortingOrder = "DESC"
+var sortingOrder = ""
 
 $(document).ready(function () {
 
