@@ -117,6 +117,9 @@ function renderTasks(tasks) {
 }
 
 function createTaskDDStructure() {
+
+    let taskCount = tasks.length
+    
     $('body').append(`
     <div class="taskDD">
         <div id="iconWrapper">
