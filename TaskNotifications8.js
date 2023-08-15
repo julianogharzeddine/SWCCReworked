@@ -52,19 +52,33 @@ function renderTasks(tasks) {
 
     $('body').append(`
 <div class="taskDD">
-    <div>
+    <div id="iconWrapper">
         <div id="notificationCounter">
             <p id="redCircle">${taskCount}</p>
         </div>
-        <img id="bellicon" src="https://srv-k2five/designer/Image.ashx?ImID=170283">
+        <img id="bellicon" src="https://srv-k2five/designer/Image.ashx?ImID=170283" alt="Bell Icon">
     </div>
+  
     <div id="taskDDMainWrapper">
-    <div id="tasksToolbarWrapper">
-    <p> Hello </p>
+    <div id="taskToolbarWrapper">
+        <div id="taskSearchWrapper" class="filterOptionWrapper">
+            <span> Search </span>
+            <input type="text" id="taskSearchKeyword">
+        </div>
+        <div id="taskDateWrapper" class="filterOptionWrapper">
+            <span> Date </span>
+            <div class="sortingIconsWrapper">
+            <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" id="sortAscending" class="sortingIcon" alt="ASC">
+            </div>
+            <div class="sortingIconsWrapper">
+            <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" id="sortDescending" class="sortingIcon" alt="DESC">
+            </div>
+        </div>
     </div>
     <div id="dropdownContent">
     </div>
     </div>
+
 </div>`)
 
 tasks.map((task) => {
