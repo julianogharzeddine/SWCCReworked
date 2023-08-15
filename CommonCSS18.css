@@ -387,6 +387,14 @@ div[name*="Worklist Card WT"] span.text-underline {
     background-color: #f1f1f1
 }
 
+#NoTasksNotice {
+    color : red !important ;
+    text-align : center ;
+    margin-top : 40px ;
+    font-size : 20px ;
+    font-weight : bold ;
+}
+
 
 .taskDD a {
     color: black;
