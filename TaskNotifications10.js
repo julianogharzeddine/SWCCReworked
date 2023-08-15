@@ -59,9 +59,10 @@ function createNotificationIcon() {
 
 function renderTasks(tasks) {
 
+    let taskCount = tasks.length
 
     // If no tasks were found , display the notice saying so
-    if (tasks.length== 0) {
+    if (taskCount == 0) {
         setNoResultsFound()
         return
     }
