@@ -190,7 +190,7 @@ function sortByDateAndKeyword(tasks) {
     filteredTasks.sort((a, b) => {
         const dateA = new Date(a.taskStartDate);
         const dateB = new Date(b.taskStartDate);
-        return sortOrder === "ASC" ? dateA - dateB : dateB - dateA;
+        return sortingOrder === "ASC" ? dateA - dateB : dateB - dateA;
     });
 
     console.log(filteredTasks)
