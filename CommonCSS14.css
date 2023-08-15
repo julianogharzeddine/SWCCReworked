@@ -331,11 +331,11 @@ div[name*="Worklist Card WT"] span.text-underline {
 }
 
 #sortDescending {
-    opacity: 0.4
+    scale: 1.2;
 }
 
 #sortAscending {
-    scale: 1.2;
+    opacity: 0.4
 }
 
 .sortingIcon {
