@@ -153,8 +153,8 @@ function createTaskDDStructure(tasks) {
 function translateNotifications() {
 
     langIsAr() ? (
-        $(".taskDD").css('right', '')
-        , $('.taskDD').css('left', '20%')
+
+         $('.taskDD').css('left', '20%')
         , $("#bellicon").css("float", "right")
         , $('.taskDD a').css('flex-direction', 'row')
         , $('.task-details p').css('text-align', 'right')
@@ -166,8 +166,7 @@ function translateNotifications() {
             , $('.taskDD a').css('flex-direction', 'row')
             , $('.task-details p').css('text-align', 'left')
             , $(".taskDD").css("flex-direction", "row-reverse")
-            , $(".taskDD").css('left', '')
-            , $(".taskDD").css('right', '20%')
+            , $(".taskDD").css('left', '45%')
         )
 }
 
