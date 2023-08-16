@@ -172,7 +172,7 @@ function translateNotifications() {
 function sortByDateAndKeyword(tasks) {
 
     // Fetching the search keyword from the input field
-    const searchKeyword = $("#taskSearchKeyword").val().trim();
+    const searchKeyword = $("#taskSearchKeyword")?.val().trim() ?? "";
 
     // Filter tasks by search keyword on relevant fields
     const filteredTasks = tasks.filter(task =>
