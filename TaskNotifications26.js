@@ -166,7 +166,7 @@ function translateNotifications() {
             , $('.taskDD a').css('flex-direction', 'row')
             , $('.task-details p').css('text-align', 'left')
             , $(".taskDD").css("flex-direction", "row-reverse")
-            , $(".taskDD").css('left', '45%')
+            , $(".taskDD").css('left', '20%')
         )
 }
 
