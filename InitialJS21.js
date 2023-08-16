@@ -68,13 +68,14 @@ function renderTiles(data) {
         let isActive = isTrue(tile.IsActive)
         let isDisplayable = isTrue(tile.IsCardDisplayable)
         let isClickable = isTrue(tile.isClickable)
+        console.log(isClickable)
         let cardID = tile.JavaScriptID
         let desc = (langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN )
 
         // If the category is Active and Displayable as card , we render it
         if (isActive && isDisplayable) {
             $("#categories-card-wrapper").append(`
-          <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${tile.CategoryURL + "?categoryID=" + categoryID ?? ""}')"` : ""} >
+          <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${tile.CategoryURL + "?categoryID=" + (categoryID ?? "")}')"` : ""}>
           <div class='overlay'> <p> ${desc} </p> </div>
           <div class="infoIconContainer">
           <img src="${infoIconURL}"
