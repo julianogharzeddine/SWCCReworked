@@ -10,7 +10,6 @@ $(document).ready(function () {
 
     initializeSidebar()
 
-
     // Appending the listeners to the generated categories and subcategories , this section allows us to dynamically
     // select the K2 Dropdown values , thus maintaining rule interactions
 
@@ -113,23 +112,23 @@ function renderSidebar(data) {
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItemWrapper" >
                         <div class="categoryItem" data-cat="${category.ID}">
-                  <img src='${category.CategoryImageURL}'>
-                  <p class='categoryName'>${category.CategoryNameAr}</p>
+                        <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
+                  <p class='categoryName'>${category.CategoryNameAR}</p>
                 </div>
                 </div>`
                     )
                 } else {
                     const subCategoriesHTML = data.map((subCategory) => {
                         return `<div class="subcategoryItem" data-subcat="${subCategory.ID}">
-                                <p class='subcategoryName'>${subCategory.SubCategoryNameAr}</p>
+                                <p class='subcategoryName'>${subCategory.SubCategoryNameAR}</p>
                               </div>`;
                     }).join('');
 
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItemWrapper" ">
                         <div class="categoryItem" data-cat="${category.ID}">
-                        <img src='${category.CategoryImageURL}'>
-                        <p class='categoryName'>${category.CategoryNameAr}</p>
+                        <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
+                        <p class='categoryName'>${category.CategoryNameAR}</p>
                       </div>
                       <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
                       </div>
