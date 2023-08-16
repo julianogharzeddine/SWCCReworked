@@ -67,8 +67,7 @@ function renderTiles(data) {
         let categoryID = tile.ID
         let isActive = isTrue(tile.IsActive)
         let isDisplayable = isTrue(tile.IsCardDisplayable)
-        let isClickable = isTrue(tile.isClickable)
-        console.log(isClickable)
+        let isClickable = isTrue(tile.IsClickable)
         let cardID = tile.JavaScriptID
         let desc = (langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN )
 
