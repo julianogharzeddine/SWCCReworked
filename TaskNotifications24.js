@@ -153,7 +153,8 @@ function createTaskDDStructure(tasks) {
 function translateNotifications() {
 
     langIsAr() ? (
-        $('.taskDD').css('left', '20%')
+        $(".taskDD").css('right', '')
+        , $('.taskDD').css('left', '20%')
         , $("#bellicon").css("float", "right")
         , $('.taskDD a').css('flex-direction', 'row')
         , $('.task-details p').css('text-align', 'right')
@@ -165,15 +166,16 @@ function translateNotifications() {
             , $('.taskDD a').css('flex-direction', 'row')
             , $('.task-details p').css('text-align', 'left')
             , $(".taskDD").css("flex-direction", "row-reverse")
-            , $(".taskDD").css('left', '45%')
+            , $(".taskDD").css('left', '')
+            , $(".taskDD").css('right', '20%')
         )
 }
 
 function sortByDateAndKeyword(tasks) {
 
     // Fetching the search keyword from the input field
-    const searchKeywordElement = $("#taskSearchKeyword"); 
-    const searchKeyword = (searchKeywordElement.val() ?? "").trim(); 
+    const searchKeywordElement = $("#taskSearchKeyword");
+    const searchKeyword = (searchKeywordElement.val() ?? "").trim();
 
     // Filter tasks by search keyword on relevant fields
     const filteredTasks = tasks.filter(task =>
