@@ -99,6 +99,7 @@ function fetchSubCategories(categoryID) {
 function renderSidebar(data) {
 
     $("[name='Sidebar']").append(`<div id="SidebarCategoryWrapper"></div>`)
+
     data.map((category) => {
 
         const categoryID = category.ID
@@ -106,21 +107,21 @@ function renderSidebar(data) {
         fetchSubCategories(categoryID)
             .then(function (data) {
 
-                console.log(data);
-
                 if (data === []) {
                     $("#SidebarCategoryWrapper").append(
                         `<div class="categoryItemWrapper" >
                         <div class="categoryItem" data-cat="${category.ID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
-                  <p class='categoryName'>${category.CategoryNameAR}</p>
+                  <p class='categoryName'>${ langIsAr() ? category.CategoryNameAR : category.CategoryNameEN }</p>
                 </div>
                 </div>`
                     )
                 } else {
                     const subCategoriesHTML = data.map((subCategory) => {
+
+                        if(subCategory)
                         return `<div class="subcategoryItem" data-subcat="${subCategory.ID}">
-                                <p class='subcategoryName'>${subCategory.SubCategoryNameAR}</p>
+                                <p class='subcategoryName'>${ langIsAr() ? subCategory.SubCategoryNameAR : subCategory.SubCategoryNameEN }</p>
                               </div>`;
                     }).join('');
 
@@ -128,7 +129,7 @@ function renderSidebar(data) {
                         `<div class="categoryItemWrapper" ">
                         <div class="categoryItem" data-cat="${category.ID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
-                        <p class='categoryName'>${category.CategoryNameAR}</p>
+                        <p class='categoryName'>${langIsAr() ? category.CategoryNameAR :  category.CategoryNameEN}</p>
                       </div>
                       <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
                       </div>
