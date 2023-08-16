@@ -75,13 +75,13 @@ function renderTiles(data) {
         if (isActive && isDisplayable) {
             $("#categories-card-wrapper").append(`
           <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${tile.CategoryURL + "?categoryID=" + (categoryID ?? "")}')"` : ""}>
-          <div class='overlay'> <p> ${desc} </p> </div>
-          <div class="infoIconContainer">
-          <img src="${infoIconURL}"
-            class='infoIcon'>
-          </div>
+          <div class='imageWrapper'>
           <img src="${tile.CategoryImageURL}" class='titleImage' alt="ServiceImage.jpeg">
+          </div>
+          <div class='TitleAndDescWrapper'>
           <p class="cardTitle">${langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN}</p>
+          <p class="serviceDescription"> ${desc} </p>
+          </div>
           </div>
         `)
         }
