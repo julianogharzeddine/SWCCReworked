@@ -26,35 +26,6 @@ $(document).ready(function () {
         $(this).addClass('Darker');
     })
 
-    //  $(document).click(function () {
-    //      translate()
-    //  })
-
-    let LSLang = localStorage.getItem('selected_language')
-
-
-    if (LSLang == null || LSLang == 'undefined') {
-        localStorage.setItem('selected_language', 'ar-SA')
-    }
-
-    let LSLang1 = localStorage.getItem('selected_language')
-
-    switch (LSLang1) {
-        case 'en-US':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('English')").click();
-            break
-        case 'ar-SA':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            break
-        case 'fr-FR':
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            $("a.dd-option label.dd-option-text:contains('Français')").click();
-            break
-        default:
-            $("a.dd-option label.dd-option-text:contains('Arabic')").click();
-            break
-    }
 
     // Translating the Page On Load
 
@@ -165,7 +136,7 @@ $(document).ready(function () {
         targetRadio.trigger('click')
     })
 
-
+/* 
     fetchSubCategoriesJoin()
         .then(function (data) {
             renderSubCategoryCards(data, "إدارة القضايا والتحقيقات", 1)
@@ -173,7 +144,7 @@ $(document).ready(function () {
         .catch(function (error) {
             console.error(error);
         });
-
+ */
 
 })
 
