@@ -102,44 +102,14 @@ function renderSidebar(data) {
 
         const categoryID = category.ID
 
-        fetchSubCategories(categoryID)
-            .then(function (data) {
-
-                if (data === []) {
-                    $("#SidebarContentWrapper").append(
-                        `<div class="categoryItemWrapper" >
-                        <div class="categoryItem" data-cat="${category.ID}">
+        $("#SidebarContentWrapper").append(
+            `<div class="categoryItemWrapper" >
+                        <div class="categoryItem" data-cat="${categoryID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
                   <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p>
                 </div>
                 </div>`
-                    )
-                } else {
-                    const subCategoriesHTML = data.map((subCategory) => {
-
-                        if (subCategory)
-                            return `<div class="subcategoryItem" data-subcat="${subCategory.ID}">
-                                <p class='subcategoryName'>${langIsAr() ? subCategory.SubCategoryNameAR : subCategory.SubCategoryNameEN}</p>
-                              </div>`;
-                    }).join('');
-
-                    $("#SidebarContentWrapper").append(
-                        `<div class="categoryItemWrapper" ">
-                        <div class="categoryItem" data-cat="${category.ID}">
-                        <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
-                        <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p>
-                      </div>
-                      <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
-                      </div>
-                      `
-                    );
-                }
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-
-
+        )
 
     })
 }
