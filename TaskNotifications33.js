@@ -33,11 +33,7 @@ $(document).ready(function () {
 function createNotificationIcon() {
 
     // If the taskDD already exists we don't recreate its structure again , we would only fill the dropdownContent
-    let checkIfExists = $('.taskDD')
-
-    if (checkIfExists.length == 0) {
-        createTaskDDStructure(tasks)
-    }
+    createTaskDDStructure()
      
     // show Loading overlay
     showLoadingOverlay()
@@ -73,6 +69,10 @@ function renderTasks(tasks) {
     // Task Count
     let taskCount = tasks.length
 
+
+    // Setting the task counter
+    setTaskCounter(taskCount)
+
     // If no tasks were found , display the notice saying so
     if (taskCount == 0) {
         setNoResultsFound()
@@ -90,7 +90,6 @@ function renderTasks(tasks) {
         setNoResultsFound()
         return
     }
-
 
     // Looping over the filtered tasks and rendering them
     filteredTasks.map((task) => {
@@ -121,13 +120,19 @@ function renderTasks(tasks) {
 }
 
 // Creates the structure for the tasks dropdown
-function createTaskDDStructure(tasks) {
+function createTaskDDStructure() {
+ 
+    let checkIfExists = $('.taskDD')
+
+    if (checkIfExists.length != 0) {
+        return
+    } 
 
     $('body').append(`
     <div class="taskDD">
         <div id="iconWrapper">
             <div id="notificationCounter">
-                <p id="redCircle">${tasks.length}</p>
+                <p id="redCircle"></p>
             </div>
             <img id="bellicon" src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/BellIcon.png" alt="Bell Icon">
         </div>
@@ -279,4 +284,8 @@ function showLoadingOverlay() {
 function hideLoadingOverlay() {
     $('.loadingOverlay').css("visibility", "hidden")
     $('#dropdownContent').css("pointer-events", "auto")
+}
+
+function setTaskCounter(count){
+    $("#redCircle").text(count)
 }
