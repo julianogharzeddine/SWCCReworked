@@ -274,7 +274,6 @@ div[name*="Worklist Card WT"] span.text-underline {
     gap: 30px;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px;
-
 }
 
 .taskDD a:hover {
@@ -351,9 +350,9 @@ div[name*="Worklist Card WT"] span.text-underline {
     margin-right: 15px;
     font-size: 0.8em;
     align-self: center;
-    width: 45px;
+    width: 60px;
     padding: 6px;
-    height: 45px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
