@@ -47,7 +47,8 @@ body {
     display : flex ;
     justify-content : center ;
     align-items : center ;
-    background : rgb(255 , 255 , 255 , 0.4) ;
+    background: rgb(222,222,222);
+    background: linear-gradient(90deg, rgba(222,222,222,0.4) 0%, rgba(227,227,227,0.4) 100%, rgba(0,212,255,0.4) 100%);
     border-radius: var(--standard-border-radius);
     z-index : 100 ;
 }
