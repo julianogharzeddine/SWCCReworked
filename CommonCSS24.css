@@ -38,6 +38,24 @@ body {
     background-color: var(--bg-color) !important;
 }
 
+.loadingOverlay {  
+    visibility :  hidden ;
+    position : absolute ;
+    top : 0 ;
+    width : 100% ;
+    height : 100% ;
+    display : flex ;
+    justify-content : center ;
+    align-items : center ;
+    background : rgb(255 , 255 , 255 , 0.4) ;
+    border-radius: var(--standard-border-radius);
+    z-index : 100 ;
+}
+
+.AnimatedLoading {
+    height : 120px ;
+    width : 120px ;
+}
 
 /* SIDE BAR STYLING */
 
@@ -284,6 +302,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     height: 360px;
     overflow-y: scroll;
     overflow-x: hidden;
+    position : relative ;
 }
 
 #taskDDMainWrapper {
@@ -365,6 +384,7 @@ div[name*="Worklist Card WT"] span.text-underline {
 .taskDate {
     color: var(--secondarylight-bg-color) !important;
     opacity: 0.8;
+    z-index : 1 ;
 }
 
 .task-details h4 {
