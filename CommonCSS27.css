@@ -38,26 +38,6 @@ body {
     background-color: var(--bg-color) !important;
 }
 
-.loadingOverlay {  
-    visibility :  hidden ;
-    position : absolute ;
-    top : 0 ;
-    width : 100% ;
-    height : 100% ;
-    display : flex ;
-    justify-content : center ;
-    align-items : center ;
-    background: rgb(222,222,222);
-    background: linear-gradient(90deg, rgba(222,222,222,0.4) 0%, rgba(227,227,227,0.4) 100%, rgba(0,212,255,0.4) 100%);
-    border-radius: var(--standard-border-radius);
-    z-index : 100 ;
-}
-
-.AnimatedLoading {
-    height : 120px ;
-    width : 120px ;
-}
-
 /* SIDE BAR STYLING */
 
 div[name="Sidebar"] {
@@ -301,10 +281,10 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 #dropdownContent {
     height: 360px;
-     min-width : 420px;
+    min-width: 420px;
     overflow-y: scroll;
     overflow-x: hidden;
-    position : relative ;
+    position: relative;
 }
 
 #taskDDMainWrapper {
@@ -386,7 +366,7 @@ div[name*="Worklist Card WT"] span.text-underline {
 .taskDate {
     color: var(--secondarylight-bg-color) !important;
     opacity: 0.8;
-    z-index : 1 ;
+    z-index: 1;
 }
 
 .task-details h4 {
@@ -438,6 +418,30 @@ div[name*="Worklist Card WT"] span.text-underline {
 #bellicon {
     cursor: pointer !important;
 }
+
+/* OVERLAY DIV STYLING */
+
+
+.loadingOverlay {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(222, 222, 222);
+    background: linear-gradient(90deg, rgba(222, 222, 222, 0.4) 0%, rgba(227, 227, 227, 0.4) 100%, rgba(0, 212, 255, 0.4) 100%);
+    border-radius: var(--standard-border-radius);
+    z-index: 100;
+}
+
+.AnimatedLoading {
+    height: 120px;
+    width: 120px;
+}
+
 
 /* MISC */
 
