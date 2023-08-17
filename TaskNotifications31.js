@@ -31,6 +31,9 @@ $(document).ready(function () {
 
 // Dynamically rendering the tasks
 function createNotificationIcon() {
+     
+    // Showing the loading overlay
+    showLoadingOverlay()
 
     // Fetching the tasks from the Endpoint 
 
@@ -109,6 +112,9 @@ function renderTasks(tasks) {
     `);
     });
 
+    // Marking the loading as complete
+    hideLoadingOverlay()
+
     // Translate the rendered components based on the current language 
     translateNotifications()
 
@@ -143,6 +149,7 @@ function createTaskDDStructure(tasks) {
             </div>
         </div>
         <div id="dropdownContent">
+        <div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading"></div>
         </div>
         </div>
     
@@ -264,3 +271,12 @@ function getDayName(date, options) {
     return dayName;
 }
 
+function showLoadingOverlay(){
+    $('.loadingOverlay').css("visibility" , "visible")
+    $('#dropdownContent').css("pointer-events" , "none")
+}
+
+function hideLoadingOverlay(){
+    $('.loadingOverlay').css("visibility" , "hidden")
+    $('#dropdownContent').css("pointer-events" , "auto")
+}
