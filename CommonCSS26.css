@@ -301,6 +301,7 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 #dropdownContent {
     height: 360px;
+     min-width : 420px;
     overflow-y: scroll;
     overflow-x: hidden;
     position : relative ;
