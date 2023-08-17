@@ -31,8 +31,15 @@ $(document).ready(function () {
 
 // Dynamically rendering the tasks
 function createNotificationIcon() {
+
+    // If the taskDD already exists we don't recreate its structure again , we would only fill the dropdownContent
+    let checkIfExists = $('.taskDD')
+
+    if (checkIfExists.length == 0) {
+        createTaskDDStructure(tasks)
+    }
      
-    // Showing the loading overlay
+    // show Loading overlay
     showLoadingOverlay()
 
     // Fetching the tasks from the Endpoint 
@@ -70,13 +77,6 @@ function renderTasks(tasks) {
     if (taskCount == 0) {
         setNoResultsFound()
         return
-    }
-
-    // If the taskDD already exists we don't recreate its structure again , we would only fill the dropdownContent
-    let checkIfExists = $('.taskDD')
-
-    if (checkIfExists.length == 0) {
-        createTaskDDStructure(tasks)
     }
 
     // Clearing the content of the tasks in case it already contains data
@@ -161,7 +161,7 @@ function translateNotifications() {
 
     langIsAr() ? (
 
-         $('.taskDD').css('left', '20%')
+        $('.taskDD').css('left', '20%')
         , $("#bellicon").css("float", "right")
         , $('.taskDD a').css('flex-direction', 'row')
         , $('.task-details p').css('text-align', 'right')
@@ -170,11 +170,11 @@ function translateNotifications() {
         :
         (
             $("#bellicon").css("float", "left")
-           , $('.taskDD a').css('flex-direction', 'row')
-           , $('.task-details p').css('text-align', 'left')
-           , $(".taskDD").css("flex-direction", "row-reverse")
-           ,$(".taskDD").css('right', '20%')
-        ) 
+            , $('.taskDD a').css('flex-direction', 'row')
+            , $('.task-details p').css('text-align', 'left')
+            , $(".taskDD").css("flex-direction", "row-reverse")
+            , $(".taskDD").css('right', '20%')
+        )
 
 }
 
@@ -271,12 +271,12 @@ function getDayName(date, options) {
     return dayName;
 }
 
-function showLoadingOverlay(){
-    $('.loadingOverlay').css("visibility" , "visible")
-    $('#dropdownContent').css("pointer-events" , "none")
+function showLoadingOverlay() {
+    $('.loadingOverlay').css("visibility", "visible")
+    $('#dropdownContent').css("pointer-events", "none")
 }
 
-function hideLoadingOverlay(){
-    $('.loadingOverlay').css("visibility" , "hidden")
-    $('#dropdownContent').css("pointer-events" , "auto")
+function hideLoadingOverlay() {
+    $('.loadingOverlay').css("visibility", "hidden")
+    $('#dropdownContent').css("pointer-events", "auto")
 }
