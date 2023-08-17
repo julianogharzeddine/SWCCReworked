@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     // Waiting to successfully fetch the categories to start rendering the Sidebar
 
-    waitForSidebarContentWrapperRender()
+    initializeSidebar()
 
     // Appending the listeners to the generated categories and subcategories , this section allows us to dynamically
     // select the K2 Dropdown values , thus maintaining rule interactions
@@ -101,7 +101,7 @@ function renderSidebar(data) {
     data.map((category) => {
 
         const categoryID = category.ID
-
+        $('body').append("<div id='SidebarContentWrapper'></div>")
         $("#SidebarContentWrapper").append(
             `<div class="categoryItemWrapper"><div class="categoryItem" data-cat="${categoryID}">
              <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
@@ -110,14 +110,6 @@ function renderSidebar(data) {
         )
 
     })
-}
-
-function waitForSidebarContentWrapperRender() {
-    if ($('#SidebarContentWrapper').length > 0) {
-        initializeSidebar()
-    } else {
-        setTimeout(waitForSidebarContentWrapperRender, 300);
-    }
 }
 
 
