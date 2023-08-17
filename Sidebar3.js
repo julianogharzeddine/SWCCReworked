@@ -1,14 +1,14 @@
 var baseURL;   // fetching the base URL
 
 $(document).ready(function () {
-    
+
     // Fetching the baseURL to use it in subsequent API Calls
 
-    if(!baseURL) baseURL = window.location.protocol + '//' + window.location.host + '/';
+    if (!baseURL) baseURL = window.location.protocol + '//' + window.location.host + '/';
 
     // Waiting to successfully fetch the categories to start rendering the Sidebar
 
-    initializeSidebar()
+    waitForSidebarContentWrapperRender()
 
     // Appending the listeners to the generated categories and subcategories , this section allows us to dynamically
     // select the K2 Dropdown values , thus maintaining rule interactions
@@ -31,11 +31,11 @@ $(document).ready(function () {
         $('#dropdownContent').toggle()
     });
 
- 
+
 
 })
 
-function initializeSidebar(){
+function initializeSidebar() {
 
     fetchMainCategories()
         .then(function (data) {
@@ -98,8 +98,6 @@ function fetchSubCategories(categoryID) {
 
 function renderSidebar(data) {
 
-    $("[name='Sidebar']").append(`<div id="SidebarCategoryWrapper"></div>`)
-
     data.map((category) => {
 
         const categoryID = category.ID
@@ -112,16 +110,16 @@ function renderSidebar(data) {
                         `<div class="categoryItemWrapper" >
                         <div class="categoryItem" data-cat="${category.ID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
-                  <p class='categoryName'>${ langIsAr() ? category.CategoryNameAR : category.CategoryNameEN }</p>
+                  <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p>
                 </div>
                 </div>`
                     )
                 } else {
                     const subCategoriesHTML = data.map((subCategory) => {
 
-                        if(subCategory)
-                        return `<div class="subcategoryItem" data-subcat="${subCategory.ID}">
-                                <p class='subcategoryName'>${ langIsAr() ? subCategory.SubCategoryNameAR : subCategory.SubCategoryNameEN }</p>
+                        if (subCategory)
+                            return `<div class="subcategoryItem" data-subcat="${subCategory.ID}">
+                                <p class='subcategoryName'>${langIsAr() ? subCategory.SubCategoryNameAR : subCategory.SubCategoryNameEN}</p>
                               </div>`;
                     }).join('');
 
@@ -129,7 +127,7 @@ function renderSidebar(data) {
                         `<div class="categoryItemWrapper" ">
                         <div class="categoryItem" data-cat="${category.ID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
-                        <p class='categoryName'>${langIsAr() ? category.CategoryNameAR :  category.CategoryNameEN}</p>
+                        <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p>
                       </div>
                       <div class="subcategoriesWrapper">${subCategoriesHTML}</div>
                       </div>
@@ -144,6 +142,14 @@ function renderSidebar(data) {
 
 
     })
+}
+
+function waitForSidebarContentWrapperRender() {
+    if ($('#SidebarContentWrapper').length > 0) {
+        initializeSidebar()
+    } else {
+        setTimeout(waitForSidebarContentWrapperRender, 300);
+    }
 }
 
 
