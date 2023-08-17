@@ -106,7 +106,7 @@ function renderSidebar(data) {
             .then(function (data) {
 
                 if (data === []) {
-                    $("#SidebarCategoryWrapper").append(
+                    $("#SidebarContentWrapper").append(
                         `<div class="categoryItemWrapper" >
                         <div class="categoryItem" data-cat="${category.ID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
@@ -123,7 +123,7 @@ function renderSidebar(data) {
                               </div>`;
                     }).join('');
 
-                    $("#SidebarCategoryWrapper").append(
+                    $("#SidebarContentWrapper").append(
                         `<div class="categoryItemWrapper" ">
                         <div class="categoryItem" data-cat="${category.ID}">
                         <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
