@@ -161,15 +161,14 @@ function translateNotifications() {
         , $(".taskDD").css("flex-direction", "row-reverse")
     )
         :
-        /* (
+        (
             $("#bellicon").css("float", "left")
-            , $('.taskDD a').css('flex-direction', 'row')
-            , $('.task-details p').css('text-align', 'left')
-            , $(".taskDD").css("flex-direction", "row-reverse")
-            , $(".taskDD").css('left', '45%')
-        ) */
+           , $('.taskDD a').css('flex-direction', 'row')
+           , $('.task-details p').css('text-align', 'left')
+           , $(".taskDD").css("flex-direction", "row-reverse")
+           ,$(".taskDD").css('right', '20%')
+        ) 
 
-        console.log("hi")
 }
 
 function sortByDateAndKeyword(tasks) {
