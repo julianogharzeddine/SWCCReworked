@@ -103,12 +103,10 @@ function renderSidebar(data) {
         const categoryID = category.ID
 
         $("#SidebarContentWrapper").append(
-            `<div class="categoryItemWrapper" >
-                        <div class="categoryItem" data-cat="${categoryID}">
-                        <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
-                  <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p>
-                </div>
-                </div>`
+            `<div class="categoryItemWrapper"><div class="categoryItem" data-cat="${categoryID}">
+             <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
+             <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p></div></div>
+            `
         )
 
     })
