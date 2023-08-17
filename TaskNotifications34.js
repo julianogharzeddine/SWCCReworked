@@ -80,7 +80,7 @@ function renderTasks(tasks) {
     }
 
     // Clearing the content of the tasks in case it already contains data
-    $('#dropdownContent').html("")
+    $('#dropdownContent').html(`<div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading"></div>`)
 
     // Fetching the filtered tasks based on the sorting order and the search keyword
     const filteredTasks = sortByDateAndKeyword(tasks)
@@ -154,7 +154,6 @@ function createTaskDDStructure() {
             </div>
         </div>
         <div id="dropdownContent">
-        <div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading"></div>
         </div>
         </div>
     
