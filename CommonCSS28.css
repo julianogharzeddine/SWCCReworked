@@ -38,22 +38,16 @@ body {
     background-color: var(--bg-color) !important;
 }
 
+
 /* SIDE BAR STYLING */
 
 div[name="Sidebar"] {
-    position: fixed !important;
-    right: 0;
-    top: 194px;
-    height: 100vh;
-    width: 330px !important;
-    background-color: var(--secondarylight-bg-color) !important;
-    box-shadow: var(--sidebar-boxshadow);
+    position: fixed;
+    top: 130px;
+    left: 4vw;
+    width: 80vw !important;
+    background: lightgrey !important;
     z-index: 1 !important;
-}
-
-
-[name="Sidebar"] span {
-    background: var(--secondarylight-bg-color) !important;
 }
 
 .categoryItem img {
@@ -72,16 +66,21 @@ div[name="Sidebar"] {
     font-size: 23px !important;
 }
 
-#SidebarCategoryWrapper {
+#SidebarContentWrapper {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 93%;
-    margin: 0px 10px
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0px 10px;
+}
+
+#SidebarContentWrapper>* {
+    flex: 1;
+    /* Equal width for all items */
 }
 
 .subcategoriesWrapper {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 10px;
     margin: 10px 50px 0px;
@@ -123,7 +122,7 @@ div[name="Navbar"] * {
     position: fixed !important;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 2;
 }
 
 [name="TranslatorHeader"] span {
@@ -259,6 +258,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     position: fixed;
     width: 500px;
     top: 95px;
+    left: 20%;
     z-index: 100;
     display: flex;
     flex-direction: row-reverse;
@@ -273,6 +273,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     gap: 30px;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px;
+
 }
 
 .taskDD a:hover {
@@ -281,10 +282,8 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 #dropdownContent {
     height: 360px;
-    min-width: 420px;
     overflow-y: scroll;
     overflow-x: hidden;
-    position: relative;
 }
 
 #taskDDMainWrapper {
@@ -351,9 +350,9 @@ div[name*="Worklist Card WT"] span.text-underline {
     margin-right: 15px;
     font-size: 0.8em;
     align-self: center;
-    width: 60px;
+    width: 45px;
     padding: 6px;
-    height: 60px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -366,7 +365,6 @@ div[name*="Worklist Card WT"] span.text-underline {
 .taskDate {
     color: var(--secondarylight-bg-color) !important;
     opacity: 0.8;
-    z-index: 1;
 }
 
 .task-details h4 {
@@ -418,30 +416,6 @@ div[name*="Worklist Card WT"] span.text-underline {
 #bellicon {
     cursor: pointer !important;
 }
-
-/* OVERLAY DIV STYLING */
-
-
-.loadingOverlay {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(222, 222, 222);
-    background: linear-gradient(90deg, rgba(222, 222, 222, 0.4) 0%, rgba(227, 227, 227, 0.4) 100%, rgba(0, 212, 255, 0.4) 100%);
-    border-radius: var(--standard-border-radius);
-    z-index: 100;
-}
-
-.AnimatedLoading {
-    height: 120px;
-    width: 120px;
-}
-
 
 /* MISC */
 
