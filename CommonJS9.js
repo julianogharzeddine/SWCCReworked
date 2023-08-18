@@ -60,3 +60,18 @@ function detectLanguage(){
 function langIsAr(){
     return currentLanguage == "AR"
 }
+
+function isTrue(prop) {
+    return prop == "true"
+}
+
+function goTo(href) {
+    if (href) {
+        window.open(href, "_self")
+    }
+}
+
+function scaleText() {
+    let titleText = $('.cardTitle')
+    langIsAr() ? titleText.css('transform', 'scale(1)') : titleText.css('transform', 'scale(0.85)')
+}
