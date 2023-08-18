@@ -51,11 +51,9 @@ body {
     place-items: center;
     height : 45px ;
     gap: 20px;
-   
 }
 
 .categoryItemWrapper {
-
     border-radius : 5px ;
     transition : background 0.6s ease ;
     cursor: pointer;
@@ -64,7 +62,6 @@ body {
 
 .selectedCategory {
     background-color : var(--secondarylight-bg-color) !important ;
-   
 }
 
 .selectedCategory .categoryItem p {
@@ -142,6 +139,131 @@ div[name="Navbar"] * {
 [name="TranslatorHeader"] span {
     background: var(--secondarydark-bg-color) !important;
 }
+
+
+/* CARDS STYLING */
+
+
+#sectionBrowser {
+    padding: 70px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    place-items: center !important;
+}
+
+
+#sectionBrowserLandingTitle {
+    width : 100% !important ;
+}
+
+#sectionBrowserInitialTitle , #sectionBrowserLandingTitle {
+     font-size: 43px !important;
+     font-weight: bold !important;
+     color : black ;
+}
+
+.cardItem {
+    position: relative;
+    min-width: 300px;
+    max-width: 300px;
+    height: 280px;
+    max-height: 280px;
+    box-shadow: 0px 13px 25px #0000002B !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    place-items: center !important;
+    box-sizing: border-box !important;
+    cursor: pointer;
+    overflow: hidden;
+
+}
+
+.cardItem:hover .TitleAndDescWrapper {
+    top: 10%;
+}
+
+.cardItem .titleImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    width: 100%;
+    height: 75%;
+    z-index: 1;
+}
+
+.imageWrapper img {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+
+.TitleAndDescWrapper::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    /* Adjust the height of the blurred area as needed */
+    background: linear-gradient(to bottom, transparent, rgb(0 102 204 / 44%));
+    backdrop-filter: blur(1.5px);
+    /* Adjust the blur amount as needed */
+    z-index: 1;
+
+}
+
+.TitleAndDescWrapper {
+    position: absolute;
+    top: 75%;
+    width: 100% !important;
+    color: var(--secondarylight-bg-color) !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    height: 253px;
+    transition: top 0.6s ease;
+    background: white;
+    z-index: 2;
+}
+
+.cardTitle {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    font-size: 24px !important;
+    text-align: center;
+    font-weight: bold !important;
+    color: var(--secondarylight-bg-color) !important;
+
+
+}
+
+.serviceDescription {
+    position: absolute !important;
+    top: 75px !important;
+    word-break: break-word;
+    white-space: normal;
+    padding: 0px 20px !important;
+    text-align: center;
+    font-size: 14px !important;
+    height: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+
+
+
+}
+
 
 /* WORKLIST STYLING */
 
@@ -461,3 +583,6 @@ input[name="SearchBox"] {
 [name*='View'] {
     background: var(--bg-color) !important;
 }
+
+
+
