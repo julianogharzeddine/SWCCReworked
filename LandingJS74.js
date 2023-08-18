@@ -92,7 +92,7 @@ $(document).ready(function () {
 
         let categoryName = $(this).find('.categoryName').text()
         let categoryID = $(this).data("cat")
-        let hasSubcategories = isTrue($(this).data("hassubcategories"))
+        let hasSubcategories = $(this).data("hassubcategories")
 
         console.log(hasSubcategories)
         if (hasSubcategories) {
