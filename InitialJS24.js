@@ -60,7 +60,7 @@ function fetchTiles() {
 function renderTiles(data) {
 
     $('#sectionBrowser').html('')
-    $('#sectionBrowser').append(`<p class="sectionBrowserTitle"> ${langIsAr() ? "أقسامنا المختلفة" : "Our Departments"}</p>`)
+    $('#sectionBrowser').append(`<p id="sectionBrowserInitialTitle"> ${langIsAr() ? "أقسامنا المختلفة" : "Our Departments"}</p>`)
     $("#sectionBrowser").append("<div id='categories-card-wrapper'></div>")
 
     data.map((tile) => {
