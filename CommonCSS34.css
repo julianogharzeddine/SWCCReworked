@@ -66,7 +66,8 @@ body {
     background-color : var(--secondarylight-bg-color) !important ;
    
 }
-.selected .categoryItem p {
+
+.selectedCategory .categoryItem p {
    color : white;
    
 }
