@@ -118,8 +118,8 @@ function renderSidebar(data) {
 }
 
 function changeSelectedColor(current) {
-    $(".categoryItemWrapper").removeClass("selected")
-    current.addClass("selected")
+    $(".categoryItemWrapper").removeClass("selectedCategory")
+    current.addClass("selectedCategory")
 }
 
 
