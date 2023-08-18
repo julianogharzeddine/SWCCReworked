@@ -105,9 +105,7 @@ function renderTasks(tasks) {
             <div class="task-details">
                 <h4>${taskActivityName}</h4>
                 <p>${taskSerialNo}</p>
-                <p class='taskDate'>${formatDate(taskDate)}</p>
-            </div>
-        </a>
+                <p class='taskDate'>${formatDate(taskDate)}</p></div></a>
     `);
     });
 
@@ -153,11 +151,7 @@ function createTaskDDStructure() {
                 </div>
             </div>
         </div>
-        <div id="dropdownContent">
-        </div>
-        </div>
-    
-    </div>`)
+        <div id="dropdownContent"></div></div></div>`)
 }
 
 // Translates rendered components according to the current language
