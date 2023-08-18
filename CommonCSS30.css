@@ -243,7 +243,6 @@ div[name*="Worklist Card WT"] span.text-underline {
     position: fixed;
     width: 500px;
     top: 95px;
-    left: 20%;
     z-index: 100;
     display: flex;
     flex-direction: row-reverse;
