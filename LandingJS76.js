@@ -345,8 +345,13 @@ function renderInvestOptions() {
 
 function renderSubCategoryCards(data, categoryName, categoryID) {
 
+
+    if($('#subcategories-card-wrapper').length == 0) {
+        $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper"></div>`)
+    }
+    
     $("#sectionBrowserLandingTitle").remove()
-    $('#sectionBrowser').prepend(`<p class="sectionBrowserLandingTitle">${categoryName}</p>`)
+    $('#sectionBrowser').prepend(`<p id="sectionBrowserLandingTitle">${categoryName}</p>`)
     $('#subcategories-card-wrapper').html("")
 
     data.map((item) => {
