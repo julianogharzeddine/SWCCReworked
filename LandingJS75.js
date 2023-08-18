@@ -87,14 +87,13 @@ $(document).ready(function () {
 
     // Counter cards listeners 
 
-    $(document).on('click', '.categoryItem', function () {
+    $(document).on('click', '.categoryItemWrapper', function () {
 
 
         let categoryName = $(this).find('.categoryName').text()
         let categoryID = $(this).data("cat")
         let hasSubcategories = $(this).data("hassubcategories")
 
-        console.log(hasSubcategories)
         if (hasSubcategories) {
             fetchSubCategoriesJoin()
                 .then(function (data) {
