@@ -98,6 +98,7 @@ body {
     box-shadow: 1px 1px 13px 5px rgba(0,0,0,0.07);
     border : 2px solid #c0f0fe;
     gap : 3px ;
+    z-index : 100 ;
 }
 
 #SidebarContentWrapper>* {
@@ -152,10 +153,6 @@ div[name="Navbar"] * {
     place-items: center !important;
 }
 
-
-#sectionBrowserLandingTitle {
-    width : 100% !important ;
-}
 
 #sectionBrowserInitialTitle , #sectionBrowserLandingTitle {
      font-size: 43px !important;
