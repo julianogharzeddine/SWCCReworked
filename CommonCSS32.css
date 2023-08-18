@@ -64,11 +64,18 @@ body {
 
 .selected {
     background-color : var(--secondarylight-bg-color) !important ;
-    color : white !important ;
+   
 }
+
+.selected .categoryItem p {
+   color : white;
+   
+}
+
 .categoryItemWrapper:not(.selected):hover {
    background : lightgrey ;
 }
+
 
 .categoryName {
     font-size: 17px !important;
