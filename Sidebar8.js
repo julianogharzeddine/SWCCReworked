@@ -101,7 +101,9 @@ function renderSidebar(data) {
     data.map((category) => {
 
         const categoryID = category.ID
-        $('body').append("<div id='SidebarContentWrapper'></div>")
+
+        if ($("#SidebarContentWrapper").length === 0) $('body').append("<div id='SidebarContentWrapper'></div>")
+
         $("#SidebarContentWrapper").append(
             `<div class="categoryItemWrapper"><div class="categoryItem" data-cat="${categoryID}">
              <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
