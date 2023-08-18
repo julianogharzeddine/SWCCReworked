@@ -94,6 +94,7 @@ $(document).ready(function () {
         let categoryID = $(this).data("cat")
         let hasSubcategories = isTrue($(this).data("hassubcategories"))
 
+        console.log(hasSubcategories)
         if (hasSubcategories) {
             fetchSubCategoriesJoin()
                 .then(function (data) {
