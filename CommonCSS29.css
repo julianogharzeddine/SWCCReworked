@@ -41,15 +41,6 @@ body {
 
 /* SIDE BAR STYLING */
 
-div[name="Sidebar"] {
-    position: fixed;
-    top: 130px;
-    left: 4vw;
-    width: 80vw !important;
-    background: lightgrey !important;
-    z-index: 1 !important;
-}
-
 .categoryItem img {
     height: 35px;
     width: 35px;
@@ -58,41 +49,35 @@ div[name="Sidebar"] {
 .categoryItem {
     display: flex;
     place-items: center;
+    width : 100% ;
     gap: 20px;
 }
 
 .categoryName {
-    color: white !important;
     font-size: 23px !important;
 }
 
 #SidebarContentWrapper {
+    position: fixed;
+    top: 200px;
+    left: 10vw;
+    padding : 20px;
+    width: 80vw !important;
     display: flex;
+    box-sizing: auto !important;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 100%;
     margin: 0px 10px;
+    background: white !important;
+    /* z-index: 1 !important; */
 }
 
 #SidebarContentWrapper>* {
     flex: 1;
-    /* Equal width for all items */
 }
 
-.subcategoriesWrapper {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    margin: 10px 50px 0px;
-}
 
-.subcategoryName {
-    font-size: 18px !important;
-    color: #a7cffb !important;
-}
-
-.categoryItem,
-.subcategoryItem {
+.categoryItem {
     width: fit-content;
     cursor: pointer;
 }
