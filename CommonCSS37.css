@@ -163,6 +163,20 @@ div[name="Navbar"] * {
      color : black ;
 }
 
+/* Card Wrapper */
+
+#categories-card-wrapper , #subcategories-card-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    place-items: center;
+    justify-content: center;
+    overflow: hidden;
+    gap: 30px;
+    padding: 50px;
+}
+
+
 .cardItem {
     position: relative;
     min-width: 300px;
@@ -183,6 +197,9 @@ div[name="Navbar"] * {
 .cardItem:hover .TitleAndDescWrapper {
     top: 10%;
 }
+
+
+
 
 .cardItem .titleImage {
     width: 100%;
@@ -259,9 +276,6 @@ div[name="Navbar"] * {
     height: 60%;
     overflow: hidden;
     text-overflow: ellipsis !important;
-
-
-
 }
 
 
