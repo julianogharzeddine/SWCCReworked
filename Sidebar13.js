@@ -103,12 +103,13 @@ function renderSidebar(data) {
 
     data.map((category) => {
 
-        const categoryID = category.ID
-
+        let categoryID = category.ID
+        let isClickable = category.IsClickable
+        
         if ($("#SidebarContentWrapper").length === 0) $('body').append("<div id='SidebarContentWrapper'></div>")
 
         $("#SidebarContentWrapper").append(
-            `<div class="categoryItemWrapper" data-cat="${categoryID}"><div class="categoryItem" >
+            `<div class="categoryItemWrapper" ${isTrue(isClickable) ? 'data-cat="${categoryID}"' : "" } ><div class="categoryItem" >
              <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
              <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p></div></div>
             `
