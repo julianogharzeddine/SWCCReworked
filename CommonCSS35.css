@@ -295,6 +295,7 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 #dropdownContent {
     height: 360px;
+    width : 500px ;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -386,7 +387,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 260px;
+    max-width: 310px;
     text-overflow: ellipsis;
     direction: ltr;
 }
@@ -428,6 +429,26 @@ div[name*="Worklist Card WT"] span.text-underline {
 
 #bellicon {
     cursor: pointer !important;
+}
+
+.loadingOverlay {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(222, 222, 222);
+    background: linear-gradient(90deg, rgba(222, 222, 222, 0.4) 0%, rgba(227, 227, 227, 0.4) 100%, rgba(0, 212, 255, 0.4) 100%);
+    border-radius: var(--standard-border-radius);
+    z-index: 100;
+}
+
+.AnimatedLoading {
+    height: 120px;
+    width: 120px;
 }
 
 /* MISC */
