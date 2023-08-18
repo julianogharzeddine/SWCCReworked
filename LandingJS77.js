@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     // Showing Investigation Options
 
-    $(document).on('click', '#createInvestigationButton', function () {
+    $(document).on('click', '#CreateInvestigationSubOption', function () {
         // Rendering Investigation buttons which shows the actions that can be taken
         renderInvestOptions()
     })
@@ -349,7 +349,7 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
     if($('#subcategories-card-wrapper').length == 0) {
         $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper"></div>`)
     }
-    
+
     $("#sectionBrowserLandingTitle").remove()
     $('#sectionBrowser').prepend(`<p id="sectionBrowserLandingTitle">${categoryName}</p>`)
     $('#subcategories-card-wrapper').html("")
@@ -367,18 +367,16 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
         if (item.CategoryID === categoryID && isActive) {
             $('#subcategories-card-wrapper').append(`
- <div class="cardItem subcategoryItem" id="${subCatJSID }" data-subcat="${subCategoryID}" ${isClickable ? `onclick="goTo('${subCategoryURL}')"` : ""}>
- <div class='imageWrapper'>
- <img src="${subCategoryImageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
- </div>
- <div class='TitleAndDescWrapper'>
- <p class="cardTitle">${subCategoryName}</p>
- <p class="serviceDescription"> ${subCategoryDesc} </p>
- </div>
- </div>
- `
-            )
-
+            <div class="cardItem subcategoryItem" id="${subCatJSID }" data-subcat="${subCategoryID}" ${isClickable ? `onclick="goTo('${subCategoryURL}')"` : ""}>
+            <div class='imageWrapper'>
+            <img src="${subCategoryImageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
+            </div>
+            <div class='TitleAndDescWrapper'>
+            <p class="cardTitle">${subCategoryName}</p>
+            <p class="serviceDescription"> ${subCategoryDesc} </p>
+            </div>
+            </div>
+            `)
         }
 
     })
