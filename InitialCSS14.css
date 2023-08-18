@@ -1,0 +1,27 @@
+/* Form Boundaries */
+
+
+.form {
+    width: 80%;
+    position: absolute !important;
+    top: 100px;
+    left: 9%;
+
+}
+
+
+@media (max-width: 767px) {
+    .form {
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    .taskDD {
+        display: none;
+    }
+
+    [name="Navbar"] {
+        display: none;
+    }
+}
