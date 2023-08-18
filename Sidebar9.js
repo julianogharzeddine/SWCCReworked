@@ -13,7 +13,10 @@ $(document).ready(function () {
     // Appending the listeners to the generated categories and subcategories , this section allows us to dynamically
     // select the K2 Dropdown values , thus maintaining rule interactions
 
-    $(document).on('click', '.categoryItem', function () {
+    $(document).on('click', '.categoryItemWrapper', function () {
+
+        changeSelectedColor($(this))
+
         var selectionIndex = $(this).data("cat")
         console.log(selectionIndex)
         var targetRadio = $('[name="CategoriesDropdown"]').find(`input[type='radio'][value='${selectionIndex}']`);
@@ -105,13 +108,18 @@ function renderSidebar(data) {
         if ($("#SidebarContentWrapper").length === 0) $('body').append("<div id='SidebarContentWrapper'></div>")
 
         $("#SidebarContentWrapper").append(
-            `<div class="categoryItemWrapper"><div class="categoryItem" data-cat="${categoryID}">
+            `<div class="categoryItemWrapper" data-cat="${categoryID}"><div class="categoryItem" >
              <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
              <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p></div></div>
             `
         )
 
     })
+}
+
+function changeSelectedColor(current) {
+    $(".categoryItemWrapper").removeClass("selected")
+    current.addClass("selected")
 }
 
 
