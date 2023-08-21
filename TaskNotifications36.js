@@ -128,30 +128,33 @@ function createTaskDDStructure() {
 
     $('body').append(`
     <div class="taskDD">
-        <div id="iconWrapper">
-            <div id="notificationCounter">
-                <p id="redCircle"></p>
-            </div>
-            <img id="bellicon" src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/BellIcon.png" alt="Bell Icon">
+    <div id="iconWrapper">
+        <div id="notificationCounter">
+            <p id="redCircle"></p>
         </div>
+        <img id="bellicon" src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/BellIcon.png" alt="Bell Icon">
+    </div>
       
-        <div id="taskDDMainWrapper">
+    <div id="taskDDMainWrapper">
         <div id="taskToolbarWrapper">
             <div id="taskSearchWrapper" class="filterOptionWrapper">
-                <span> ${langIsAr() ? "البحث" : "Search"} </span>
+                <span>${langIsAr() ? "البحث" : "Search"}</span>
                 <input type="text" id="taskSearchKeyword">
             </div>
             <div id="taskDateWrapper" class="filterOptionWrapper">
-                <span> ${langIsAr() ? "التاريخ" : "Date"} </span>
+                <span>${langIsAr() ? "التاريخ" : "Date"}</span>
                 <div class="sortingIconsWrapper">
-                <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" id="sortAscending" class="sortingIcon" alt="ASC">
+                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" id="sortAscending" class="sortingIcon" alt="ASC">
                 </div>
                 <div class="sortingIconsWrapper">
-                <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" id="sortDescending" class="sortingIcon" alt="DESC">
+                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" id="sortDescending" class="sortingIcon" alt="DESC">
                 </div>
             </div>
         </div>
-        <div id="dropdownContent"></div></div></div>`)
+        <div id="dropdownContent"></div>
+    </div>
+</div>
+`)
 }
 
 // Translates rendered components according to the current language
