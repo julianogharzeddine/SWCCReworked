@@ -26,6 +26,7 @@
     --worklist-row-even-color: #eeeeee;
     --searchtextbox-border-color: #c2c2c2;
     --card-title-color: #0066cc;
+    --selectedsidebaritem-bg-color: #E8E8E8;
 }
 
 /* FORM BOUNDARIES STYLING */
@@ -41,83 +42,80 @@ body {
 
 /* SIDE BAR STYLING */
 
+.categoryItem {
+    display: flex;
+    place-items: center;
+    height: 45px;
+    gap: 20px;
+}
+
 .categoryItem img {
     height: 35px;
     width: 35px;
 }
 
-.categoryItem {
-    display: flex;
-    place-items: center;
-    height : 45px ;
-    gap: 20px;
+.categoryItem img {
+    display: none
 }
 
 .categoryItemWrapper {
-    border-radius : 5px ;
-    transition : background 0.6s ease ;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background 0.6s ease;
 }
 
-
 .selectedCategory {
-    background-color : var(--secondarylight-bg-color) !important ;
+    background-color: var(--secondarylight-bg-color) !important;
 }
 
 .selectedCategory .categoryItem p {
-   color : white;
-   
+    color: white;
 }
 
 .categoryItemWrapper:not(.selected):hover {
-   background : #E8E8E8 ;
+    background: var(--selectedsidebaritem-bg-color);
 }
-
 
 .categoryName {
     font-size: 17px !important;
-    text-align : center !important;
-    width : 100% !important ;
+    text-align: center !important;
+    width: 100% !important;
 }
 
 
+/* ---------- This Wraps the Sidebar to simulate z-index ------------ */
 
 #SidebarContainer {
     position: fixed;
     top: 150px;
-    background : var(--bg-color);
-    width : 100vw ;
-    padding : 20px ;
-    display : flex ;
-    justify-content : center ;
-    align-items : center ;
-    z-index : 2;
+    background: var(--bg-color);
+    width: 100vw;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
 
 #SidebarContentWrapper {
-    padding : 5px;
+    padding: 5px;
     width: 80vw !important;
     display: flex;
-    box-sizing: auto !important;
     flex-direction: row;
     justify-content: space-evenly;
+    gap: 3px;
     margin: 0px 10px;
+    box-sizing: auto;
     background: white !important;
-    border-radius : 7px;
-    -webkit-box-shadow: 1px 1px 13px 5px rgba(0,0,0,0.07);
-    -moz-box-shadow: 1px 1px 13px 5px rgba(0,0,0,0.07);
-    box-shadow: 1px 1px 13px 5px rgba(0,0,0,0.07);
-    border : 2px solid #c0f0fe;
-    gap : 3px;
-  
+    border-radius: 7px;
+    -webkit-box-shadow: 1px 1px 13px 5px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 1px 1px 13px 5px rgba(0, 0, 0, 0.07);
+    box-shadow: 1px 1px 13px 5px rgba(0, 0, 0, 0.07);
+    border: 2px solid #c0f0fe;
 }
 
 #SidebarContentWrapper>* {
     flex: 1;
-}
-
-.categoryItem img {
-    display : none
 }
 
 /* HEADER  STYLING */
@@ -157,44 +155,44 @@ div[name="Navbar"] * {
 
 
 .Section {
-    padding: 70px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     place-items: center !important;
+    padding: 70px !important;
 }
 
 
-.sectionTitle{
-     font-size: 43px !important;
-     font-weight: bold !important;
-     color : black ;
+.sectionTitle {
+    font-size: 43px !important;
+    font-weight: bold !important;
+    color: black;
 }
 
 /* Card Wrapper */
 
 .standardCardWrapper {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     place-items: center;
     justify-content: center;
-    overflow: hidden;
+    width: 100%;
     gap: 30px;
     padding: 50px;
+    overflow: hidden;
 }
 
 .cardItem {
     position: relative;
-    min-width: 300px;
-    max-width: 300px;
-    height: 280px;
-    max-height: 280px;
-    box-shadow: 0px 13px 25px #0000002B !important;
-    background: #ffffff !important;
     display: flex !important;
     flex-direction: column !important;
     place-items: center !important;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 280px;
+    max-height: 280px;
+    box-shadow: 0px 13px 25px #0000002B !important;
+    background: #ffffff !important;
     box-sizing: border-box !important;
     cursor: pointer;
     overflow: hidden;
@@ -212,11 +210,9 @@ div[name="Navbar"] * {
 
 .imageWrapper {
     position: relative;
-    width: 300px;
-    height: 200px;
-    overflow: hidden;
     width: 100%;
-    height: 75%;
+    height: 210px;
+    overflow: hidden;
     z-index: 1;
 }
 
@@ -226,19 +222,15 @@ div[name="Navbar"] * {
     left: 0
 }
 
-
 .TitleAndDescWrapper::before {
-    display: block;
     content: "";
     position: absolute;
     top: -30%;
     left: 0;
     width: 100%;
     height: 30%;
-    /* Adjust the height of the blurred area as needed */
     background: linear-gradient(to bottom, transparent, rgb(0 102 204 / 44%));
     backdrop-filter: blur(1.5px);
-    /* Adjust the blur amount as needed */
     z-index: 1;
 
 }
@@ -247,12 +239,12 @@ div[name="Navbar"] * {
     position: absolute;
     top: 75%;
     width: 100% !important;
-    color: var(--secondarylight-bg-color) !important;
     font-size: 24px !important;
     font-weight: bold !important;
     height: 253px;
     transition: top 0.6s ease;
     background: white;
+    color: var(--secondarylight-bg-color) !important;
     z-index: 2;
 }
 
@@ -415,15 +407,14 @@ div[name*="Worklist Card WT"] span.text-underline {
 }
 
 .taskDD a {
-    color: black;
-    text-decoration: none;
     display: flex;
     flex-direction: row;
-    border-radius: 15px;
     gap: 30px;
+    color: black;
+    text-decoration: none;
+    border-radius: 15px;
     border-bottom: 1px solid #f1f1f1;
     padding: 15px;
-
 }
 
 .taskDD a:hover {
@@ -431,10 +422,10 @@ div[name*="Worklist Card WT"] span.text-underline {
 }
 
 #dropdownContent {
-    display : flex !important  ;
-    flex-direction : column !important ;
+    display: flex !important;
+    flex-direction: column !important;
     height: 360px;
-    width : 500px ;
+    width: 500px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -600,5 +591,3 @@ input[name="SearchBox"] {
 [name*='View'] {
     background: var(--bg-color) !important;
 }
-
-
