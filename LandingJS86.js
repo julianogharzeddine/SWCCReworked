@@ -76,7 +76,7 @@ $(document).ready(function () {
     })
 
 
-    checkTargetCategory()
+    waitForSidebarRender()
 
 
 })
@@ -207,15 +207,23 @@ function checkTargetCategory() {
 
     if (categoryID) {
         matchingElements.click()
-        console.log(matchingElements.length)
+
     }
     else {
         $(`.categoryItemWrapper[data-cat="1"]`).click()
-        console.log(matchingElements.length)
+
     }
 
 }
 
+
+function waitForSidebarRender() {
+    if ($('#SidebarContentWrapper').length > 0) {
+        checkTargetCategory()
+    } else {
+        setTimeout(waitForSidebarRender, 500);
+    }
+}
 
 
 
