@@ -70,7 +70,7 @@ body {
 }
 
 .categoryItemWrapper:not(.selected):hover {
-   background : lightgrey ;
+   background : #E8E8E8 ;
 }
 
 
@@ -156,7 +156,7 @@ div[name="Navbar"] * {
 /* CARDS STYLING */
 
 
-#sectionBrowser {
+.Section {
     padding: 70px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -165,7 +165,7 @@ div[name="Navbar"] * {
 }
 
 
-#sectionBrowserInitialTitle , #sectionBrowserLandingTitle {
+.sectionTitle{
      font-size: 43px !important;
      font-weight: bold !important;
      color : black ;
@@ -173,7 +173,7 @@ div[name="Navbar"] * {
 
 /* Card Wrapper */
 
-#categories-card-wrapper , #subcategories-card-wrapper {
+.standardCardWrapper {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -183,7 +183,6 @@ div[name="Navbar"] * {
     gap: 30px;
     padding: 50px;
 }
-
 
 .cardItem {
     position: relative;
@@ -204,9 +203,6 @@ div[name="Navbar"] * {
 .cardItem:hover .TitleAndDescWrapper {
     top: 10%;
 }
-
-
-
 
 .cardItem .titleImage {
     width: 100%;
@@ -268,8 +264,6 @@ div[name="Navbar"] * {
     text-align: center;
     font-weight: bold !important;
     color: var(--secondarylight-bg-color) !important;
-
-
 }
 
 .serviceDescription {
