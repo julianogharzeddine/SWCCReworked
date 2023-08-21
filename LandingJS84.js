@@ -69,13 +69,14 @@ $(document).ready(function () {
 
     })
 
-
-
     // Counter cards listeners 
     $(document).on('input', '[name="SearchBox"]', function () {
         searchKeyword = $(this).val()
         initiateFetchInvestigations()
     })
+
+
+checkTargetCategory()
 
 
 })
@@ -128,6 +129,7 @@ function waitForSubcategoryWrapperRender(data, categoryName, categoryID) {
     }
 }
 
+
 function renderSubCategoryCards(data, categoryName, categoryID) {
 
     // If the categories wrapper doesn't exist yet , create it
@@ -144,7 +146,7 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
     data.map((item) => {
 
-        console.log(item)
+
         let subCategoryID = item.ID
         let subCategoryName = langIsAr() ? item.SubCategoryNameAR : item.SubCategoryNameEN
         let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR : item.SubCategoryDescriptionEN
@@ -178,7 +180,33 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 }
 
 
+/* --------------------------------------- CUSTOM OPTIONS RENDERING FUNCTIONS ----------------------------------------- */
 
+function initiateCustomCards() {
+
+}
+
+
+function fetchCategoryIDParameter() {
+
+    // Create a URLSearchParams object using the current URL
+    const urlSearchParams = new URLSearchParams(window.location.search);
+
+    // Get individual parameters
+    const categoryID = urlSearchParams.get('categoryID');
+
+    return categoryID
+
+}
+
+function checkTargetCategory() {
+
+    const categoryID = fetchCategoryIDParameter()
+    const matchingElements = $(`.categoryItemWrapper[data-cat="${categoryID}"]`);
+
+    if (categoryID) matchingElements.click()
+    else $(`.categoryItemWrapper[data-cat="1"]`).click()
+}
 
 
 
