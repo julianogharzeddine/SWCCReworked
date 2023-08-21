@@ -59,27 +59,33 @@ function fetchTiles() {
 
 function renderTiles(data) {
 
+
+    let sectionTitleLabel = langIsAr() ? "أقسامنا المختلفة" : "Our Departments"
+
     $('#sectionBrowser').html('')
-    $('#sectionBrowser').append(`<p id="sectionBrowserInitialTitle" class="sectionTitle"> ${langIsAr() ? "أقسامنا المختلفة" : "Our Departments"}</p>`)
+    $('#sectionBrowser').append(`<p id="sectionBrowserInitialTitle" class="sectionTitle"> ${sectionTitleLabel}</p>`)
     $("#sectionBrowser").append("<div id='categories-card-wrapper' class='standardCardWrapper'></div>")
 
     data.map((tile) => {
         let categoryID = tile.ID
         let isActive = isTrue(tile.IsActive)
+        let categoryName =  langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN 
+        let categoryImageURL = tile.CategoryImageURL
         let isDisplayable = isTrue(tile.IsCardDisplayable)
         let isClickable = isTrue(tile.IsClickable)
         let cardID = tile.JavaScriptID
-        let desc = (langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN )
+        let categoryURL = tile.CategoryURL
+        let desc = langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN 
 
         // If the category is Active and Displayable as card , we render it
         if (isActive && isDisplayable) {
             $("#categories-card-wrapper").append(`
-          <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${tile.CategoryURL + "?categoryID=" + (categoryID ?? "")}')"` : ""}>
+          <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${ categoryURL + "?categoryID=" + (categoryID ?? "")}')"` : ""}>
           <div class='imageWrapper'>
-          <img src="${tile.CategoryImageURL}" class='titleImage' alt="ServiceImage.jpeg">
+          <img src="${categoryImageURL}" class='titleImage' alt="ServiceImage.jpeg">
           </div>
           <div class='TitleAndDescWrapper'>
-          <p class="cardTitle">${langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN}</p>
+          <p class="cardTitle">${categoryName}</p>
           <p class="serviceDescription"> ${desc} </p>
           </div>
           </div>
@@ -88,19 +94,4 @@ function renderTiles(data) {
     })
 
     scaleText()
-}
-
-function goTo(href) {
-    if (href) {
-        window.open(href, "_self")
-    }
-}
-
-function isTrue(prop) {
-    return prop == "true"
-}
-
-function scaleText() {
-    let titleText = $('.cardTitle')
-    langIsAr() ? titleText.css('transform', 'scale(1)') : titleText.css('transform', 'scale(0.85)')
 }
