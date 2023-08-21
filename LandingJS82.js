@@ -12,23 +12,36 @@ $(document).ready(function () {
     // Fetching the baseURL to use it in subsequent API Calls
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
+    // When clicking on a sidebar tile , the following will be executed
+    $(document).on('click', '.categoryItemWrapper', function () {
+
+        // Extracting the category name from the clicked option
+        let categoryName = $(this).find('.categoryName').text()
+
+        // Extracting the category id
+        let categoryID = $(this).data("cat")
+
+        // Checking whether the category should have subcategories ( isClickable would be set to false )
+        let hasSubcategories = $(this).data("hassubcategories")
+
+        if (hasSubcategories) {
+            initiateSubCategoriesRender(categoryName, categoryID)
+        }
+    })
+
     // Add click event listener to each counterCard
     $(document).on("click", ".counterCard", function () {
 
         // Remove 'Darker' class from all counterCard divs
-
         $('.counterCard').removeClass('Darker');
 
         // Add 'Darker' class to the clicked counterCard div
-
         $(this).addClass('Darker');
+
+        investStatus = $(this).data("status")
+        initiateFetchInvestigations()
     })
 
-    // Translating the Page On Load
-    dictionary = [
-        { "English": "", "Arabic": "", "French": "" },
-
-    ];
 
     // Showing Investigation Options
     $(document).on('click', '#CreateInvestigationSubOption', function () {
@@ -56,13 +69,7 @@ $(document).ready(function () {
 
     })
 
-    // Counter cards listeners 
-    $(document).on('click', '.counterCard', function () {
 
-        investStatus = $(this).data("status")
-        initiateFetchInvestigations()
-
-    })
 
     // Counter cards listeners 
     $(document).on('input', '[name="SearchBox"]', function () {
@@ -71,31 +78,9 @@ $(document).ready(function () {
     })
 
 
-
-    $(document).on('click', '.categoryItemWrapper', function () {
-
-        // Extracting the category name from the clicked option
-        let categoryName = $(this).find('.categoryName').text()
-
-        // Extracting the category id
-        let categoryID = $(this).data("cat")
-
-        // Checking whether the category should have subcategories ( isClickable would be set to false )
-        let hasSubcategories = $(this).data("hassubcategories")
-
-        if (hasSubcategories) {
-            initiateSubCategoriesRender(categoryName, categoryID)
-        }
-
-    })
-
-    $(document).on('click', '.sectionBrowser .cardItem', function () {
-        var selectionIndex = $(this).data("subcat")
-        var targetRadio = $('[name="SubcategoriesDropdown"]').find(`input[type='radio'][value='${selectionIndex}']`);
-        targetRadio.trigger('click')
-    })
-
 })
+
+
 
 
 
@@ -390,18 +375,3 @@ function renderInvestOptions() {
   
   `)
 }
-
-function getFromDictionary(text, toLanguage) {
-    for (var i = 0; i < dictionary.length; i++) {
-
-        var entry = dictionary[i];
-
-        if (entry.English === text) return entry[toLanguage];
-        if (entry.Arabic === text) return entry[toLanguage];
-        if (entry.French === text) return entry[toLanguage];
-
-    }
-
-    return 'Translation not found';
-}
-
