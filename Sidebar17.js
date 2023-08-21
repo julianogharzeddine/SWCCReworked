@@ -106,10 +106,10 @@ function renderSidebar(data) {
         let categoryID = category.ID
         let isClickable = category.IsClickable
         
-        if ($("#SidebarContentWrapper").length === 0) $('body').append("<div id='SidebarContentWrapper'></div>")
+        if ($("#SidebarWrapper").length === 0) $('body').append(`<div id='SidebarWrapper'><div id="SidebarContentWrapper"></div></div>`)
 
         $("#SidebarContentWrapper").append(
-            `<div class="categoryItemWrapper"  data-cat="${category.ID}" ${isTrue(isClickable) ? "data-hassubcategories=true" : "data-hasSubcategories=false" } ><div class="categoryItem" >
+            `<div class="categoryItemWrapper"  data-cat="${categoryID}" ${isTrue(isClickable) ? "data-hassubcategories=true" : "data-hasSubcategories=false" } ><div class="categoryItem" >
              <img src="data:image/svg+xml,${encodeURIComponent(category.CategoryIcon)}">
              <p class='categoryName'>${langIsAr() ? category.CategoryNameAR : category.CategoryNameEN}</p></div></div>
             `
