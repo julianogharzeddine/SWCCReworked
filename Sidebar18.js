@@ -106,7 +106,7 @@ function renderSidebar(data) {
         let categoryID = category.ID
         let isClickable = category.IsClickable
         
-        if ($("#SidebarWrapper").length === 0) $('body').append(`<div id='SidebarWrapper'><div id="SidebarContentWrapper"></div></div>`)
+        if ($("#SidebarContainer").length === 0) $('body').append(`<div id='SidebarContainer'><div id="SidebarContentWrapper"></div></div>`)
 
         $("#SidebarContentWrapper").append(
             `<div class="categoryItemWrapper"  data-cat="${categoryID}" ${isTrue(isClickable) ? "data-hassubcategories=true" : "data-hasSubcategories=false" } ><div class="categoryItem" >
