@@ -144,6 +144,7 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
     data.map((item) => {
 
+        console.log(item)
         let subCategoryID = item.ID
         let subCategoryName = langIsAr() ? item.SubCategoryNameAR : item.SubCategoryNameEN
         let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR : item.SubCategoryDescriptionEN
