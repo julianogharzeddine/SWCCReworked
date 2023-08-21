@@ -10,11 +10,9 @@ var searchKeyword = ""
 $(document).ready(function () {
 
     // Fetching the baseURL to use it in subsequent API Calls
-
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
     // Add click event listener to each counterCard
-
     $(document).on("click", ".counterCard", function () {
 
         // Remove 'Darker' class from all counterCard divs
@@ -26,26 +24,19 @@ $(document).ready(function () {
         $(this).addClass('Darker');
     })
 
-
     // Translating the Page On Load
-
     dictionary = [
         { "English": "", "Arabic": "", "French": "" },
 
     ];
 
-
-
-
     // Showing Investigation Options
-
     $(document).on('click', '#CreateInvestigationSubOption', function () {
         // Rendering Investigation buttons which shows the actions that can be taken
         renderInvestOptions()
     })
 
     // Showing all the investigations in the custom cards
-
     $(document).on('click', '#showAllInvestigations', function () {
 
         // Creating the request counters
@@ -65,10 +56,7 @@ $(document).ready(function () {
 
     })
 
-
     // Counter cards listeners 
-
-
     $(document).on('click', '.counterCard', function () {
 
         investStatus = $(this).data("status")
@@ -76,32 +64,27 @@ $(document).ready(function () {
 
     })
 
-
     // Counter cards listeners 
-
     $(document).on('input', '[name="SearchBox"]', function () {
         searchKeyword = $(this).val()
         initiateFetchInvestigations()
     })
 
 
-    // Counter cards listeners 
 
     $(document).on('click', '.categoryItemWrapper', function () {
 
-
+        // Extracting the category name from the clicked option
         let categoryName = $(this).find('.categoryName').text()
+
+        // Extracting the category id
         let categoryID = $(this).data("cat")
+
+        // Checking whether the category should have subcategories ( isClickable would be set to false )
         let hasSubcategories = $(this).data("hassubcategories")
 
         if (hasSubcategories) {
-            fetchSubCategoriesJoin()
-                .then(function (data) {
-                    renderSubCategoryCards(data, categoryName, categoryID)
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
+            initiateSubCategoriesRender(categoryName, categoryID)
         }
 
     })
@@ -112,17 +95,126 @@ $(document).ready(function () {
         targetRadio.trigger('click')
     })
 
-    /* 
-        fetchSubCategoriesJoin()
-            .then(function (data) {
-                renderSubCategoryCards(data, "إدارة القضايا والتحقيقات", 1)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-     */
-
 })
+
+
+
+/* --------------------------------------- SUBCATEGORY RENDERING FUNCTIONS ----------------------------------------- */
+
+function initiateSubCategoriesRender(categoryName, categoryID) {
+
+    // Querying the joined table between categories and subcategories
+    fetchSubCategoriesJoin()
+        .then(function (data) {
+            waitForSubcategoryWrapperRender(data, categoryName, categoryID)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+}
+
+function fetchSubCategoriesJoin() {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: `${baseURL}api/odatav4/v4/CategoriesJoins`,
+            dataType: 'json',
+            crossDomain: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
+                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (json_data) {
+                resolve(json_data.value);
+            },
+            error: function () {
+                reject('Failed to Load Counters !');
+            }
+        });
+    });
+}
+
+function waitForSubcategoryWrapperRender(data, categoryName, categoryID) {
+    if ($('#sectionBrowser').length > 0) {
+        renderSubCategoryCards(data, categoryName, categoryID);
+    } else {
+        setTimeout(waitForWrapperRender, 500);
+    }
+}
+
+function renderSubCategoryCards(data, categoryName, categoryID) {
+
+    // If the categories wrapper doesn't exist yet , create it
+    if ($('#subcategories-card-wrapper').length == 0) {
+        $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper" class='standardCardWrapper'></div>`)
+    }
+
+    // Removing the title if it already exists
+    $("#sectionBrowserLandingTitle").remove()
+
+    // Appending it with the new value
+    $('#sectionBrowser').prepend(`<p id="sectionBrowserLandingTitle" class='sectionTitle'>${categoryName}</p>`)
+    $('#subcategories-card-wrapper').empty()
+
+    data.map((item) => {
+
+        let subCategoryID = item.ID
+        let subCategoryName = langIsAr() ? item.SubCategoryNameAR : item.SubCategoryNameEN
+        let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR : item.SubCategoryDescriptionEN
+        let subCategoryImageURL = item.SubCategoryImageURL
+        let subCategoryURL = item.SubCategoryURL
+        let isActive = isTrue(item.IsActive)
+        let isClickable = isTrue(item.IsClickable)
+        let subCatJSID = item.JavaScriptID
+        let foundMatch = (item.CategoryID === categoryID)
+
+        // If the item belongs to the clicked Main Category and is active , we include it
+        if (foundMatch && isActive) {
+            $('#subcategories-card-wrapper').append(`
+            <div class="cardItem subcategoryItem" id="${subCatJSID}" data-subcat="${subCategoryID}" ${isClickable ? `onclick="goTo('${subCategoryURL}')"` : ""}>
+            <div class='imageWrapper'>
+            <img src="${subCategoryImageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
+            </div>
+            <div class='TitleAndDescWrapper'>
+            <p class="cardTitle">${subCategoryName}</p>
+            <p class="serviceDescription"> ${subCategoryDesc} </p>
+            </div>
+            </div>
+            `)
+        }
+
+    })
+
+    // Scaling text to improve readability
+    scaleText()
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Wait for the Card Wrapper
+
+function waitForInvestWrapperRender(data) {
+    if ($('#card-wrapper').length > 0) {
+        renderInvestCards(data);
+    } else {
+        setTimeout(waitForInvestWrapperRender, 500);
+    }
+}
+
 
 function initiateFetchInvestigations() {
 
@@ -137,17 +229,6 @@ function initiateFetchInvestigations() {
         });
 
 }
-
-// Wait for the Card Wrapper
-
-function waitForInvestWrapperRender(data) {
-    if ($('#card-wrapper').length > 0) {
-        renderInvestCards(data);
-    } else {
-        setTimeout(waitForInvestWrapperRender, 500);
-    }
-}
-
 
 // Fetching investigation details 
 
@@ -225,34 +306,7 @@ function renderInvestCards(data) {
 
 }
 
-
-
-// Fetching subcategories
-
-function fetchSubCategoriesJoin() {
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            type: 'GET',
-            url: `${baseURL}api/odatav4/v4/CategoriesJoins`,
-            dataType: 'json',
-            crossDomain: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            },
-            success: function (json_data) {
-                resolve(json_data.value);
-            },
-            error: function () {
-                reject('Failed to Load Counters !');
-            }
-        });
-    });
-}
-
 // Fetching request counters 
-
 function fetchCounters() {
     return new Promise(function (resolve, reject) {
         $.ajax({
@@ -274,7 +328,6 @@ function fetchCounters() {
         });
     });
 }
-
 
 // Rendering the counter buttons
 
@@ -315,7 +368,6 @@ function renderCounterButtons(data) {
     $("#reqCounter").append(content)
 }
 
-
 function renderInvestOptions() {
 
     $("#subOptions").find('.sectionBrowserTitle').remove()
@@ -338,51 +390,6 @@ function renderInvestOptions() {
   
   `)
 }
-
-// Rendering the SubCategory Cards
-
-function renderSubCategoryCards(data, categoryName, categoryID) {
-
-
-    if($('#subcategories-card-wrapper').length == 0) {
-        $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper" class='standardCardWrapper'></div>`)
-    }
-
-    $("#sectionBrowserLandingTitle").remove()
-    $('#sectionBrowser').prepend(`<p id="sectionBrowserLandingTitle" class='sectionTitle'>${categoryName}</p>`)
-    $('#subcategories-card-wrapper').html("")
-
-    data.map((item) => {
-
-        let subCategoryID = item.ID
-        let subCategoryName = langIsAr() ? item.SubCategoryNameAR :  item.SubCategoryNameEN
-        let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR :  item.SubCategoryDescriptionEN
-        let subCategoryImageURL = item.SubCategoryImageURL
-        let subCategoryURL = item.SubCategoryURL
-        let isActive = isTrue(item.IsActive)
-        let isClickable = isTrue(item.IsClickable)
-        let subCatJSID = item.JavaScriptID
-
-        if (item.CategoryID === categoryID && isActive) {
-            $('#subcategories-card-wrapper').append(`
-            <div class="cardItem subcategoryItem" id="${subCatJSID }" data-subcat="${subCategoryID}" ${isClickable ? `onclick="goTo('${subCategoryURL}')"` : ""}>
-            <div class='imageWrapper'>
-            <img src="${subCategoryImageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
-            </div>
-            <div class='TitleAndDescWrapper'>
-            <p class="cardTitle">${subCategoryName}</p>
-            <p class="serviceDescription"> ${subCategoryDesc} </p>
-            </div>
-            </div>
-            `)
-        }
-
-    })
-
-    scaleText()
-
-}
-
 
 function getFromDictionary(text, toLanguage) {
     for (var i = 0; i < dictionary.length; i++) {
