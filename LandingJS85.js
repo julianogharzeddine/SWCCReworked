@@ -76,7 +76,7 @@ $(document).ready(function () {
     })
 
 
-checkTargetCategory()
+    checkTargetCategory()
 
 
 })
@@ -201,12 +201,21 @@ function fetchCategoryIDParameter() {
 
 function checkTargetCategory() {
 
+
     const categoryID = fetchCategoryIDParameter()
     const matchingElements = $(`.categoryItemWrapper[data-cat="${categoryID}"]`);
 
-    if (categoryID) matchingElements.click()
-    else $(`.categoryItemWrapper[data-cat="1"]`).click()
+    if (categoryID) {
+        matchingElements.click()
+        console.log(matchingElements.length)
+    }
+    else {
+        $(`.categoryItemWrapper[data-cat="1"]`).click()
+        console.log(matchingElements.length)
+    }
+
 }
+
 
 
 
