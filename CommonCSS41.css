@@ -199,7 +199,6 @@ div[name="Navbar"] * {
     box-sizing: border-box !important;
     cursor: pointer;
     overflow: hidden;
-
 }
 
 .cardItem:hover .TitleAndDescWrapper {
@@ -438,6 +437,8 @@ div[name*="Worklist Card WT"] span.text-underline {
 }
 
 #dropdownContent {
+    display : flex !important  ;
+    flex-direction : column !important ;
     height: 360px;
     width : 500px ;
     overflow-y: scroll;
