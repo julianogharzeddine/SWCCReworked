@@ -346,7 +346,7 @@ function renderInvestOptions() {
 function renderSubCategoryCards(data, categoryName, categoryID) {
 
 
-    if ($('#subcategories-card-wrapper').length == 0) {
+    if($('#subcategories-card-wrapper').length == 0) {
         $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper"></div>`)
     }
 
@@ -357,8 +357,8 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
     data.map((item) => {
 
         let subCategoryID = item.ID
-        let subCategoryName = langIsAr() ? item.SubCategoryNameAR : item.SubCategoryNameEN
-        let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR : item.SubCategoryDescriptionEN
+        let subCategoryName = langIsAr() ? item.SubCategoryNameAR :  item.SubCategoryNameEN
+        let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR :  item.SubCategoryDescriptionEN
         let subCategoryImageURL = item.SubCategoryImageURL
         let subCategoryURL = item.SubCategoryURL
         let isActive = isTrue(item.IsActive)
@@ -367,7 +367,7 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
         if (item.CategoryID === categoryID && isActive) {
             $('#subcategories-card-wrapper').append(`
-            <div class="cardItem subcategoryItem" id="${subCatJSID}" data-subcat="${subCategoryID}" ${isClickable ? `onclick="goTo('${subCategoryURL}')"` : ""}>
+            <div class="cardItem subcategoryItem" id="${subCatJSID }" data-subcat="${subCategoryID}" ${isClickable ? `onclick="goTo('${subCategoryURL}')"` : ""}>
             <div class='imageWrapper'>
             <img src="${subCategoryImageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
             </div>
