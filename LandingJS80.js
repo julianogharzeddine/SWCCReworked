@@ -211,8 +211,6 @@ function renderInvestCards(data) {
                 break;
         }
 
-        console.log(targetArray)
-
         if (containsKeyword) {
             if (investStatus == "All" || targetArray.includes(status)) {
                 $('#card-wrapper').append(`<div class="cardItem"><div class="cardHeader"><div class="investNoStatusWrap"><div class="status" style="background-color: ${redStatus.includes(status) ? "red" : (orangeStatus.includes(status) ? "orange" : (greenStatus.includes(status) ? "green" : "red"))};"></div><div class="investNo"><a href='https://srv-k2five/Runtime/Runtime/Form/RO.Form/?RefNo=${refNo}'>${refNo}</a></div></div><div class='dateWrapper'><div class="date">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</div><img src='${dateIconURL}' /></div></div><div class="cardBody"><div class="card-rows"><p class="reqCreator labelVal">${creator}</p><p class="reqCreatorLabel labelTitle">انشا من قبل</p></div><div class="card-rows"><p class="reqCreator labelVal">${status}</p><p class="reqCreatorLabel labelTitle">حالة التحقيق</p></div><div class="card-rows"><p class="reqSubject labelVal">${subject}</p><p class="reqSubjectLabel labelTitle">الموضوع</p></div></div></div>`);
@@ -347,11 +345,11 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
 
     if($('#subcategories-card-wrapper').length == 0) {
-        $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper"></div>`)
+        $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper" class='standardCardWrapper'></div>`)
     }
 
     $("#sectionBrowserLandingTitle").remove()
-    $('#sectionBrowser').prepend(`<p id="sectionBrowserLandingTitle">${categoryName}</p>`)
+    $('#sectionBrowser').prepend(`<p id="sectionBrowserLandingTitle" class='sectionTitle'>${categoryName}</p>`)
     $('#subcategories-card-wrapper').html("")
 
     data.map((item) => {
