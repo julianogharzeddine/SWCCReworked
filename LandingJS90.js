@@ -265,7 +265,7 @@ function renderInvestOptions() {
 
 function createCustomSectionCard(id, imageURL, name, description, URL = null) {
     $('#customcategories-card-wrapper').append(`
-    <div class="cardItem" id="${id}"  ${URL !== null ?? `onclick="goTo('${URL}')"`}>
+    <div class="cardItem" id="${id}"  ${URL !== null ? `onclick="goTo('${URL}')"` : ""}>
     <div class='imageWrapper'>
     <img src="${imageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
     </div>
