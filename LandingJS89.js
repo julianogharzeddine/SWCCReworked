@@ -177,11 +177,6 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
 }
 
-
-/* --------------------------------------- CUSTOM OPTIONS RENDERING FUNCTIONS ----------------------------------------- */
-
-function initiateCustomCards() { }
-
 /* ---------------------------------------  RENDERING CATEGORY FROM URL FUNCTIONS ----------------------------------------- */
 
 function fetchCategoryIDParameter() {
@@ -220,6 +215,68 @@ function waitForSidebarRender() {
         setTimeout(waitForSidebarRender, 500);
     }
 }
+
+/* ---------------------------------------  RENDERING CUSTOM SECTION CARDS ----------------------------------------- */
+
+function waitForCustomSectionWrapperRender() {
+    if ($('#customSectionBrowser').length > 0) {
+        renderInvestOptions();
+    } else {
+        setTimeout(waitForCustomSectionWrapperRender, 500);
+    }
+}
+
+function renderInvestOptions() {
+
+    // If the categories wrapper doesn't exist yet , create it
+    if ($('#customcategories-card-wrapper').length == 0) {
+        $('#customSectionBrowser').prepend(`<div id="customcategories-card-wrapper" class='standardCardWrapper'></div>`)
+    }
+
+    // Removing the title if it already exists
+    $('#customSectionBrowser').find(".sectionTitle").remove()
+
+    // Appending it with the new value
+    $('#customSectionBrowser').prepend(`<p id="customSectionTitle" class='sectionTitle'> ${langIsAr() ? "إجراء تحقيق" : "New Investigation"}</p>`)
+    $('#customcategories-card-wrapper').empty()
+
+    createCustomSectionCard("ShowAllInvestigations"
+        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/InvestigationsImage.jpeg"
+        , `${langIsAr() ? "طلبات التحقيق" : "Investigations"}`
+        , `${langIsAr() ? "إذا كنت قد شهدت أو تعرضت لأي سلوك يتعارض مع قيم أو سياسات منظمتنا، فنحن نشجعك على تقديم شكوى. سيتم التعامل مع مخاوفك بجدية يمكنك تقديم شكواك من خلال قنواتنا المخصصة لضمان سرية البيانات وحل المشكلة بسرعة" : "We are committed to transparency regarding the outcome of internal investigations. As part of our dedication to accountability, we provide updates on ongoing investigations and share findings once they are concluded. Our aim is to maintain trust among our stakeholders and ensure that any necessary actions are taken to address the issues at hand"}`
+    )
+    createCustomSectionCard("CreateNewInvestigation"
+        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/CreateInvestigationImage.jpg"
+        , `${langIsAr() ? "إجراء طلب تحقيق" : "New Investigation"}`
+        , `${langIsAr() ? "نحن ملتزمون بالشفافية بخصوص نتائج التحقيقات الداخلية. كجزء من التفاني في التحاسب، نقدم تحديثات حول التحقيقات الجارية ونشارك النتائج عند الانتهاء منها. هدفنا هو الحفاظ على الثقة بين أصحاب المصلحة وضمان اتخاذ أي إجراءات ضرورية للتعامل مع القضايا المعنية" : "In the event of any concerns or potential violations of policies, our dedicated team works diligently to uncover the truth and take appropriate actions if misconduct is identified"}`
+        , "https://srv-k2five/Runtime/Runtime/Form/Submit.Form/"
+    )
+    createCustomSectionCard("CreateComplaint"
+        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/CreateComplaintImage.jpg"
+        , `${langIsAr() ? "تقديم شكوى" : "Submit Complaint"}`
+        , `${langIsAr() ? "إذا كنت قد شهدت أو تعرضت لأي سلوك يتعارض مع قيم أو سياسات منظمتنا، فنحن نشجعك على تقديم شكوى. سيتم التعامل مع مخاوفك بجدية، وسيقوم فريق التحقيق لدينا بتقييم الموضوع بدقة. يمكنك تقديم شكواك من خلال قنواتنا المخصصة لضمان سرية البيانات وحل المشكلة بسرعة" : "If you have witnessed or experienced any behavior that goes against our organization's values or policies, we encourage you to submit a complaint"}`
+        , "https://srv-k2five/Runtime/Runtime/Form/InitialForm.Form/"
+    )
+
+    scaleText()
+
+
+}
+
+function createCustomSectionCard(id, imageURL, name, description, URL = null) {
+    $('#customcategories-card-wrapper').append(`
+    <div class="cardItem" id="${id}"  ${URL !== null ?? `onclick="goTo('${URL}')"`}>
+    <div class='imageWrapper'>
+    <img src="${imageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
+    </div>
+    <div class='TitleAndDescWrapper'>
+    <p class="cardTitle">${name}</p>
+    <p class="serviceDescription"> ${description} </p>
+    </div>
+    </div>
+    `)
+}
+
 
 
 
@@ -395,58 +452,3 @@ function renderCounterButtons(data) {
     $("#reqCounter").append(content)
 }
 
-function renderInvestOptions() {
-
-    // If the categories wrapper doesn't exist yet , create it
-    if ($('#customcategories-card-wrapper').length == 0) {
-        $('#customSectionBrowser').prepend(`<div id="customcategories-card-wrapper" class='standardCardWrapper'></div>`)
-    }
-
-    // Removing the title if it already exists
-    $('#customSectionBrowser').find(".sectionTitle").remove()
-
-    // Appending it with the new value
-    $('#customSectionBrowser').prepend(`<p id="customSectionTitle" class='sectionTitle'> ${langIsAr() ? "إجراء تحقيق" : "New Investigation"}</p>`)
-    $('#customcategories-card-wrapper').empty()
-
-    createCustomSectionCard("ShowAllInvestigations"
-        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/InvestigationsImage.jpeg"
-        , `${langIsAr() ? "طلبات التحقيق" : "Investigations"}`
-        , `${langIsAr() ? "إذا كنت قد شهدت أو تعرضت لأي سلوك يتعارض مع قيم أو سياسات منظمتنا، فنحن نشجعك على تقديم شكوى. سيتم التعامل مع مخاوفك بجدية يمكنك تقديم شكواك من خلال قنواتنا المخصصة لضمان سرية البيانات وحل المشكلة بسرعة" : "We are committed to transparency regarding the outcome of internal investigations. As part of our dedication to accountability, we provide updates on ongoing investigations and share findings once they are concluded. Our aim is to maintain trust among our stakeholders and ensure that any necessary actions are taken to address the issues at hand"}`
-    )
-    createCustomSectionCard("CreateNewInvestigation"
-        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/CreateInvestigationImage.jpg"
-        , `${langIsAr() ? "إجراء طلب تحقيق" : "New Investigation"}`
-        , `${langIsAr() ? "نحن ملتزمون بالشفافية بخصوص نتائج التحقيقات الداخلية. كجزء من التفاني في التحاسب، نقدم تحديثات حول التحقيقات الجارية ونشارك النتائج عند الانتهاء منها. هدفنا هو الحفاظ على الثقة بين أصحاب المصلحة وضمان اتخاذ أي إجراءات ضرورية للتعامل مع القضايا المعنية" : "In the event of any concerns or potential violations of policies, our dedicated team works diligently to uncover the truth and take appropriate actions if misconduct is identified"}`
-    )
-    createCustomSectionCard("CreateComplaint"
-        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/CreateComplaintImage.jpg"
-        , `${langIsAr() ? "تقديم شكوى" : "Submit Complaint"}`
-        , `${langIsAr() ? "إذا كنت قد شهدت أو تعرضت لأي سلوك يتعارض مع قيم أو سياسات منظمتنا، فنحن نشجعك على تقديم شكوى. سيتم التعامل مع مخاوفك بجدية، وسيقوم فريق التحقيق لدينا بتقييم الموضوع بدقة. يمكنك تقديم شكواك من خلال قنواتنا المخصصة لضمان سرية البيانات وحل المشكلة بسرعة" : "If you have witnessed or experienced any behavior that goes against our organization's values or policies, we encourage you to submit a complaint"}`
-    )
-
-
-
-}
-
-function createCustomSectionCard(id, imageURL, name, description, URL = null) {
-    $('#customcategories-card-wrapper').append(`
-    <div class="cardItem" id="${id}"  ${URL ?? `onclick="goTo('${URL}')"`}>
-    <div class='imageWrapper'>
-    <img src="${imageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
-    </div>
-    <div class='TitleAndDescWrapper'>
-    <p class="cardTitle">${name}</p>
-    <p class="serviceDescription"> ${description} </p>
-    </div>
-    </div>
-    `)
-}
-
-function waitForCustomSectionWrapperRender() {
-    if ($('#customSectionBrowser').length > 0) {
-        renderInvestOptions();
-    } else {
-        setTimeout(waitForCustomSectionWrapperRender, 500);
-    }
-}
