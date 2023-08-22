@@ -67,20 +67,20 @@ function renderTiles(data) {
     $("#sectionBrowser").append("<div id='categories-card-wrapper' class='standardCardWrapper'></div>")
 
     data.map((tile) => {
-        let categoryID = tile.ID
-        let isActive = isTrue(tile.IsActive)
-        let categoryName =  langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN 
-        let categoryImageURL = tile.CategoryImageURL
-        let isDisplayable = isTrue(tile.IsCardDisplayable)
-        let isClickable = isTrue(tile.IsClickable)
-        let cardID = tile.JavaScriptID
-        let categoryURL = tile.CategoryURL
-        let desc = langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN 
+        let categoryID = tile.ID ?? ""
+        let isActive = isTrue(tile.IsActive) ?? true
+        let categoryName = langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN
+        let categoryImageURL = tile.CategoryImageURL ?? ""
+        let isDisplayable = isTrue(tile.IsCardDisplayable) ?? true
+        let isClickable = isTrue(tile.IsClickable) ?? true
+        let cardID = tile.JavaScriptID ?? ""
+        let categoryURL = tile.CategoryURL ?? ""
+        let desc = langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN
 
         // If the category is Active and Displayable as card , we render it
         if (isActive && isDisplayable) {
             $("#categories-card-wrapper").append(`
-          <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${ categoryURL + "?categoryID=" + (categoryID ?? "")}')"` : ""}>
+          <div class="cardItem" id="${cardID}" data-cat="${categoryID}" ${isClickable ? `onclick="goTo('${categoryURL + "?categoryID=" + (categoryID ?? "")}')"` : ""}>
           <div class='imageWrapper'>
           <img src="${categoryImageURL}" class='titleImage' alt="ServiceImage.jpeg">
           </div>
