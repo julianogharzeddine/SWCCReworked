@@ -53,10 +53,6 @@ function updateURL(keyword) {
     }
 }
 
-function detectLanguage(){
-    langIsAr() ? translateToArabic() : translateToEnglish()
-}
-
 function langIsAr(){
     return currentLanguage == "AR"
 }
@@ -72,6 +68,6 @@ function goTo(href) {
 }
 
 function scaleText() {
-    let titleText = $('.cardTitle')
+    const titleText = $('.cardTitle')
     langIsAr() ? titleText.css('transform', 'scale(1)') : titleText.css('transform', 'scale(0.85)')
 }
