@@ -447,12 +447,13 @@ div[name*="Worklist Card WT"] span.text-underline {
 }
 
 #taskToolbarWrapper {
-    padding: 20px 10px;
+    padding: 20px 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     gap: 30px;
     border-bottom: 1px solid lightgray;
+    box-sizing : border-box ;
 }
 
 #taskSearchKeyword {
@@ -461,7 +462,7 @@ div[name*="Worklist Card WT"] span.text-underline {
     border-radius: 5px;
     height: 20px;
     padding: 5px 10px;
-    width: 60%;
+    width : 100%
 }
 
 #taskSearchKeyword:focus {
@@ -469,10 +470,15 @@ div[name*="Worklist Card WT"] span.text-underline {
     box-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
 }
 
+    
+#taskSearchWrapper {
+    flex: 2 ;
+}
+
 .filterOptionWrapper {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 8px;
     justify-content: center;
     align-items: center;
 }
@@ -569,6 +575,7 @@ div[name*="Worklist Card WT"] span.text-underline {
 #bellicon {
     cursor: pointer !important;
 }
+
 
 .loadingOverlay {
     visibility: hidden;
