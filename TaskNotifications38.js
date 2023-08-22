@@ -34,7 +34,7 @@ function createNotificationIcon() {
 
     // If the taskDD already exists we don't recreate its structure again , we would only fill the dropdownContent
     createTaskDDStructure()
-     
+
     // show Loading overlay
     showLoadingOverlay()
 
@@ -67,7 +67,7 @@ function createNotificationIcon() {
 function renderTasks(tasks) {
 
     // Task Count
-    let taskCount = tasks.length
+    let taskCount = tasks.length ?? 0
 
 
     // Setting the task counter
@@ -80,7 +80,7 @@ function renderTasks(tasks) {
     }
 
     // Clearing the content of the tasks in case it already contains data
-    $('#dropdownContent').html(`<div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading"></div>`)
+    $('#dropdownContent').html(`<div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading" alt="Loading Animation"></div>`)
 
     // Fetching the filtered tasks based on the sorting order and the search keyword
     const filteredTasks = sortByDateAndKeyword(tasks)
@@ -93,14 +93,14 @@ function renderTasks(tasks) {
 
     // Looping over the filtered tasks and rendering them
     filteredTasks.map((task) => {
-        let taskFormURL = task.formURL
-        let taskActivityName = task.activityName
-        let taskSerialNo = task.serialNumber
-        let taskDate = new Date(task.taskStartDate);
+        let taskFormURL = task.formURL ?? ""
+        let taskActivityName = task.activityName ?? ""
+        let taskSerialNo = task.serialNumber ?? ""
+        let taskDate = new Date(task.taskStartDate ?? Date.now());
         let dayName = getDayName(taskDate, { weekday: 'long' });
 
         $('#dropdownContent').append(`
-        <a href="${taskFormURL}" target="_self">
+        <a href="${taskFormURL}" target="_blank">
             <div class="date-icon">${dayName}</div>
             <div class="task-details">
                 <h4>${taskActivityName}</h4>
@@ -119,12 +119,12 @@ function renderTasks(tasks) {
 
 // Creates the structure for the tasks dropdown
 function createTaskDDStructure() {
- 
+
     let checkIfExists = $('.taskDD')
 
     if (checkIfExists.length != 0) {
         return
-    } 
+    }
 
     $('body').append(`
     <div class="taskDD">
@@ -282,6 +282,6 @@ function hideLoadingOverlay() {
     $('#dropdownContent').css("pointer-events", "auto")
 }
 
-function setTaskCounter(count){
+function setTaskCounter(count) {
     $("#redCircle").text(count)
 }
