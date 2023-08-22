@@ -45,8 +45,7 @@ $(document).ready(function () {
 
     // Showing Investigation Options
     $(document).on('click', '#CreateInvestigationSubOption', function () {
-        // Rendering Investigation buttons which shows the actions that can be taken
-        renderInvestOptions()
+        waitForCustomSectionWrapperRender()
     })
 
     // Showing all the investigations in the custom cards
@@ -129,7 +128,6 @@ function waitForSubcategoryWrapperRender(data, categoryName, categoryID) {
     }
 }
 
-
 function renderSubCategoryCards(data, categoryName, categoryID) {
 
     // If the categories wrapper doesn't exist yet , create it
@@ -182,10 +180,9 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
 /* --------------------------------------- CUSTOM OPTIONS RENDERING FUNCTIONS ----------------------------------------- */
 
-function initiateCustomCards() {
+function initiateCustomCards() { }
 
-}
-
+/* ---------------------------------------  RENDERING CATEGORY FROM URL FUNCTIONS ----------------------------------------- */
 
 function fetchCategoryIDParameter() {
 
@@ -215,7 +212,6 @@ function checkTargetCategory() {
     }
 
 }
-
 
 function waitForSidebarRender() {
     if ($('#SidebarContentWrapper').length > 0) {
@@ -401,23 +397,46 @@ function renderCounterButtons(data) {
 
 function renderInvestOptions() {
 
-    $("#subOptions").find('.sectionBrowserTitle').remove()
-    $("#subOptions").prepend(`<p class="sectionBrowserTitle">إجراء تحقيق</p>`)
+    // If the categories wrapper doesn't exist yet , create it
+    if ($('#customcategories-card-wrapper').length == 0) {
+        $('#customSectionBrowser').prepend(`<div id="customcategories-card-wrapper" class='standardCardWrapper'></div>`)
+    }
 
-    $('#InvestigationCards').html("")
-    $('#InvestigationCards').append(`
-  <div class="cardItem" id='showAllInvestigations'>
-      <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/gavel-lawyer-books-isolated-white-justice-law-legal-concept-d-illustration-91106772-transformed.webp" class='titleImage'>
-      <p class="cardTitle">طلبات التحقيق</p>
-  </div>
-  <div class="cardItem" onclick="goTo('https://srv-k2five/Runtime/Runtime/Form/Submit.Form/')">
-      <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/2000x1000_legal2.jpg" class='titleImage'>
-      <p class="cardTitle">إجراء تحقيق</p>
-  </div>
-  <div class="cardItem"  onclick="goTo('https://srv-k2five/Runtime/Runtime/Form/InitialForm.Form/')">
-      <img src="https://cdn.jsdelivr.net/gh/nourkhansa20/CustomFiles@main/how-to-file-a-complaint.jpg" class='titleImage'>
-      <p class="cardTitle">تقديم شكوى</p>
-  </div>
-  
-  `)
+    // Removing the title if it already exists
+    $('#customSectionBrowser').find(".sectionTitle").remove()
+
+    // Appending it with the new value
+    $('#customSectionBrowser').prepend(`<p id="customSectionTitle" class='sectionTitle'> ${langIsAr() ? "إجراء تحقيق" : "New Investigation"}</p>`)
+    $('#customcategories-card-wrapper').empty()
+
+    createCustomSectionCard("ShowAllInvestigations"
+        , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/InvestigationsImage.jpeg"
+        , `${langIsAr() ? "طلبات التحقيق" : "Investigations"}`
+        , `${langIsAr() ? "نحن ملتزمون بالشفافية بخصوص نتائج التحقيقات الداخلية. كجزء من التفاني في التحاسب، نقدم تحديثات حول التحقيقات الجارية ونشارك النتائج عند الانتهاء منها. هدفنا هو الحفاظ على الثقة بين أصحاب المصلحة وضمان اتخاذ أي إجراءات ضرورية للتعامل مع القضايا المعنية." : "We are committed to transparency regarding the outcome of internal investigations. As part of our dedication to accountability, we provide updates on ongoing investigations and share findings once they are concluded. Our aim is to maintain trust among our stakeholders and ensure that any necessary actions are taken to address the issues at hand."}`
+    )
+
+
+
+}
+
+function createCustomSectionCard(id, imageURL, name, description, URL = null) {
+    $('#subcategories-card-wrapper').append(`
+    <div class="cardItem" id="${id}"  ${URL ?? `onclick="goTo('${URL}')"`}>
+    <div class='imageWrapper'>
+    <img src="${imageURL}" class='titleImage' alt="Sub-Service Image.jpeg">
+    </div>
+    <div class='TitleAndDescWrapper'>
+    <p class="cardTitle">${name}</p>
+    <p class="serviceDescription"> ${description} </p>
+    </div>
+    </div>
+    `)
+}
+
+function waitForCustomSectionWrapperRender() {
+    if ($('#customSectionBrowser').length > 0) {
+        renderInvestOptions();
+    } else {
+        setTimeout(waitForCustomSectionWrapperRender, 500);
+    }
 }
