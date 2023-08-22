@@ -60,22 +60,22 @@ function fetchTiles() {
 function renderTiles(data) {
 
 
-    let sectionTitleLabel = langIsAr() ? "أقسامنا المختلفة" : "Our Departments"
+    const sectionTitleLabel = langIsAr() ? "أقسامنا المختلفة" : "Our Departments"
 
     $('#sectionBrowser').html('')
     $('#sectionBrowser').append(`<p id="sectionBrowserInitialTitle" class="sectionTitle"> ${sectionTitleLabel}</p>`)
     $("#sectionBrowser").append("<div id='categories-card-wrapper' class='standardCardWrapper'></div>")
 
     data.map((tile) => {
-        let categoryID = tile.ID ?? ""
-        let isActive = isTrue(tile.IsActive) ?? true
-        let categoryName = langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN
-        let categoryImageURL = tile.CategoryImageURL ?? ""
-        let isDisplayable = isTrue(tile.IsCardDisplayable) ?? true
-        let isClickable = isTrue(tile.IsClickable) ?? true
-        let cardID = tile.JavaScriptID ?? ""
-        let categoryURL = tile.CategoryURL ?? ""
-        let desc = langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN
+        const categoryID = tile.ID ?? ""
+        const isActive = isTrue(tile.IsActive)
+        const categoryName = langIsAr() ? tile.CategoryNameAR : tile.CategoryNameEN
+        const categoryImageURL = tile.CategoryImageURL ?? ""
+        const isDisplayable = isTrue(tile.IsCardDisplayable)
+        const isClickable = isTrue(tile.IsClickable)
+        const cardID = tile.JavaScriptID ?? ""
+        const categoryURL = tile.CategoryURL ?? ""
+        const desc = langIsAr() ? tile.CategoryDescriptionAR : tile.CategoryDescriptionEN
 
         // If the category is Active and Displayable as card , we render it
         if (isActive && isDisplayable) {
