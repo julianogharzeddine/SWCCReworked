@@ -9,81 +9,133 @@
 
 /* REQUESTS CARDS STYLING */
 
-.cardHeader {
+#investigations-card-wrapper {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 30px;
+}
+
+.investigation-card {
+    height: 210px !important;
+    width: 280px !important;
+    border: .5px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    background: var(--white);
+}
+
+.investigationHeader {
+    display: flex !important;
     justify-content: space-between;
-    border-bottom: 0.2px solid #d5d6d4;
-    padding: 10px;
+    align-items: center;
+    color: #0066cc;
+    height: 20%;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
-.card-rows {
+.investigationRefNo {
     display: flex;
-    flex-direction: row-reverse;
+    align-items: center;
+    gap: 5px;
 }
 
-.investNo a {
-    color: var(--secondarylight-bg-color);
+.investigationRefNo a {
+    color: #0066cc;
     font-weight: bold;
-    font-size: 16px !important;
-}
-
-.date {
-    color: var(--secondarylight-bg-color);
-    font-weight: bold;
-    font-size: 16px !important;
+    font-size: 14px;
 }
 
 
-.labelVal {
-    color: var(--secondarydark-bg-color) !important;
-    font-size: 15px !important;
+.investigationStatus {
+    color: #058382;
+    background: #f5fdfa;
+    border: 2px solid #92f0f0;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+hr {
+    border: none;
+    margin: 0px 5% 0px 5%;
+    height: .5px;
+    background-color: lightgray;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.investigationBody {
+    position: relative;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.investigationBody {
+    position: relative;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subjectParagraph {
+    padding: 5px 20px;
+    font-size: 12px;
+    text-align: center;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+}
+
+.subjectTitle {
     font-weight: bold !important;
+    font-size: 17px !important;
+    width: 100%;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-.status {
-    height: 20px;
-    width: 20px;
+.investigationFooter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20%;
+    padding: 5px 15px;
+    box-sizing: border-box;
+}
+
+.authorWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 55%;
+    padding: 5px;
+    gap: 5px;
+}
+
+.graySeparator {
+    height: 5px;
+    width: 5px;
+    background-color: lightgray;
     border-radius: 100%;
 }
 
-/* Requests Cards */
-
-#card-wrapper {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-    grid-row-gap: 20px;
-    max-height: 600px;
-    overflow-y: scroll;
+.authorName {
+    font-size: 12px;
 }
 
-.cardBody {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 80%;
-}
-
-.investNoStatusWrap {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.labelTitle {
-    font-size: 18px !important;
-    font-weight: bold;
-    color: gray !important;
-}
-
-
-.dateWrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    place-items: center;
+.investigationDate {
+    color: #06c !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
 }
 
 #noInvestigationsFound {
