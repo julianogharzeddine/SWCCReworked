@@ -311,7 +311,7 @@ function fetchInvestigations() {
 
 // Wait for the Card Wrapper
 function waitForInvestWrapperRender(data) {
-    if ($('#investigations-ard-wrapper').length > 0) {
+    if ($('#investigations-card-wrapper').length > 0) {
         renderInvestCards(data);
     } else {
         setTimeout(waitForInvestWrapperRender, 500);
