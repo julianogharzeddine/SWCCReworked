@@ -12,7 +12,10 @@ $(document).ready(function () {
     // Fetching the baseURL to use it in subsequent API Calls
     baseURL = window.location.protocol + '//' + window.location.host + '/';
 
-    // When clicking on a sidebar tile , the following will be executed
+    /* When clicking on a sidebar tile , the following will be executed , they are being configured from here
+     to  provide maximum flexibility since it is possible the sidebar would have a different behavior in another 
+     form */
+
     $(document).on('click', '.categoryItemWrapper', function () {
 
         // Extracting the category name from the clicked option
@@ -29,6 +32,11 @@ $(document).ready(function () {
         }
     })
 
+    // Showing Investigation Options
+    $(document).on('click', '#CreateInvestigationSubOption', function () {
+        waitForCustomSectionWrapperRender()
+    })
+
     // Add click event listener to each counterCard
     $(document).on("click", ".counterCard", function () {
 
@@ -42,29 +50,12 @@ $(document).ready(function () {
         initiateFetchInvestigations()
     })
 
-
-    // Showing Investigation Options
-    $(document).on('click', '#CreateInvestigationSubOption', function () {
-        waitForCustomSectionWrapperRender()
-    })
-
     // Showing all the investigations in the custom cards
-    $(document).on('click', '#showAllInvestigations', function () {
-
-        // Creating the request counters
-
-        fetchCounters()
-            .then(function (data) {
-                renderCounterButtons(data)
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-
+    $(document).on('click', '#ShowAllInvestigations', function () {
 
         initiateFetchInvestigations()
 
-        $("[name='ShowRequests hiddenButton']").trigger("click")
+        // $("[name='ShowRequests hiddenButton']").trigger("click")
 
     })
 
@@ -75,14 +66,14 @@ $(document).ready(function () {
     })
 
 
+    /* On page load , we may have a categoryID parameter passed in the URL 
+       We cannot trigger the subcategory fetching immediately on page load because the sidebar 
+       may note have been rendered yet , so we wait for the sidebar and then we trigger the
+       category seleciton
+    */
     waitForSidebarRender()
 
-
 })
-
-
-
-
 
 /* --------------------------------------- SUBCATEGORY RENDERING FUNCTIONS ----------------------------------------- */
 
@@ -144,16 +135,15 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 
     data.map((item) => {
 
-
-        let subCategoryID = item.ID
-        let subCategoryName = langIsAr() ? item.SubCategoryNameAR : item.SubCategoryNameEN
-        let subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR : item.SubCategoryDescriptionEN
-        let subCategoryImageURL = item.SubCategoryImageURL
-        let subCategoryURL = item.SubCategoryURL
-        let isActive = isTrue(item.IsActive)
-        let isClickable = isTrue(item.IsClickable)
-        let subCatJSID = item.JavaScriptID
-        let foundMatch = (item.CategoryID === categoryID)
+        const subCategoryID = item.ID ?? ""
+        const subCategoryName = langIsAr() ? item.SubCategoryNameAR : item.SubCategoryNameEN
+        const subCategoryDesc = langIsAr() ? item.SubCategoryDescriptionAR : item.SubCategoryDescriptionEN
+        const subCategoryImageURL = item.SubCategoryImageURL ?? ""
+        const subCategoryURL = item.SubCategoryURL ?? ""
+        const isActive = isTrue(item.IsActive)
+        const isClickable = isTrue(item.IsClickable)
+        const subCatJSID = item.JavaScriptID ?? ""
+        const foundMatch = (item.CategoryID === categoryID)
 
         // If the item belongs to the clicked Main Category and is active , we include it
         if (foundMatch && isActive) {
@@ -169,7 +159,6 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
             </div>
             `)
         }
-
     })
 
     // Scaling text to improve readability
@@ -180,7 +169,6 @@ function renderSubCategoryCards(data, categoryName, categoryID) {
 /* ---------------------------------------  RENDERING CATEGORY FROM URL FUNCTIONS ----------------------------------------- */
 
 function fetchCategoryIDParameter() {
-
     // Create a URLSearchParams object using the current URL
     const urlSearchParams = new URLSearchParams(window.location.search);
 
@@ -188,21 +176,18 @@ function fetchCategoryIDParameter() {
     const categoryID = urlSearchParams.get('categoryID');
 
     return categoryID
-
 }
 
 function checkTargetCategory() {
-
 
     const categoryID = fetchCategoryIDParameter()
     const matchingElements = $(`.categoryItemWrapper[data-cat="${categoryID}"]`);
 
     if (categoryID) {
-        matchingElements.click()
-
+        matchingElements?.click()
     }
     else {
-        $(`.categoryItemWrapper[data-cat="1"]`).click()
+        $(`.categoryItemWrapper[data-cat="1"]`)?.click()
 
     }
 
@@ -228,7 +213,7 @@ function waitForCustomSectionWrapperRender() {
 
 function renderInvestOptions() {
 
-    // If the categories wrapper doesn't exist yet , create it
+    // If the custom categories wrapper doesn't exist yet , create it
     if ($('#customcategories-card-wrapper').length == 0) {
         $('#customSectionBrowser').prepend(`<div id="customcategories-card-wrapper" class='standardCardWrapper'></div>`)
     }
@@ -240,15 +225,18 @@ function renderInvestOptions() {
     $('#customSectionBrowser').prepend(`<p id="customSectionTitle" class='sectionTitle'> ${langIsAr() ? "إجراء تحقيق" : "New Investigation"}</p>`)
     $('#customcategories-card-wrapper').empty()
 
+
+    // Generating the custom cards by providing id , image , title , and
+
     createCustomSectionCard("ShowAllInvestigations"
         , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/InvestigationsImage.jpeg"
         , `${langIsAr() ? "طلبات التحقيق" : "Investigations"}`
-        , `${langIsAr() ? "إذا كنت قد شهدت أو تعرضت لأي سلوك يتعارض مع قيم أو سياسات منظمتنا، فنحن نشجعك على تقديم شكوى. سيتم التعامل مع مخاوفك بجدية يمكنك تقديم شكواك من خلال قنواتنا المخصصة لضمان سرية البيانات وحل المشكلة بسرعة" : "We are committed to transparency regarding the outcome of internal investigations. As part of our dedication to accountability, we provide updates on ongoing investigations and share findings once they are concluded. Our aim is to maintain trust among our stakeholders and ensure that any necessary actions are taken to address the issues at hand"}`
+        , `${langIsAr() ? "نحن ملتزمون بالشفافية بخصوص نتائج التحقيقات الداخلية. كجزء من التفاني في التحاسب، نقدم تحديثات حول التحقيقات الجارية ونشارك النتائج عند الانتهاء منها. هدفنا هو الحفاظ على الثقة بين أصحاب المصلحة وضمان اتخاذ أي إجراءات ضرورية للتعامل مع القضايا المعنية" : "We are committed to transparency regarding the outcome of internal investigations. We provide updates on ongoing investigations and share findings once they are concluded"}`
     )
     createCustomSectionCard("CreateNewInvestigation"
         , "https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/CreateInvestigationImage.jpg"
         , `${langIsAr() ? "إجراء طلب تحقيق" : "New Investigation"}`
-        , `${langIsAr() ? "نحن ملتزمون بالشفافية بخصوص نتائج التحقيقات الداخلية. كجزء من التفاني في التحاسب، نقدم تحديثات حول التحقيقات الجارية ونشارك النتائج عند الانتهاء منها. هدفنا هو الحفاظ على الثقة بين أصحاب المصلحة وضمان اتخاذ أي إجراءات ضرورية للتعامل مع القضايا المعنية" : "In the event of any concerns or potential violations of policies, our dedicated team works diligently to uncover the truth and take appropriate actions if misconduct is identified"}`
+        , `${langIsAr() ? "تلتزم منظمتنا بالحفاظ على بيئة عمل شفافة وأخلاقية. في حالة وجود أي مخاوف أو انتهاكات محتملة للسياسات، نقوم بإجراء تحقيقات داخلية دقيقة لضمان نزاهة عملياتنا. يعمل فريقنا المخصص بجدية للكشف عن الحقيقة واتخاذ الإجراءات المناسبة إذا تم تحديد أي سلوك غير أخلاقي" : "In the event of any concerns or potential violations of policies, our dedicated team works diligently to uncover the truth and take appropriate actions if misconduct is identified"}`
         , "https://srv-k2five/Runtime/Runtime/Form/Submit.Form/"
     )
     createCustomSectionCard("CreateComplaint"
@@ -278,35 +266,18 @@ function createCustomSectionCard(id, imageURL, name, description, URL = null) {
 }
 
 
+/* ---------------------------------------  RENDERING INVESTIGATIONS SECTION ----------------------------------------- */
 
 
-
-
-
-
-
-
-
-
-
-// Wait for the Card Wrapper
-
-function waitForInvestWrapperRender(data) {
-    if ($('#card-wrapper').length > 0) {
-        renderInvestCards(data);
-    } else {
-        setTimeout(waitForInvestWrapperRender, 500);
-    }
-}
 
 
 function initiateFetchInvestigations() {
 
     // Creating the investigation cards
-
     fetchInvestigations()
         .then(function (data) {
             waitForInvestWrapperRender(data)
+            waitForCounterWrapperRender(data)
         })
         .catch(function (error) {
             console.error(error);
@@ -315,7 +286,6 @@ function initiateFetchInvestigations() {
 }
 
 // Fetching investigation details 
-
 function fetchInvestigations() {
     return new Promise(function (resolve, reject) {
         $.ajax({
@@ -329,6 +299,7 @@ function fetchInvestigations() {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
             },
             success: function (json_data) {
+                console.log(json_data)
                 resolve(json_data.value);
             },
             error: function () {
@@ -338,9 +309,27 @@ function fetchInvestigations() {
     });
 }
 
+// Wait for the Card Wrapper
+function waitForInvestWrapperRender(data) {
+    if ($('#card-wrapper').length > 0) {
+        renderInvestCards(data);
+    } else {
+        setTimeout(waitForInvestWrapperRender, 500);
+    }
+}
+
+// Wait for the Req Counter Wrapper
+function waitForCounterWrapperRender(data) {
+    if ($('#reqCounter').length > 0) {
+        renderCounterButtons(data)
+    } else {
+        setTimeout(waitForCounterWrapperRender, 500);
+    }
+}
+
+
 
 // Rendering Investigation Cards
-
 function renderInvestCards(data) {
 
     $('#card-wrapper').html("")
@@ -390,31 +379,7 @@ function renderInvestCards(data) {
 
 }
 
-// Fetching request counters 
-function fetchCounters() {
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            type: 'GET',
-            url: `${baseURL}api/odatav4/v4/RequestView_1`,
-            dataType: 'json',
-            crossDomain: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(unescape(encodeURIComponent("sp_admin" + ':' + "P@ssw0rd"))));
-                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            },
-            success: function (json_data) {
-                resolve(json_data.value);
-            },
-            error: function () {
-                reject('Failed to Load Counters !');
-            }
-        });
-    });
-}
-
 // Rendering the counter buttons
-
 function renderCounterButtons(data) {
 
     let completedNo = 0
