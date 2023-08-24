@@ -368,7 +368,8 @@ function renderInvestCards(data) {
         if (containsKeyword) {
             if (investStatus == "All" || targetArray.includes(status)) {
                 $('#investigations-card-wrapper').append(`
-                <div class="investigation-card"><div class="investigationHeader "><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${redStatus.includes(status) ? "red" : (
+                <div class="investigation-card"><div class="investigationHeader "><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div>
+                   <div class="investigationStatus  ${redStatus.includes(status) ? "cardStatusNew" : (
                     orangeStatus.includes(status) ? "cardStatusPending" : (
                         greenStatus.includes(status) ? "cardStatusComplete" : "cardStatusNew"
                     )
