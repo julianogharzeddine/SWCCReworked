@@ -277,7 +277,8 @@ function initiateFetchInvestigations() {
     fetchInvestigations()
         .then(function (data) {
             waitForInvestWrapperRender(data)
-            waitForCounterWrapperRender(data)
+            if(investStatus=="All") waitForCounterWrapperRender(data)
+     
         })
         .catch(function (error) {
             console.error(error);
@@ -378,7 +379,7 @@ function renderInvestCards(data) {
 
         if (containsKeyword) {
             if (investStatus == "All" || targetArray.includes(status)) {
-                $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">Subject</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
+                $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">${langIsAr() ? "الموضوع" : " Subject"}</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
                 `);
                 filteredResults++
             }
@@ -387,7 +388,7 @@ function renderInvestCards(data) {
     })
 
     if (filteredResults === 0) $('#noInvestigationsFound').text("No Items Found")
-    else $('#noInvestigationsFound').text("")
+    else $('#noInvestigationsFound').empty()
 
 }
 
