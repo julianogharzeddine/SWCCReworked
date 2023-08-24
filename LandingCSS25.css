@@ -1,3 +1,18 @@
+:root {
+    --complete-border-color: #23E774;
+    --complete-bg-color: #effbf3;
+    --complete-font-color: #1bba5d;
+
+    --pending-border-color: #FF950A;
+    --pending-bg-color: #FFF6EB;
+    --pending-font-color: #FF9A1F;
+
+    --new-border-color: #CE3B3B;
+    --new-bg-color: #FBEFEF;
+    --new-font-color: #D24B4B;
+}
+
+
 /* Form Boundaries */
 
 .runtime-form {
@@ -53,13 +68,30 @@
 
 
 .investigationStatus {
-    color: #058382;
-    background: #f5fdfa;
-    border: 2px solid #92f0f0;
     padding: 5px;
     border-radius: 5px;
     font-size: 13px;
+    border: 1px solid;
 }
+
+.cardStatusComplete {
+    color: var(--complete-font-color);
+    background: var(--complete-bg-color);
+    border-color: var(--complete-border-color);
+}
+
+.cardStatusPending {
+    color: var(--pending-font-color);
+    background: var(--pending-bg-color);
+    border-color: var(--pending-border-color);
+}
+
+.cardStatusNew {
+    color: var(--new-font-color);
+    background: var(--new-bg-color);
+    border-color: var(--new-border-color);
+}
+
 
 hr {
     border: none;
@@ -148,20 +180,8 @@ hr {
 
 /* REQUEST COUNTER STYLING */
 
-.Complete {
-    background: var(--secondarylight-bg-color);
-}
-
-.Active {
-    background: var(--secondarydark-bg-color);
-}
-
-.New {
-    background: var(--secondarydark-bg-color);
-}
-
 .totalcounter {
-    color: var(--white) !important;
+    color: #058382 !important;
     font-size: 2ex !important;
 }
 
@@ -187,7 +207,7 @@ hr {
     box-sizing: border-box !important;
     font-weight: bold !important;
     font-size: 35px !important;
-    color: var(--white) !important;
+    color: #058382 !important;
 }
 
 .counterCard {
@@ -203,10 +223,15 @@ hr {
     cursor: pointer;
     flex-direction: column !important;
     padding: 2ex;
+    background: #f5fdfa;
+    border: 2px solid #92f0f0;
+    padding: 5px;
+    font-size: 13px;
+
 }
 
 .counterLabel {
-    color: var(--white) !important;
+    color: #058382 !important;
     font-size: 18px !important;
 }
 
