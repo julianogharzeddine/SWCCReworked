@@ -3,8 +3,8 @@ var baseURL;   // fetching the base URL
 var redStatus = ["new", "New", "جديد"]
 var greenStatus = ["اكتمال التحقيق"]
 var orangeStatus = ["بإنتظار اعداد التقرير", "بانتظار المراجعة"]
-var investStatus ;
-var searchKeyword = "" ;
+var investStatus;
+var searchKeyword = "";
 
 $(document).ready(function () {
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
     // Showing all the investigations in the custom cards
     $(document).on('click', '#ShowAllInvestigations', function () {
-        
+
         // Fetching the investigations
         initiateFetchInvestigations()
 
@@ -281,8 +281,8 @@ function initiateFetchInvestigations() {
     fetchInvestigations()
         .then(function (data) {
             waitForInvestWrapperRender(data)
-            if(!investStatus) waitForCounterWrapperRender(data)
-     
+            if (!investStatus) waitForCounterWrapperRender(data)
+
         })
         .catch(function (error) {
             console.error(error);
@@ -346,7 +346,7 @@ function renderInvestCards(data) {
         let refNo = investigation.RefNo.trim()
         let creationDate = investigation.CreatedOn
         let creator = investigation.CreatedBy
-        let subject = investigation.InvestigationSubject 
+        let subject = investigation.InvestigationSubject
 
 
         // Checking if it's a match
@@ -356,7 +356,7 @@ function renderInvestCards(data) {
             creator.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             subject.toLowerCase().includes(searchKeyword.toLowerCase());
 
-        let targetArray ;
+        let targetArray;
 
 
         //Choosing the target array to check the status from
@@ -387,7 +387,7 @@ function renderInvestCards(data) {
 
         // If it's a match , we can proceed and render the card
         if (containsKeyword) {
-            if (investStatus == "All" || targetArray.includes(status)) {
+            if (!investStatus || targetArray.includes(status)) {
                 $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">${langIsAr() ? "الموضوع" : " Subject"}</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
                 `);
                 filteredResults++
