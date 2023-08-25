@@ -45,15 +45,14 @@ $(document).ready(function () {
         // Add 'Darker' class to the clicked counterCard div
         $(this).addClass('Darker');
 
-        if (investStatus != $(this).data("status")) investStatus = $(this).data("status")
-        else {
-            investStatus == $(this).data("status")
+        const currentCardStatus = $(this).data("status");
+
+        if (investStatus != currentCardStatus) {
+            investStatus = currentCardStatus
             initiateFetchInvestigations()
         }
 
-
     })
-
     // Showing all the investigations in the custom cards
     $(document).on('click', '#ShowAllInvestigations', function () {
 
@@ -81,8 +80,8 @@ $(document).ready(function () {
        category seleciton
     */
     waitForSidebarRender()
-
 })
+
 
 /* --------------------------------------- SUBCATEGORY RENDERING FUNCTIONS ----------------------------------------- */
 
@@ -274,11 +273,7 @@ function createCustomSectionCard(id, imageURL, name, description, URL = null) {
     `)
 }
 
-
 /* ---------------------------------------  RENDERING INVESTIGATIONS SECTION ----------------------------------------- */
-
-
-
 
 function initiateFetchInvestigations() {
 
