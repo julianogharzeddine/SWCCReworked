@@ -4,7 +4,8 @@ var redStatus = ["new", "New", "جديد"]
 var greenStatus = ["اكتمال التحقيق"]
 var orangeStatus = ["بإنتظار اعداد التقرير", "بانتظار المراجعة"]
 var investStatus;
-var searchKeyword = "";
+var searchKeyword = ""
+var searchMode = "keyword";
 
 $(document).ready(function () {
 
@@ -45,14 +46,19 @@ $(document).ready(function () {
         // Add 'Darker' class to the clicked counterCard div
         $(this).addClass('Darker');
 
+        // Clearing the search input
+        $('[name="SearchBox"]').val("")
+
         const currentCardStatus = $(this).data("status");
 
         if (investStatus != currentCardStatus) {
             investStatus = currentCardStatus
+            searchMode = "status"
             initiateFetchInvestigations()
         }
 
     })
+
     // Showing all the investigations in the custom cards
     $(document).on('click', '#ShowAllInvestigations', function () {
 
@@ -68,6 +74,10 @@ $(document).ready(function () {
     $(document).on('input', '[name="SearchBox"]', function () {
 
         searchKeyword = $(this).val()
+        searchMode = "keyword"
+
+        // Removing the selected status filter
+        $('.Darker').removeClass("Darker")
 
         //Fetching the investigations
         initiateFetchInvestigations()
@@ -317,7 +327,7 @@ function fetchInvestigations() {
 // Wait for the Card Wrapper
 function waitForInvestWrapperRender(data) {
     if ($('#investigations-card-wrapper').length > 0) {
-        renderInvestCards(data);
+        searchMode == "keyword" ? renderInvestCardsKeyword(data) : renderInvestCardsStatus(data)
     } else {
         setTimeout(waitForInvestWrapperRender, 500);
     }
@@ -335,7 +345,7 @@ function waitForCounterWrapperRender(data) {
 
 
 // Rendering Investigation Cards
-function renderInvestCards(data) {
+function renderInvestCardsKeyword(data) {
 
     $('#investigations-card-wrapper').empty()
     let filteredResults = 0;
@@ -356,8 +366,47 @@ function renderInvestCards(data) {
             creator.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             subject.toLowerCase().includes(searchKeyword.toLowerCase());
 
-        let targetArray;
 
+        let statusContent = {}
+
+        // Forming the object that contains the information about the status so that it can be used later while rendering the cards
+        if (redStatus.includes(status)) {
+            statusContent = { "className": "cardStatusNew", "textContent": `${langIsAr() ? "جديد" : "New"}` }
+        } else if (orangeStatus.includes(status)) {
+            statusContent = { "className": "cardStatusPending", "textContent": `${langIsAr() ? status : "Pending Review"}` }
+        } else if (greenStatus.includes(status)) {
+            statusContent = { "className": "cardStatusComplete", "textContent": `${langIsAr() ? status : "Completed"}` }
+        }
+
+        // If it's a match , we can proceed and render the card
+        if (containsKeyword) {
+            $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">${langIsAr() ? "الموضوع" : " Subject"}</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
+                `);
+            filteredResults++
+        }
+
+    })
+
+    // If no results are returned , we display a message to the user
+    if (filteredResults === 0) $('#noInvestigationsFound').text("No Items Found")
+    else $('#noInvestigationsFound').empty()
+
+}
+
+// Rendering Investigation Cards
+function renderInvestCardsStatus(data) {
+
+    $('#investigations-card-wrapper').empty()
+    let filteredResults = 0;
+
+    data.map((investigation) => {
+
+        let status = investigation.Status.trim()
+        let refNo = investigation.RefNo.trim()
+        let creationDate = investigation.CreatedOn
+        let creator = investigation.CreatedBy
+        let subject = investigation.InvestigationSubject
+        let targetArray;
 
         //Choosing the target array to check the status from
         switch (investStatus) {
@@ -386,13 +435,13 @@ function renderInvestCards(data) {
         }
 
         // If it's a match , we can proceed and render the card
-        if (containsKeyword) {
-            if (!investStatus || targetArray.includes(status)) {
-                $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">${langIsAr() ? "الموضوع" : " Subject"}</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
+
+        if (!investStatus || targetArray.includes(status)) {
+            $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">${langIsAr() ? "الموضوع" : " Subject"}</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
                 `);
-                filteredResults++
-            }
+            filteredResults++
         }
+
 
     })
 
@@ -401,6 +450,9 @@ function renderInvestCards(data) {
     else $('#noInvestigationsFound').empty()
 
 }
+
+
+
 
 // Rendering the counter buttons
 function renderCounterButtons(data) {
