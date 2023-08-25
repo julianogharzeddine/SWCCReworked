@@ -3,9 +3,8 @@ var baseURL;   // fetching the base URL
 var redStatus = ["new", "New", "جديد"]
 var greenStatus = ["اكتمال التحقيق"]
 var orangeStatus = ["بإنتظار اعداد التقرير", "بانتظار المراجعة"]
-var dateIconURL = "https://srv-k2five/Designer/Image.ashx?ImID=110252"
-var investStatus = "All"
-var searchKeyword = ""
+var investStatus ;
+var searchKeyword = "" ;
 
 $(document).ready(function () {
 
@@ -52,7 +51,8 @@ $(document).ready(function () {
 
     // Showing all the investigations in the custom cards
     $(document).on('click', '#ShowAllInvestigations', function () {
-
+        
+        // Fetching the investigations
         initiateFetchInvestigations()
 
         // Triggering a click on the hidden button to maintain rule interaction
@@ -62,7 +62,10 @@ $(document).ready(function () {
 
     // Counter cards listeners 
     $(document).on('input', '[name="SearchBox"]', function () {
+
         searchKeyword = $(this).val()
+
+        //Fetching the investigations
         initiateFetchInvestigations()
     })
 
@@ -278,7 +281,7 @@ function initiateFetchInvestigations() {
     fetchInvestigations()
         .then(function (data) {
             waitForInvestWrapperRender(data)
-            if(investStatus=="All") waitForCounterWrapperRender(data)
+            if(!investStatus) waitForCounterWrapperRender(data)
      
         })
         .catch(function (error) {
