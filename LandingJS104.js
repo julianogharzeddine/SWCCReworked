@@ -55,7 +55,8 @@ $(document).ready(function () {
 
         initiateFetchInvestigations()
 
-        // $("[name='ShowRequests hiddenButton']").trigger("click")
+        // Triggering a click on the hidden button to maintain rule interaction
+        $("[name*='ShowRequests hiddenButton']").trigger("click")
 
     })
 
@@ -338,20 +339,24 @@ function renderInvestCards(data) {
 
     data.map((investigation) => {
 
-        let status = investigation.Status
-        let refNo = investigation.RefNo
+        let status = investigation.Status.trim()
+        let refNo = investigation.RefNo.trim()
         let creationDate = investigation.CreatedOn
         let creator = investigation.CreatedBy
-        let subject = investigation.InvestigationSubject
+        let subject = investigation.InvestigationSubject 
 
+
+        // Checking if it's a match
         let containsKeyword =
             refNo.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             creationDate.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             creator.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             subject.toLowerCase().includes(searchKeyword.toLowerCase());
 
-        let targetArray = []
+        let targetArray ;
 
+
+        //Choosing the target array to check the status from
         switch (investStatus) {
             case "Complete":
                 targetArray = greenStatus;
@@ -368,6 +373,7 @@ function renderInvestCards(data) {
 
         let statusContent = {}
 
+        // Forming the object that contains the information about the status so that it can be used later while rendering the cards
         if (redStatus.includes(status)) {
             statusContent = { "className": "cardStatusNew", "textContent": `${langIsAr() ? "جديد" : "New"}` }
         } else if (orangeStatus.includes(status)) {
@@ -376,7 +382,7 @@ function renderInvestCards(data) {
             statusContent = { "className": "cardStatusComplete", "textContent": `${langIsAr() ? status : "Completed"}` }
         }
 
-
+        // If it's a match , we can proceed and render the card
         if (containsKeyword) {
             if (investStatus == "All" || targetArray.includes(status)) {
                 $('#investigations-card-wrapper').append(`<div class="investigation-card"><div class="investigationHeader"><div class="investigationRefNo"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/refno-link.svg" alt="Ref. No"><a href="">${refNo}</a></div><div class="investigationStatus  ${statusContent.className}">${statusContent.textContent}</div></div><hr><div class="investigationBody"><p class="subjectTitle">${langIsAr() ? "الموضوع" : " Subject"}</p><p class="subjectParagraph">${subject}</p></div><hr><div class="investigationFooter"><div class="authorWrapper"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/investigation-creator.svg" alt="Created By"><div class="graySeparator"></div><p class="authorName">${creator}</p></div><div class="dateWrapper"><p class="investigationDate">${new Date(creationDate).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }).split("/").reverse().join("/")}</p></div></div></div>
@@ -387,6 +393,7 @@ function renderInvestCards(data) {
 
     })
 
+    // If no results are returned , we display a message to the user
     if (filteredResults === 0) $('#noInvestigationsFound').text("No Items Found")
     else $('#noInvestigationsFound').empty()
 
