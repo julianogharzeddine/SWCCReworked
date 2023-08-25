@@ -45,8 +45,13 @@ $(document).ready(function () {
         // Add 'Darker' class to the clicked counterCard div
         $(this).addClass('Darker');
 
-        investStatus = $(this).data("status")
-        initiateFetchInvestigations()
+        if (investStatus != $(this).data("status")) investStatus = $(this).data("status")
+        else {
+            investStatus == $(this).data("status")
+            initiateFetchInvestigations()
+        }
+
+
     })
 
     // Showing all the investigations in the custom cards
