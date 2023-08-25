@@ -181,7 +181,7 @@ hr {
 /* REQUEST COUNTER STYLING */
 
 .totalcounter {
-    color: #058382 !important;
+    color: var(--secondarylight-bg-color) !important;
     font-size: 2ex !important;
 }
 
@@ -207,7 +207,7 @@ hr {
     box-sizing: border-box !important;
     font-weight: bold !important;
     font-size: 35px !important;
-    color: #058382 !important;
+    color: var(--secondarylight-bg-color) !important;
 }
 
 .counterCard {
@@ -224,14 +224,14 @@ hr {
     flex-direction: column !important;
     padding: 2ex;
     background: #f5fdfa;
-    border: 2px solid #92f0f0;
+    border: 2px solid var(--secondarylight-bg-color);
     padding: 5px;
     font-size: 13px;
 
 }
 
 .counterLabel {
-    color: #058382 !important;
+    color: var(--secondarylight-bg-color) !important;
     font-size: 18px !important;
 }
 
