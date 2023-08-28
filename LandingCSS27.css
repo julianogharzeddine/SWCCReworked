@@ -68,7 +68,8 @@
 
 
 .investigationStatus {
-    padding: 5px;
+    padding: 4px;
+    margin : 0px 10px ;
     border-radius: 5px;
     font-size: 13px;
     border: 1px solid;
@@ -118,7 +119,7 @@ hr {
 }
 
 .subjectParagraph {
-    padding: 5px 20px;
+    padding: 0px 20px;
     font-size: 12px;
     text-align: center;
     overflow-y: scroll;
@@ -126,6 +127,7 @@ hr {
 }
 
 .subjectTitle {
+    display : none ;
     font-weight: bold !important;
     font-size: 17px !important;
     width: 100%;
@@ -182,7 +184,7 @@ hr {
 
 .totalcounter {
     color: var(--secondarylight-bg-color) !important;
-    font-size: 2ex !important;
+    font-size: 16px !important;
 }
 
 #reqCounter {
@@ -206,7 +208,7 @@ hr {
     border-radius: 100% !important;
     box-sizing: border-box !important;
     font-weight: bold !important;
-    font-size: 35px !important;
+    font-size: 26px !important;
     color: var(--secondarylight-bg-color) !important;
 }
 
@@ -218,8 +220,8 @@ hr {
     padding-left: 10px !important;
     box-sizing: border-box !important;
     border-radius: 10px !important;
-    width: 251px !important;
-    height: 105px !important;
+    width: 200px !important;
+    height: 100px !important;
     cursor: pointer;
     flex-direction: column !important;
     padding: 2ex;
@@ -232,7 +234,7 @@ hr {
 
 .counterLabel {
     color: var(--secondarylight-bg-color) !important;
-    font-size: 18px !important;
+    font-size: 15px !important;
 }
 
 
@@ -250,7 +252,11 @@ hr {
 .Darker {
     transform: scale(1.13);
     transition: 0.3s ease;
-    filter: brightness(0.9)
+    background : var(--secondarylight-bg-color);
+}
+
+.Darker .counterLabel , .Darker .totalcounter , .Darker .counterCircle {
+    color : white !important ;
 }
 
 [name*='hiddenButton'] {
