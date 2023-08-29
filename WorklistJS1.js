@@ -16,6 +16,9 @@ $(document).ready(function () {
         $(this).addClass("selectedOption")
     })
 
+    setTimeout(function () {
+        console.log(sortingOrder)
+    }, 10000)
     waitForWorklistWrapperRender()
 })
 
