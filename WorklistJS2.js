@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-    $('.taskStatusOption').click(function () {
+    // When clicking on a task status option
+    $(document).on('click', '.taskStatusOption', function () {
 
         // Clearing other underlined options
         $(".underline").css("width", "0")
@@ -28,4 +29,4 @@ function waitForWorklistWrapperRender() {
 
 function renderWorklist() {
     $("#worklist-items-wrapper").append("<p> Hello </p>")
-} w
+} 
