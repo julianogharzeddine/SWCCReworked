@@ -67,18 +67,70 @@ function waitForWorklistWrapperRender(data) {
 
 function renderWorklist(data) {
 
-
     let worklistContainer = $("#worklist-items-wrapper")
     // Clearing the worklist content if it already has results
     worklistContainer.empty()
 
     data.map((task) => {
+        
         let taskFormURL = task.formURL ?? ""
         let taskActivityName = task.activityName ?? ""
         let taskSerialNo = task.serialNumber ?? ""
-        let taskDate = formatDate(new Date(task.taskStartDate ?? Date.now()));
+        let taskDate = formatDate(new Date(task.taskStartDate));
+        let taskDueDate = formatDate(new Date(task.dueDate));
 
-        worklistContainer.append(`<p> <a href="${taskFormURL}"}>${taskSerialNo}</a><p>${taskActivityName}</p><p>${taskDate}</p>`)
+        worklistContainer.append(`
+        <div class="worklistItem" data-serial="${taskSerialNo}">
+        <div class="itemInfoWrapper">
+            <p class="itemInfoHeading">
+                SERIAL NO.
+            </p>
+            <p class="itemInfoData">
+                <a href="${taskFormURL}" target="_blank">${taskSerialNo}</a>
+            </p>
+        </div>
+        <div class="itemInfoWrapper">
+            <p class="itemInfoHeading">
+                TASK TITLE
+            </p>
+            <p class="itemInfoData">
+                ${taskActivityName}
+            </p>
+        </div>
+        <div class="itemInfoWrapper">
+            <p class="itemInfoHeading">
+                ASSIGNED
+            </p>
+            <p class="itemInfoData">
+                ${taskDate}
+            </p>
+        </div>
+        <div class="itemInfoWrapper">
+            <p class="itemInfoHeading">
+                STATUS
+            </p>
+            <p class="itemInfoData">
+                In Progress
+            </p>
+        </div>
+        <div class="itemInfoWrapper">
+            <p class="itemInfoHeading">
+                DUE DATE
+            </p>
+            <p class="itemInfoData">
+                ${taskDueDate}
+            </p>
+        </div>
+        <div class="itemInfoWrapper taskActions">
+            <p class="itemInfoHeading">
+                ACTIONS
+            </p>
+            <p class="itemInfoData">
+                In Progress
+            </p>
+        </div>
+    </div>
+        `)
     })
 
 }
