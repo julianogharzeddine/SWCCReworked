@@ -80,12 +80,7 @@ function renderWorklist(data) {
         let taskDueDate = formatDate(new Date(task.dueDate));
 
         worklistContainer.append(`
-         <div class="worklistItem" data-serial="${taskSerialNo}"> <div class="itemInfoWrapper"> <p class="itemInfoHeading"> SERIAL NO. </p><p class="itemInfoData"> 
-         <a href="${taskFormURL}" target="_blank">${taskSerialNo}</a> </p></div><div class="itemInfoWrapper"> <p class="itemInfoHeading"> TASK TITLE </p><p class="itemInfoData">
-         ${taskActivityName}</p></div><div class="itemInfoWrapper"> <p class="itemInfoHeading"> ASSIGNED </p><p class="itemInfoData"> ${taskDate}</p></div>
-         <div class="itemInfoWrapper"> <p class="itemInfoHeading"> STATUS </p><p class="itemInfoData"> In Progress </p></div><div class="itemInfoWrapper">
-         <p class="itemInfoHeading"> DUE DATE </p><p class="itemInfoData"> ${taskDueDate}</p></div><div class="itemInfoWrapper taskActions">
-         <p class="itemInfoHeading"> ACTIONS </p><p class="itemInfoData"> In Progress </p></div></div>
+        <div class="worklistItem" data-serial="${taskSerialNo}"><div class="itemInfoWrapper"><p class="itemInfoHeading">SERIAL NO.</p><p class="itemInfoData"><a href="${taskFormURL}" target="_blank">${taskSerialNo}</a></p></div><div class="itemInfoWrapper"><p class="itemInfoHeading">TASK TITLE</p><p class="itemInfoData">${taskActivityName}</p></div><div class="itemInfoWrapper"><p class="itemInfoHeading">ASSIGNED</p><p class="itemInfoData">${taskDate}</p></div><div class="itemInfoWrapper"><p class="itemInfoHeading">STATUS</p><p class="itemInfoData">In Progress</p></div><div class="itemInfoWrapper"><p class="itemInfoHeading">DUE DATE</p><p class="itemInfoData">${taskDueDate}</p></div><div class="itemInfoWrapper taskActions"><p class="itemInfoHeading">ACTIONS</p><p class="itemInfoData">In Progress</p></div></div>
         `)
     })
 
