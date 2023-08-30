@@ -72,7 +72,7 @@ function renderWorklist(data) {
     // Clearing the worklist content if it already has results
     worklistContainer.empty()
 
-    data.map(task => function () {
+    data.map((task) => {
         let taskFormURL = task.formURL ?? ""
         let taskActivityName = task.activityName ?? ""
         let taskSerialNo = task.serialNumber ?? ""
