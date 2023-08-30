@@ -185,6 +185,16 @@
     gap: 20px;
 }
 
+.taskSerialNo {
+    flex: auto !important;
+    max-width: 80px !important;
+    border: 1px solid;
+}
+
+.taskTitle {
+    flex: 2.5 !important;
+}
+
 .itemInfoWrapper {
     display: flex;
     flex-direction: column;
@@ -194,11 +204,16 @@
 
 .itemInfoWrapper p {
     margin: 0;
+    padding: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .itemInfoHeading {
-    color: gray;
-    font-size: 10px !important;
+    color: gray !important;
+    font-size: 10.5px !important;
 }
 
 .itemInfoData a {
