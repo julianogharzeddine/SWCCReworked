@@ -2,7 +2,7 @@
 
 var baseURL;
 
-$(document).ready(async function () {
+$(document).ready(function () {
 
     // When clicking on a task status option
     $(document).on('click', '.taskStatusOption', function () {
@@ -20,14 +20,16 @@ $(document).ready(async function () {
         $(this).addClass("selectedOption")
     })
 
-
-    const tasks = await fetchTasks()
-    console.log(tasks)
-
-    waitForWorklistWrapperRender()
+    initializeFetchTasks()
 })
 
-async function fetchTasks() {
+function initializeFetchTasks() {
+    fetchTasks()
+        .then((data) => waitForWorklistWrapperRender(data))
+        .catch((error) => console.error(error))
+}
+
+function fetchTasks() {
     try {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -55,16 +57,39 @@ async function fetchTasks() {
     }
 }
 
-function waitForWorklistWrapperRender() {
+function waitForWorklistWrapperRender(data) {
     if ($('#worklist-items-wrapper').length > 0) {
-        renderWorklist()
+        renderWorklist(data)
     } else {
         setTimeout(waitForWorklistWrapperRender, 500);
     }
 }
 
-function renderWorklist() {
-    $("#worklist-items-wrapper").append("<p> Hello </p>")
+function renderWorklist(data) {
+
+
+    let worklistContainer = $("#worklist-items-wrapper")
+    // Clearing the worklist content if it already has results
+    worklistContainer.empty()
+
+    data.map(task => function () {
+        let taskFormURL = task.formURL ?? ""
+        let taskActivityName = task.activityName ?? ""
+        let taskSerialNo = task.serialNumber ?? ""
+        let taskDate = formatDate(new Date(task.taskStartDate ?? Date.now()));
+
+        worklistContainer.append(`<p> <a href="${taskFormURL}"}>${taskSerialNo}</a><p>${taskActivityName}</p><p>${taskDate}</p>`)
+    })
+
 }
 
+function formatDate(date) {
+    const dateObject = new Date(date);
+    const year = dateObject.getFullYear();
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+    const day = dateObject.getDate().toString().padStart(2, "0");
+
+    const formattedDate = `${year}/${month}/${day}`;
+    return formattedDate;
+}
 
