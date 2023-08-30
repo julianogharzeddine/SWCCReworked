@@ -165,3 +165,47 @@
     height: var(--svg-icon-height-width);
     width: var(--svg-icon-height-width);
 }
+
+
+/* --------------- WORKLIST ITEMS STYLING -------------- */
+
+#worklist-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.worklistItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    padding: 15px;
+    gap: 20px;
+}
+
+.itemInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.itemInfoWrapper p {
+    margin: 0;
+}
+
+.itemInfoHeading {
+    color: gray;
+    font-size: 10px !important;
+}
+
+.itemInfoData a {
+    text-decoration: none;
+    color: #06c;
+}
+
+.itemInfoData {
+    font-size: 14px;
+}
