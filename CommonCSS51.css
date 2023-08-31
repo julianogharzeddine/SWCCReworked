@@ -150,11 +150,12 @@
     /* Main Theme Color */
     --root-primarylight-color: #0066cc;
     --root-primarylight-color-less: #026dd9e6;
+
     /* Secondary Theme Color  */
     --root-primarydark-color: #0066cc;
+
     /* Main Background Color */
     --root-bg-color: #e5e6f6;
-
 
     /* --------- STATUSES COLOR PALETTE  ------------ */
 
@@ -183,21 +184,25 @@
     /* -------------- DIMENSIONS -------------- */
 
     /* Card Item Dimensions */
-    --root-card-width: 300px;
+
     /* Width of the card */
-    --root-card-height: 280px;
+    --root-card-width: 300px;
     /* Height of the card */
+    --root-card-height: 280px;
+
     /* Card Max Dimensions */
-    --root-card-max-width: 300px;
+
     /* Maximum width of the card */
-    --root-card-max-height: 280px;
+    --root-card-max-width: 300px;
     /* Maximum height of the card */
+    --root-card-max-height: 280px;
+
 
     /* --------------- BORDER RADII ------------------ */
     --root-radius-sm: 5px;
     --root-radius-m: 7px;
     --root-radius-l: 10px;
-
+    --root-curved-border-radius: 2ex;
 }
 
 /* MISC */
