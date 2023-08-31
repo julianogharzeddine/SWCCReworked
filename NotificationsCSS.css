@@ -1,0 +1,196 @@
+:root {
+    --standard-border-radius: 2ex;
+}
+
+/* Task Dropdown Styling */
+
+.taskDD {
+    position: fixed;
+    width: 500px;
+    top: 95px;
+    z-index: 100;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.taskDD a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    gap: var(--gap-h);
+    border-bottom: 1px solid #f1f1f1;
+    padding: var(--padding-xl);
+}
+
+.taskDD a:hover {
+    background-color: #f1f1f1
+}
+
+#dropdownContent {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 360px;
+    width: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#taskDDMainWrapper {
+    display: none;
+    border: var(--root-thick-light-border);
+    background: var(--white);
+    border-radius: var(--standard-border-radius);
+}
+
+#taskToolbarWrapper {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: var(--gap-xh);
+    border-bottom: var(--root-thick-light-border);
+    box-sizing: border-box;
+}
+
+#taskSearchKeyword {
+    outline: none;
+    border: var(--root-thin-light-border);
+    border-radius: var(--root-radius-sm);
+    height: 20px;
+    padding: 5px 10px;
+    width: 100%
+}
+
+#taskSearchKeyword:focus {
+    border: var(--root-primarylight-color-less);
+    box-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
+}
+
+
+#taskSearchWrapper {
+    flex: 2;
+}
+
+.filterOptionWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap-m);
+    justify-content: center;
+    align-items: center;
+}
+
+.filterOptionWrapper span {
+    font-size: var(--text-base);
+    font-weight: bold;
+}
+
+.filterOptionWrapper img {
+    display: block;
+}
+
+#sortDescending {
+    scale: 1.2;
+}
+
+#sortAscending {
+    opacity: 0.4
+}
+
+.sortingIcon {
+    transition: scale 0.6s ease;
+    cursor: pointer;
+}
+
+.date-icon {
+    margin-right: var(--margin-xl);
+    font-size: var(--text-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: 60px;
+    width: 60px;
+    padding: var(--padding-sm);
+    font-size: var(--text-base);
+    background-color: var(--root-primarylight-color) !important;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.taskDate {
+    color: var(--root-primarylight-color) !important;
+    opacity: 0.8;
+}
+
+.task-details h4 {
+    margin: 0;
+    margin-bottom: var(--margin-sm);
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 310px;
+    text-overflow: ellipsis;
+    direction: ltr;
+}
+
+.task-details p {
+    margin: 0;
+    color: #888;
+    font-size: var(--text-sm);
+    text-align: right;
+}
+
+#NoTasksNotice {
+    color: red !important;
+    text-align: center;
+    margin-top: var(--margin-3xh);
+    font-size: var(--text-xl);
+    font-weight: bold;
+}
+
+#notificationCounter {
+    position: relative;
+}
+
+#redCircle {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: red;
+    color: var(--white);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+    font-size: var(--text-xs);
+    padding: 1px;
+    text-align: center;
+    line-height: 20px;
+}
+
+#bellicon {
+    cursor: pointer !important;
+}
+
+
+.loadingOverlay {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(222, 222, 222);
+    background: linear-gradient(90deg, rgba(222, 222, 222, 0.4) 0%, rgba(227, 227, 227, 0.4) 100%, rgba(0, 212, 255, 0.4) 100%);
+    border-radius: var(--standard-border-radius);
+    z-index: 100;
+}
+
+.AnimatedLoading {
+    height: 120px;
+    width: 120px;
+}
