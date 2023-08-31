@@ -1,23 +1,13 @@
 :root {
 
     /* --- Gaps --- */
-    --filter-toolbar-gap: 50px;
-    --icon-title-gap: 7px;
     --standard-section-gap: 15px;
 
-    /* --- Borders and Border Radii --- */
-    --standard-wrapper-border: 1px solid lightgrey;
-    --wl-standard-wrapper-border-radius: 7px;
-    --input-border-radius: 5px;
+    /* --- Borders --- */
     --input-focus-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
-    --input-focus-border: .5px solid #0066cc87;
 
     /* --- Font Size And Color ---*/
-    --filter-title-fontsize: 18px;
     --not-selected-option-font-color: #8d97a1;
-
-    /* --- Padding --- */
-    --icon-title-padding-lr: 15px;
 
     /* --- Widths and Heights --- */
     --searchkeyword-height: 35px;
@@ -32,7 +22,6 @@
 
 #WorklistContainer {
     border-radius: var(--standard-border-radius);
-
 }
 
 #WorklistContainer>* {
@@ -45,9 +34,9 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    gap: var(--filter-toolbar-gap);
-    border: var(--standard-wrapper-border);
-    border-radius: var(--wl-standard-wrapper-border-radius);
+    gap: var(--gap-5xh);
+    border: var(--root-thick-light-border);
+    border-radius: var(--root-radius-m);
 }
 
 /* The toolbar section represents the search section and the date filter section */
@@ -55,27 +44,27 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--standard-section-gap);
-    padding: 10px;
+    gap: var(--gap-xl);
+    padding: var(--padding-ml);
 }
 
 /* Any title in the section will have the same style */
 .filterTitle {
-    font-size: var(--filter-title-fontsize) !important;
+    font-size: var(--text-lg) !important;
 }
 
 /* Search Section Styling */
 #worklistSearchKeyword {
     outline: none;
-    border-radius: var(--input-border-radius);
+    border-radius: var(--root-radius-sm);
     height: var(--searchkeyword-height);
     width: var(--searchkeyword-width);
     padding: 0 10px;
-    border: var(--standard-wrapper-border);
+    border: var(--root-thick-light-border);
 }
 
 #worklistSearchKeyword:focus {
-    border: var(--input-focus-border);
+    border: var(--root-input-focus-border);
     box-shadow: var(--input-focus-shadow);
 }
 
@@ -99,7 +88,7 @@
 #taskStatusOptionsInnerWrapper {
     display: flex;
     flex-direction: row;
-    gap: var(--standard-section-gap);
+    gap: var(--gap-xl);
     width: var(--inner-wrapper-width);
 }
 
@@ -156,8 +145,8 @@
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    padding-left: var(--icon-title-padding-lr);
-    padding-right: var(--icon-title-padding-lr);
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
     gap: var(--icon-title-gap);
 }
 
@@ -200,7 +189,8 @@
 }
 
 .taskProgress .itemInfoData {
-    border : 1px solid ;
+    border: 1px solid;
+    border-radius: var(--card-status-border-radius);
 }
 
 .itemInfoWrapper {
@@ -247,6 +237,23 @@
 .taskActions img {
     height: 25px;
     width: 25px;
-
     cursor: pointer;
+}
+
+#worklist-items-wrapper .cardStatusComplete {
+    color: var(--root-complete-font-color) !important;
+    background: var(--root-complete-bg-color) !important;
+    border-color: var(--root-complete-border-color) !important;
+}
+
+#worklist-items-wrapper .cardStatusPending {
+    color: var(--root-pending-font-color) !important;
+    background: var(--root-pending-bg-color) !important;
+    border-color: var(--root-pending-border-color) !important;
+}
+
+#worklist-items-wrapper .cardStatusNew {
+    color: var(--root-new-font-color) !important;
+    background: var(--root-new-bg-color) !important;
+    border-color: var(--root-new-border-color) !important;
 }
