@@ -1,0 +1,34 @@
+/* DEFINING VARIABLES */
+:root {
+    --navbar-background-color: white;
+}
+
+/* HEADER  STYLING */
+div[name="Navbar"] {
+    position: fixed !important;
+    top: 60px;
+    width: 100%;
+    right: 0;
+    z-index: 100;
+    overflow: visible;
+}
+
+div[name="Navbar"] * {
+    background-color: var(--navbar-background-color);
+}
+
+[name="UserName"] {
+    color: var(--root-primarylight-color);
+}
+
+/* TRANSLATOR STYLING */
+[name="TranslatorHeader"] {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+[name="TranslatorHeader"] span {
+    background: var(--root-primarydark-color) !important;
+}
