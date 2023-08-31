@@ -149,7 +149,7 @@
 
     /* Main Theme Color */
     --root-primarylight-color: #0066cc;
-    --root-primarylight-color-less: #0066ccbd;
+    --root-primarylight-color-less: #026dd9e6;
     /* Secondary Theme Color  */
     --root-primarydark-color: #0066cc;
     /* Main Background Color */
@@ -185,12 +185,12 @@
     /* Card Item Dimensions */
     --root-card-width: 300px;
     /* Width of the card */
-    --root-card-height: 400px;
+    --root-card-height: 280px;
     /* Height of the card */
     /* Card Max Dimensions */
     --root-card-max-width: 300px;
     /* Maximum width of the card */
-    --root-card-max-height: 400px;
+    --root-card-max-height: 280px;
     /* Maximum height of the card */
 
     /* --------------- BORDER RADII ------------------ */
@@ -226,12 +226,12 @@ input[name="SearchBox"] {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    padding: var(--root-padding-3xh) !important;
+    padding: var(--padding-3xh) !important;
     place-items: center !important;
 }
 
 .sectionTitle {
-    font-size: var(--root-text-5xl) !important;
+    font-size: var(--text-6xl) !important;
     font-weight: bold !important;
     color: var(--root-section-title-color);
 }
@@ -255,11 +255,10 @@ input[name="SearchBox"] {
     flex-direction: column !important;
     place-items: center !important;
     box-sizing: border-box !important;
-
     min-width: var(--root-card-width);
-    max-width: var(---root-card-max-widthwidth);
+    max-width: var(--root-card-max-width);
     height: var(--root-card-height);
-    max-height: var(---root-card-max-height);
+    max-height: var(--root-card-max-height);
     box-shadow: var(--card-item-box-shadow);
     background: var(--root-card-item-bg-color);
 
@@ -309,7 +308,6 @@ input[name="SearchBox"] {
     top: 75%;
     width: 100% !important;
     color: var(--root-primarylight-color) !important;
-    font-size: var(--text-2xl) !important;
     font-weight: bold !important;
     height: 253px;
     transition: top 0.6s ease;
@@ -321,7 +319,7 @@ input[name="SearchBox"] {
     position: absolute;
     top: 15px;
     width: 100%;
-    font-size: var(--text-2xl) !important;
+    font-size: var(--text-4xl) !important;
     text-align: center;
     font-weight: bold !important;
     color: var(--root-primarylight-color) !important;
@@ -334,7 +332,7 @@ input[name="SearchBox"] {
     white-space: normal;
     padding: 0px 20px !important;
     text-align: center;
-    font-size: var(--text-sm) !important;
+    font-size: var(--text-xl) !important;
     height: 60%;
     overflow: hidden;
     text-overflow: ellipsis !important;
@@ -348,13 +346,12 @@ input[name="SearchBox"] {
     height: 10px;
 }
 
-
 ::-webkit-scrollbar-track {
-    background-color: var(--root-bg-color);
+    background-color: white;
 }
 
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--root-primarydark-color);
+    background-color: var(--root-primarylight-color);
     border-radius: 5px;
 }
