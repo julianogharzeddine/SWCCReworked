@@ -1,21 +1,11 @@
 :root {
-    --complete-border-color: #23E774;
-    --complete-bg-color: #effbf3;
-    --complete-font-color: #1bba5d;
-
-    --pending-border-color: #FF950A;
-    --pending-bg-color: #FFF6EB;
-    --pending-font-color: #FF9A1F;
-
-    --new-border-color: #CE3B3B;
-    --new-bg-color: #FBEFEF;
-    --new-font-color: #D24B4B;
-
-    --card-status-border-radius : 5px ;
+    --investigation-cards-wrapper-height: 500px;
+    --investigation-card-bg-color: white;
+    --investigation-card-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    --counter-card-bg-color: #f5fdfa;
 }
 
-
-/* Form Boundaries */
+/* FORM BOUNDARIES */
 
 .runtime-form {
     position: absolute !important;
@@ -28,77 +18,57 @@
 
 #investigations-card-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--gap-xh);
     width: 100%;
-    max-height: 500px;
+    max-height: var(--investigation-cards-wrapper-height);
+    padding: var(--padding-xh);
     overflow-y: scroll;
-    padding: 30px;
 }
 
 .investigation-card {
     height: 210px !important;
     width: 280px !important;
-    border: .5px solid lightgray;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    background: var(--white);
+    border: var(--root-thin-light-border);
+    border-radius: var(--root-radius-l);
+    box-shadow: var(--investigation-card-box-shadow);
+    background: var(--investigation-card-bg-color);
 }
 
 .investigationHeader {
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-    color: #0066cc;
+    color: var(--root-primarylight-color);
     height: 20%;
-    padding: 5px;
+    padding: var(--padding-sm);
     box-sizing: border-box;
 }
 
 .investigationRefNo {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: var(--gap-sm);
 }
 
 .investigationRefNo a {
-    color: #0066cc;
+    color: var(--root-primarylight-color);
     font-weight: bold;
     font-size: 16px;
 }
 
-
 .investigationStatus {
     padding: 2px 10px;
-    margin : 0px 10px ;
-    border-radius: var(--card-status-border-radius);
-    font-size: 14px;
+    margin: 0px 10px;
+    border-radius: var(--task-status-border-radiusa);
+    font-size: var(--text-sm);
     border: 1px solid;
 }
 
-.cardStatusComplete {
-    color: var(--complete-font-color) !important;
-    background: var(--complete-bg-color) !important;
-    border-color: var(--complete-border-color) !important;
-}
-
-.cardStatusPending {
-    color: var(--pending-font-color) !important;
-    background: var(--pending-bg-color) !important;
-    border-color: var(--pending-border-color) !important;
-}
-
-.cardStatusNew {
-    color: var(--new-font-color) !important;
-    background: var(--new-bg-color) !important;
-    border-color: var(--new-border-color) !important;
-}
-
-
 hr {
     border: none;
-    margin: 0px 5% 0px 5%;
+    margin: 0px 5%;
     height: .5px;
     background-color: lightgray;
     width: 90%;
@@ -107,31 +77,31 @@ hr {
 
 .investigationBody {
     position: relative;
-    padding: 5px;
+    padding: var(--padding-sm);
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .investigationBody {
     position: relative;
-    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 60%;
 }
 
 .subjectParagraph {
     padding: 0px 20px;
-    font-size: 17px !important;
+    font-size: var(--text-lg) !important;
     text-align: center;
     overflow-y: scroll;
     text-overflow: ellipsis;
 }
 
 .subjectTitle {
-    display : none ;
+    display: none;
     font-weight: bold !important;
-    font-size: 17px !important;
+    font-size: var(--text-lg) !important;
     width: 100%;
     text-align: center;
     padding: 0 !important;
@@ -153,8 +123,8 @@ hr {
     display: flex;
     align-items: center;
     height: 55%;
-    padding: 5px;
-    gap: 5px;
+    padding: var(--padding-sm);
+    gap: var(--gap-sm);
 }
 
 .graySeparator {
@@ -165,17 +135,17 @@ hr {
 }
 
 .authorName {
-    font-size: 14px !important;
+    font-size: var(--text-sm) !important;
 }
 
 .investigationDate {
-    color: #06c !important;
+    color: var(--root-primarylight-color) !important;
     font-weight: bold !important;
-    font-size: 14px !important;
+    font-size: var(--text-sm) !important;
 }
 
 #noInvestigationsFound {
-    font-size: 15pt;
+    font-size: var(--text-xl);
     font-weight: bold;
     text-align: center;
     color: red;
@@ -185,8 +155,8 @@ hr {
 /* REQUEST COUNTER STYLING */
 
 .totalcounter {
-    color: var(--secondarylight-bg-color) !important;
-    font-size: 16px !important;
+    color: var(--root-primarylight-color) !important;
+    font-size: var(--text-base) !important;
 }
 
 #reqCounter {
@@ -194,7 +164,7 @@ hr {
     display: flex !important;
     flex-direction: row !important;
     justify-content: center;
-    gap: 40px !important;
+    gap: var(--gap-3xh) !important;
     height: fit-content !important;
     padding: 20px 5% 20px 60px !important;
     box-sizing: border-box !important;
@@ -206,61 +176,79 @@ hr {
     place-items: center !important;
     height: 40px !important;
     width: 40px !important;
-    padding: 3px !important;
+    padding: var(--padding-s) !important;
     border-radius: 100% !important;
     box-sizing: border-box !important;
     font-weight: bold !important;
-    font-size: 26px !important;
-    color: var(--secondarylight-bg-color) !important;
+    font-size: var(--text-3xl) !important;
+    color: var(--root-primarylight-color) !important;
 }
 
 .counterCard {
     display: flex !important;
-    place-items: center !important;
+    flex-direction: column !important;
     justify-content: space-around;
-    padding-right: 10px !important;
-    padding-left: 10px !important;
+    place-items: center !important;
+    padding-right: var(--padding-m) !important;
+    padding-left: var(--padding-m) !important;
     box-sizing: border-box !important;
-    border-radius: 10px !important;
+    border-radius: var(--root-radius-l) !important;
     width: 200px !important;
     height: 100px !important;
     cursor: pointer;
-    flex-direction: column !important;
-    padding: 2ex;
-    background: #f5fdfa;
-    border: 2px solid var(--secondarylight-bg-color);
-    padding: 5px;
-    font-size: 13px;
+
+    background: var(--counter-card-bg-color);
+    border: 2px solid var(--root-primarylight-color);
+    font-size: var(--text-sm);
 
 }
 
 .counterLabel {
-    color: var(--secondarylight-bg-color) !important;
-    font-size: 15px !important;
+    color: var(--root-primarylight-color) !important;
+    font-size: var(--text-base) !important;
 }
-
 
 .toolbar-wrapper {
     height: 0px !important;
     display: none !important;
-    background: var(--bg-color) !important;
+    background: var(--root-bg-color) !important;
 }
 
 .single {
-    background: var(--bg-color) !important;
+    background: var(--root-bg-color) !important;
 }
 
 
 .Darker {
     transform: scale(1.13);
     transition: 0.3s ease;
-    background : var(--secondarylight-bg-color);
+    background: var(--root-primarylight-color);
 }
 
-.Darker .counterLabel , .Darker .totalcounter , .Darker .counterCircle {
-    color : white !important ;
+.Darker .counterLabel,
+.Darker .totalcounter,
+.Darker .counterCircle {
+    color: white !important;
 }
 
 [name*='hiddenButton'] {
     visibility: hidden !important;
+}
+
+#investigations-card-wrapper .cardStatusComplete {
+    color: var(--root-complete-font-color) !important;
+    background: var(--root-complete-bg-color) !important;
+    border-color: var(--root-complete-border-color) !important;
+}
+
+#investigations-card-wrapper .cardStatusPending {
+    color: var(--root-pending-font-color) !important;
+    background: var(--root-pending-bg-color) !important;
+    border-color: var(--root-pending-border-color) !important;
+}
+
+#investigations-card-wrapper .cardStatusNew {
+    color: var(--root-new-font-color) !important;
+    background: var(--root-new-bg-color) !important;
+    border-color: var(--root-new-border-color) !important;
 }
