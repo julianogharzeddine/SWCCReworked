@@ -60,11 +60,7 @@ function fetchTasks() {
 
 function waitForWorklistWrapperRender(data = null) {
     if ($('#worklist-items-wrapper').length > 0) {
-        if (data) {
-            renderWorklist(data)
-        }
-        renderWorklistToolbars()
-
+        data !== null ? waitForWorklistWrapperRender(data) : waitForWorklistWrapperRender()
     } else {
         setTimeout(waitForWorklistWrapperRender, 500);
     }
