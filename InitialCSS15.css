@@ -1,14 +1,14 @@
-/* Form Boundaries */
-
+/* FORM BOUNDARIES */
 
 .form {
     width: 80%;
     position: absolute !important;
     top: 100px;
     left: 9%;
-
 }
 
+
+/* OPTIMIZING FOR SMALLER SCREEN SIZES */
 
 @media (max-width: 767px) {
     .form {
