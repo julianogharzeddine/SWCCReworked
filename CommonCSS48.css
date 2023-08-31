@@ -1,0 +1,360 @@
+@font-face {
+    font-family: 'SWCC-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/julianogharzeddine/CustomFiles@main/SWCC-3-Medium.otf') format('opentype');
+    /* Adjust the path and font format */
+}
+
+* {
+    font-family: 'SWCC-Medium' !important;
+}
+
+:root {
+
+    /* ------ FONT SIZES DEFINITIONS ------- */
+
+    /* 12px */
+    --text-xs: 0.75rem;
+    /* 14px */
+    --text-sm: 0.875rem;
+    /* 16px */
+    --text-base: 1rem;
+    /* 18px */
+    --text-lg: 1.125rem;
+    /* 20px */
+    --text-xl: 1.25rem;
+    /* 24px */
+    --text-2xl: 1.5rem;
+    /* 30px */
+    --text-3xl: 1.875rem;
+    /* 36px */
+    --text-4xl: 2.25rem;
+    /* 45px */
+    --text-5xl: 3rem;
+    /* 64px */
+    --text-6xl: 4rem;
+
+
+    /* ------ PADDING DEFINITIONS ------- */
+
+    /* 0px */
+    --padding-0: 0px;
+    /* 2px */
+    --padding-xs: 0.125rem;
+    /* 4px */
+    --padding-s: 0.25rem;
+    /* 6px */
+    --padding-sm: 0.375rem;
+    /* 8px */
+    --padding-m: 0.5rem;
+    /* 10px */
+    --padding-ml: 0.625rem;
+    /* 12px */
+    --padding-l: 0.75rem;
+    /* 14px */
+    --padding-lm: 0.875rem;
+    /* 16px */
+    --padding-xl: 1rem;
+    /* 20px */
+    --padding-2xl: 1.25rem;
+    /* 24px */
+    --padding-3xl: 1.5rem;
+    /* 28px */
+    --padding-h: 1.75rem;
+    /* 32px */
+    --padding-xh: 2rem;
+    /* 36px */
+    --padding-2xh: 2.25rem;
+    /* 40px */
+    --padding-3xh: 2.5rem;
+    /* 44px */
+    --padding-4xh: 2.75rem;
+    /* 50px */
+    --padding-5xh: 3rem;
+
+    /* ------------- MARGIN DEFINITIONS -------------- */
+
+    /* 0px */
+    --margin-0: 0px;
+    /* 2px */
+    --margin-xs: 0.125rem;
+    /* 4px */
+    --margin-s: 0.25rem;
+    /* 6px */
+    --margin-sm: 0.375rem;
+    /* 8px */
+    --margin-m: 0.5rem;
+    /* 10px */
+    --margin-ml: 0.625rem;
+    /* 12px */
+    --margin-l: 0.75rem;
+    /* 14px */
+    --margin-lm: 0.875rem;
+    /* 16px */
+    --margin-xl: 1rem;
+    /* 20px */
+    --margin-2xl: 1.25rem;
+    /* 24px */
+    --margin-3xl: 1.5rem;
+    /* 28px */
+    --margin-h: 1.75rem;
+    /* 32px */
+    --margin-xh: 2rem;
+    /* 36px */
+    --margin-2xh: 2.25rem;
+    /* 40px */
+    --margin-3xh: 2.5rem;
+    /* 44px */
+    --margin-4xh: 2.75rem;
+    /* 50px */
+    --margin-5xh: 3rem;
+
+    /* ------- FLEX GAPS DEFINITIONS --------- */
+
+    /* 0px */
+    --gap-0: 0px;
+    /* 2px */
+    --gap-xs: 0.125rem;
+    /* 4px */
+    --gap-s: 0.25rem;
+    /* 6px */
+    --gap-sm: 0.375rem;
+    /* 8px */
+    --gap-m: 0.5rem;
+    /* 10px */
+    --gap-ml: 0.625rem;
+    /* 12px */
+    --gap-l: 0.75rem;
+    /* 14px */
+    --gap-lm: 0.875rem;
+    /* 16px */
+    --gap-xl: 1rem;
+    /* 20px */
+    --gap-2xl: 1.25rem;
+    /* 24px */
+    --gap-3xl: 1.5rem;
+    /* 28px */
+    --gap-h: 1.75rem;
+    /* 32px */
+    --gap-xh: 2rem;
+    /* 36px */
+    --gap-2xh: 2.25rem;
+    /* 40px */
+    --gap-3xh: 2.5rem;
+    /* 44px */
+    --gap-4xh: 2.75rem;
+    /* 50px */
+    --gap-5xh: 3rem;
+
+    /* -------- THEME COLORS ------- */
+
+    /* Main Theme Color */
+    --root-primarylight-color: #0066cc;
+    --root-primarylight-color-less: #0066ccbd;
+    /* Secondary Theme Color  */
+    --root-primarydark-color: #0066cc;
+    /* Main Background Color */
+    --root-bg-color: #e5e6f6;
+
+
+    /* --------- STATUSES COLOR PALETTE  ------------ */
+
+    --root-complete-border-color: #23E774;
+    --root-complete-bg-color: #effbf3;
+    --root-complete-font-color: #1bba5d;
+
+    --root-pending-border-color: #FF950A;
+    --root-pending-bg-color: #FFF6EB;
+    --root-pending-font-color: #FF9A1F;
+
+    --root-new-border-color: #CE3B3B;
+    --root-new-bg-color: #FBEFEF;
+    --root-new-font-color: #D24B4B;
+
+    /* ------------ SECTION STYLES ---------------- */
+
+    --root-section-title-color: black;
+    --root-card-item-box-shadow: 0px 13px 25px #0000002B !important;
+    --root-card-item-bg-color: #ffffff !important;
+    --root-task-status-border-radius: 5px;
+    --root-thin-light-border: .5px solid lightgray;
+    --root-thick-light-border: 1px solid lightgray;
+    --root-input-focus-border: .5px solid var(--root-primarylight-color-less);
+
+    /* -------------- DIMENSIONS -------------- */
+
+    /* Card Item Dimensions */
+    --root-card-width: 300px;
+    /* Width of the card */
+    --root-card-height: 400px;
+    /* Height of the card */
+    /* Card Max Dimensions */
+    --root-card-max-width: 300px;
+    /* Maximum width of the card */
+    --root-card-max-height: 400px;
+    /* Maximum height of the card */
+
+    /* --------------- BORDER RADII ------------------ */
+    --root-radius-sm: 5px;
+    --root-radius-m: 7px;
+    --root-radius-l: 10px;
+
+}
+
+/* MISC */
+
+body {
+    background: var(--root-bg-color) !important;
+}
+
+.form {
+    background-color: var(--root-bg-color) !important;
+}
+
+input[name="SearchBox"] {
+    height: 35px !important;
+    margin: 0px 15px !important;
+}
+
+[name*='View'] {
+    background: var(--root-bg-color) !important;
+}
+
+
+/* CARDS STYLING */
+
+.Section {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: var(--root-padding-3xh) !important;
+    place-items: center !important;
+}
+
+.sectionTitle {
+    font-size: var(--root-text-5xl) !important;
+    font-weight: bold !important;
+    color: var(--root-section-title-color);
+}
+
+/* CARD WRAPPER */
+
+.standardCardWrapper {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap-3xh);
+    overflow: hidden;
+    padding: var(--padding-5xh);
+    width: 100%;
+}
+
+.cardItem {
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    place-items: center !important;
+    box-sizing: border-box !important;
+
+    min-width: var(--root-card-width);
+    max-width: var(---root-card-max-widthwidth);
+    height: var(--root-card-height);
+    max-height: var(---root-card-max-height);
+    box-shadow: var(--card-item-box-shadow);
+    background: var(--root-card-item-bg-color);
+
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.cardItem:hover .TitleAndDescWrapper {
+    top: 10%;
+}
+
+.cardItem .titleImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.imageWrapper img {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.TitleAndDescWrapper::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom, transparent, rgb(0 102 204 / 44%));
+    backdrop-filter: blur(1.5px);
+    z-index: 1;
+}
+
+.TitleAndDescWrapper {
+    position: absolute;
+    top: 75%;
+    width: 100% !important;
+    color: var(--root-primarylight-color) !important;
+    font-size: var(--text-2xl) !important;
+    font-weight: bold !important;
+    height: 253px;
+    transition: top 0.6s ease;
+    background: white;
+    z-index: 2;
+}
+
+.cardTitle {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    font-size: var(--text-2xl) !important;
+    text-align: center;
+    font-weight: bold !important;
+    color: var(--root-primarylight-color) !important;
+}
+
+.serviceDescription {
+    position: absolute !important;
+    top: 75px !important;
+    word-break: break-word;
+    white-space: normal;
+    padding: 0px 20px !important;
+    text-align: center;
+    font-size: var(--text-sm) !important;
+    height: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}
+
+
+/* SCROLLBAR STYLING */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: var(--root-bg-color);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--root-primarydark-color);
+    border-radius: 5px;
+}
