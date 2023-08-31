@@ -40,7 +40,7 @@
 #taskDDMainWrapper {
     display: none;
     border: var(--root-thick-light-border);
-    background: var(--white);
+    background: white;
     border-radius: var(--standard-border-radius);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .filterOptionWrapper span {
-    font-size: var(--text-base);
+    font-size: var(--text-2xl);
     font-weight: bold;
 }
 
@@ -113,7 +113,7 @@
     height: 60px;
     width: 60px;
     padding: var(--padding-sm);
-    font-size: var(--text-base);
+    font-size: var(--text-2xl);
     background-color: var(--root-primarylight-color) !important;
     border-radius: 50%;
     color: #fff;
@@ -126,7 +126,6 @@
 
 .task-details h4 {
     margin: 0;
-    margin-bottom: var(--margin-sm);
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
@@ -138,7 +137,7 @@
 .task-details p {
     margin: 0;
     color: #888;
-    font-size: var(--text-sm);
+    font-size: var(--text-2xl);
     text-align: right;
 }
 
@@ -159,12 +158,11 @@
     top: -10px;
     left: 15px;
     background-color: red;
-    color: var(--white);
+    color: white;
     border-radius: 50%;
     width: 20px;
     height: 20px;
     padding: 1px;
-    font-size: var(--text-xs);
     padding: 1px;
     text-align: center;
     line-height: 20px;
@@ -173,7 +171,6 @@
 #bellicon {
     cursor: pointer !important;
 }
-
 
 .loadingOverlay {
     visibility: hidden;
