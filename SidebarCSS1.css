@@ -3,7 +3,6 @@
     --sidebar-border: 2px solid #c0f0fe;
     --sidebar-default-option-color: white;
     --sidebar-hover-option-color: #E8E8E8;
-
 }
 
 /* SIDE BAR STYLING */
@@ -39,7 +38,7 @@
 }
 
 .categoryName {
-    font-size: var(--text-lg) !important;
+    font-size: var(--text-2xl) !important;
     text-align: center !important;
     width: 100% !important;
 }
