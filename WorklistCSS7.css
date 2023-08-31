@@ -6,6 +6,7 @@
     /* --- Borders --- */
     --input-focus-shadow: 0 0 2.5px rgba(0, 102, 204, 0.7);
 
+
     /* --- Font Size And Color ---*/
     --not-selected-option-font-color: #8d97a1;
 
@@ -21,7 +22,9 @@
 
 
 #WorklistContainer {
-    border-radius: var(--standard-border-radius);
+    border-radius: var(--root-curved-border-radius);
+    background: white;
+    padding: var(--padding-xl);
 }
 
 #WorklistContainer>* {
@@ -37,6 +40,7 @@
     gap: var(--gap-5xh);
     border: var(--root-thick-light-border);
     border-radius: var(--root-radius-m);
+    padding: var(--padding-xl)
 }
 
 /* The toolbar section represents the search section and the date filter section */
@@ -50,7 +54,8 @@
 
 /* Any title in the section will have the same style */
 .filterTitle {
-    font-size: var(--text-lg) !important;
+    font-size: var(--text-2xl) !important;
+    font-weight: bold !important;
 }
 
 /* Search Section Styling */
@@ -79,8 +84,8 @@
 /* This styles the outer wrapper of the section */
 #taskStatusOptionsOuterWrapper {
     position: relative;
-    border: var(--standard-wrapper-border);
-    border-radius: var(--wl-standard-wrapper-border-radius);
+    border: var(--root-thick-light-border);
+    border-radius: var(--root-radius-sm);
 }
 
 
@@ -109,27 +114,27 @@
     padding: 0 !important;
     margin: 0 !important;
     text-align: center;
-    font-size: 15px !important;
+    font-size: var(--text-2xl) !important;
     color: var(--not-selected-option-font-color);
 }
 
 /* Changing colors and filling SVGs when a certain option is selected */
 .selectedOption .optionTitle {
-    color: var(--secondarylight-bg-color);
+    color: var(--root-primarylight-color);
     font-weight: bold;
 }
 
 .selectedOption svg,
 .selectedOption svg * {
-    fill: var(--secondarylight-bg-color);
-    stroke: var(--secondarylight-bg-color);
+    fill: var(--root-primarylight-color);
+    stroke: var(--root-primarylight-color);
 }
 
 /* When clicking on an option , expand the .underline div's width to simulate a border-bottom */
 .underline {
     width: 0;
     height: var(--underline-height);
-    background-color: var(--secondarylight-bg-color);
+    background-color: var(--root-primarylight-color);
     border-radius: 15px !important;
     transition: width 0.4s ease;
     align-self: baseline;
@@ -147,7 +152,8 @@
     align-items: center;
     padding-left: var(--padding-xl);
     padding-right: var(--padding-xl);
-    gap: var(--icon-title-gap);
+    gap: var(--gap-m);
+    );
 }
 
 .wrapIcon svg {
@@ -161,8 +167,8 @@
 #worklist-items-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+    gap: var(--gap-2xl);
+    padding: var(--padding-l);
 }
 
 .worklistItem {
@@ -170,9 +176,9 @@
     flex-direction: row;
     align-items: center;
     border: 1px solid lightgray;
-    border-radius: 7px;
-    padding: 20px;
-    gap: 20px;
+    border-radius: var(--root-radius-m);
+    padding: var(--padding-h);
+    gap: var(--gap-m);
 }
 
 .taskSerialNo {
@@ -190,7 +196,7 @@
 
 .taskProgress .itemInfoData {
     border: 1px solid;
-    border-radius: var(--card-status-border-radius);
+    border-radius: var(--root-radius-sm);
 }
 
 .itemInfoWrapper {
@@ -203,26 +209,26 @@
 .itemInfoWrapper p {
     margin: 0;
     padding: 0;
-    font-size: 13px;
+    font-size: var(--text-2xl);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding: 3px;
+    padding: var(--padding-sm);
 }
 
 .itemInfoHeading {
     text-align: center;
     color: gray !important;
-    font-size: 14px !important;
+    font-size: var(--text-2xl) !important;
 }
 
 .itemInfoData a {
     text-decoration: none;
-    color: #06c;
+    color: var(--root-primarylight-color);
 }
 
 .itemInfoData:not(.itemInfoHeading) {
-    font-size: 16px !important;
+    font-size: var(--text-2xl) !important;
     text-align: center;
 }
 
@@ -230,7 +236,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 7px;
+    gap: var(--gap-m);
 }
 
 .taskActions svg,
