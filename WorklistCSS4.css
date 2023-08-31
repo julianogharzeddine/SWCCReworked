@@ -32,10 +32,12 @@
 
 #WorklistContainer {
     border-radius: var(--standard-border-radius);
+    background : white ;
+    padding : 10px ;
 
 }
 
-#WorklistContainer>* {
+#WorklistContainer> * {
     background: white;
 }
 
