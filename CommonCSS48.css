@@ -66,21 +66,17 @@ body {
 
 .selectedCategory .categoryItem p {
     color: white;
-
 }
 
 .categoryItemWrapper:not(.selected):hover {
     background: #E8E8E8;
 }
 
-
 .categoryName {
     font-size: 17px !important;
     text-align: center !important;
     width: 100% !important;
 }
-
-
 
 #SidebarContainer {
     position: fixed;
@@ -381,6 +377,25 @@ div[name*="Worklist Card WT"] span.text-underline {
     border-radius: 100%;
 }
 
+
+
+.cardStatusComplete {
+    color: var(--complete-font-color) !important;
+    background: var(--complete-bg-color) !important;
+    border-color: var(--complete-border-color) !important;
+}
+
+.cardStatusPending {
+    color: var(--pending-font-color) !important;
+    background: var(--pending-bg-color) !important;
+    border-color: var(--pending-border-color) !important;
+}
+
+.cardStatusNew {
+    color: var(--new-font-color) !important;
+    background: var(--new-bg-color) !important;
+    border-color: var(--new-border-color) !important;
+}
 
 /* SCROLLBAR STYLING */
 
