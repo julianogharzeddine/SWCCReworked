@@ -25,14 +25,13 @@
         })
 
         // This initializes the default state of the worklist without the actual tasks
-        waitForWorklistWrapperRender()
-
+        waitForWorklistContainerWrapperRender()
         initializeFetchTasks()
     })
 
     function initializeFetchTasks() {
         fetchTasks()
-            .then((data) => waitForWorklistWrapperRender(data))
+            .then((data) => waitForWorklistItemsWrapperRender(data))
             .catch((error) => console.error(error))
     }
 
@@ -61,13 +60,21 @@
 
     }
 
-    function waitForWorklistWrapperRender(data = null) {
+    function waitForWorklistItemsWrapperRender(data = null) {
 
         console.log(data)
         if ($('#worklist-items-wrapper').length > 0) {
-            data !== null ? renderWorklist(data) : renderWorklistToolbars()
+            renderWorklist(data)
         } else {
-            setTimeout(waitForWorklistWrapperRender, 500);
+            setTimeout(waitForWorklistItemsWrapperRender, 500);
+        }
+    }
+
+    function waitForWorklistContainerWrapperRender() {
+        if ($('#WorklistContainer').length > 0) {
+            renderWorklistToolbars()
+        } else {
+            setTimeout(waitForWorklistContainerWrapperRender, 500);
         }
     }
 
