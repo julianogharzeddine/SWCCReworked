@@ -65,7 +65,7 @@
         if ($('#worklist-items-wrapper').length > 0) {
             renderWorklist(data)
         } else {
-            setTimeout(waitForWorklistItemsWrapperRender(data), 500);
+            setTimeout(() => waitForWorklistItemsWrapperRender(data), 500);
         }
     }
 
