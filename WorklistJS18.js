@@ -5,7 +5,8 @@
     var taskStatus = "All"
 
     $(document).ready(function () {
-
+         
+         baseURL  = window.location.protocol + '//' + window.location.host + '/';
         // When clicking on a task status option
         $(document).on('click', '.taskStatusOption', function () {
 
