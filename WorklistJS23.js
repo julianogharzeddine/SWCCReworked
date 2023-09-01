@@ -62,7 +62,6 @@
 
     function waitForWorklistItemsWrapperRender(data = null) {
 
-        console.log(data)
         if ($('#worklist-items-wrapper').length > 0) {
             renderWorklist(data)
         } else {
