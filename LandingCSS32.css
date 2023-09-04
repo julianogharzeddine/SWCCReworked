@@ -61,8 +61,8 @@
 .investigationStatus {
     padding: 2px 10px;
     margin: 0px 10px;
-    border-radius: var(--task-status-border-radiusa);
-    font-size: var(--text-sm);
+    border-radius: var(--root-radius-sm);
+    font-size: var(--text-m);
     border: 1px solid;
 }
 
@@ -92,7 +92,7 @@ hr {
 
 .subjectParagraph {
     padding: 0px 20px;
-    font-size: var(--text-lg) !important;
+    font-size: var(--text-3xl) !important;
     text-align: center;
     overflow-y: scroll;
     text-overflow: ellipsis;
@@ -135,13 +135,13 @@ hr {
 }
 
 .authorName {
-    font-size: var(--text-sm) !important;
+    font-size: var(--text-xl) !important;
 }
 
 .investigationDate {
     color: var(--root-primarylight-color) !important;
     font-weight: bold !important;
-    font-size: var(--text-sm) !important;
+    font-size: var(--text-2xl) !important;
 }
 
 #noInvestigationsFound {
@@ -156,7 +156,7 @@ hr {
 
 .totalcounter {
     color: var(--root-primarylight-color) !important;
-    font-size: var(--text-base) !important;
+    font-size: var(--text-3xl) !important;
 }
 
 #reqCounter {
@@ -180,7 +180,7 @@ hr {
     border-radius: 100% !important;
     box-sizing: border-box !important;
     font-weight: bold !important;
-    font-size: var(--text-3xl) !important;
+    font-size: var(--text-5xl) !important;
     color: var(--root-primarylight-color) !important;
 }
 
@@ -196,7 +196,6 @@ hr {
     width: 200px !important;
     height: 100px !important;
     cursor: pointer;
-
     background: var(--counter-card-bg-color);
     border: 2px solid var(--root-primarylight-color);
     font-size: var(--text-sm);
@@ -205,7 +204,7 @@ hr {
 
 .counterLabel {
     color: var(--root-primarylight-color) !important;
-    font-size: var(--text-base) !important;
+    font-size: var(--text-2xl) !important;
 }
 
 .toolbar-wrapper {
