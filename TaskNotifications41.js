@@ -3,7 +3,6 @@
 
     var baseURL;   // fetching the base URL
     var sortingOrder = ""  // the default sorting order is not specified
-    var sortingQuery = ""
 
     $(document).ready(function () {
 
@@ -46,7 +45,7 @@
 
         $.ajax({
             type: 'GET',
-            url: `${baseURL}api/workflow/v1/Tasks${sortingQuery}}`,
+            url: `${baseURL}api/workflow/v1/Tasks}`,
             dataType: 'json',
             crossDomain: false,
             beforeSend: function (xhr) {
