@@ -45,7 +45,7 @@
 
         $.ajax({
             type: 'GET',
-            url: `${baseURL}api/workflow/v1/Tasks}`,
+            url: `${baseURL}api/workflow/v1/Tasks`,
             dataType: 'json',
             crossDomain: false,
             beforeSend: function (xhr) {
