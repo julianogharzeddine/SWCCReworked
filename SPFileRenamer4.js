@@ -2,7 +2,11 @@
 
 $(document).ready(function () {
     let currentURL = window.location.href;
-    if (currentURL.includes("Designer") && currentURL.includes("styleprofile")) setInterval(updateDescriptionDivs, 1000)
+    console.log(currentURL)
+    if (currentURL.includes("Designer") && currentURL.includes("styleprofile")) {
+        setInterval(updateDescriptionDivs, 1000)
+    }
+
 });
 
 
