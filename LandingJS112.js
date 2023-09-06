@@ -132,17 +132,17 @@
     }
 
     function waitForSubcategoryWrapperRender(data, categoryName, categoryID) {
-        if ($('#sectionBrowser').length > 0) {
+        if (exists('#sectionBrowser')) {
             renderSubCategoryCards(data, categoryName, categoryID);
         } else {
-            setTimeout(waitForWrapperRender, 500);
+            setTimeout(function () { waitForSubcategoryWrapperRender(data, categoryName, categoryID) }, 500);
         }
     }
 
     function renderSubCategoryCards(data, categoryName, categoryID) {
 
         // If the categories wrapper doesn't exist yet , create it
-        if ($('#subcategories-card-wrapper').length == 0) {
+        if (!exists('#subcategories-card-wrapper')) {
             $('#sectionBrowser').prepend(`<div id="subcategories-card-wrapper" class='standardCardWrapper'></div>`)
         }
 
@@ -214,7 +214,7 @@
     }
 
     function waitForSidebarRender() {
-        if ($('#SidebarContentWrapper').length > 0) {
+        if (exists('#SidebarContentWrapper')) {
             checkTargetCategory()
         } else {
             setTimeout(waitForSidebarRender, 500);
@@ -224,7 +224,7 @@
     /* ---------------------------------------  RENDERING CUSTOM SECTION CARDS ----------------------------------------- */
 
     function waitForCustomSectionWrapperRender() {
-        if ($('#customSectionBrowser').length > 0) {
+        if (exists('#customSectionBrowser')) {
             renderInvestOptions();
         } else {
             setTimeout(waitForCustomSectionWrapperRender, 500);
@@ -234,7 +234,7 @@
     function renderInvestOptions() {
 
         // If the custom categories wrapper doesn't exist yet , create it
-        if ($('#customcategories-card-wrapper').length == 0) {
+        if (!exists('#customcategories-card-wrapper')) {
             $('#customSectionBrowser').prepend(`<div id="customcategories-card-wrapper" class='standardCardWrapper'></div>`)
         }
 
@@ -294,7 +294,6 @@
             .then(function (data) {
                 waitForInvestWrapperRender(data)
                 if (!investStatus) waitForCounterWrapperRender(data)
-
             })
             .catch(function (error) {
                 console.error(error);
@@ -316,7 +315,6 @@
                     xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 },
                 success: function (json_data) {
-                    console.log(json_data)
                     resolve(json_data.value);
                 },
                 error: function () {
@@ -328,7 +326,7 @@
 
     // Wait for the Card Wrapper
     function waitForInvestWrapperRender(data) {
-        if ($('#investigations-card-wrapper').length > 0) {
+        if (exists('#investigations-card-wrapper')) {
             searchMode == "keyword" ? renderInvestCardsKeyword(data) : renderInvestCardsStatus(data)
         } else {
             setTimeout(waitForInvestWrapperRender, 500);
@@ -337,7 +335,7 @@
 
     // Wait for the Req Counter Wrapper
     function waitForCounterWrapperRender(data) {
-        if ($('#reqCounter').length > 0) {
+        if (exists('#reqCounter')) {
             renderCounterButtons(data)
         } else {
             setTimeout(waitForCounterWrapperRender, 500);
@@ -367,16 +365,8 @@
                 subject.toLowerCase().includes(searchKeyword.toLowerCase());
 
 
-            let statusContent = {}
+            let statusContent = getStatusContent(status)
 
-            // Forming the object that contains the information about the status so that it can be used later while rendering the cards
-            if (redStatus.includes(status)) {
-                statusContent = { "className": "cardStatusNew", "textContent": `${langIsAr() ? "جديد" : "New"}` }
-            } else if (orangeStatus.includes(status)) {
-                statusContent = { "className": "cardStatusPending", "textContent": `${langIsAr() ? status : "Pending Review"}` }
-            } else if (greenStatus.includes(status)) {
-                statusContent = { "className": "cardStatusComplete", "textContent": `${langIsAr() ? status : "Completed"}` }
-            }
 
             // If it's a match , we can proceed and render the card
             if (containsKeyword) {
@@ -390,6 +380,22 @@
         // If no results are returned , we display a message to the user
         filteredResults === 0 ? $('#noInvestigationsFound').text("No Items Found") : $('#noInvestigationsFound').empty()
 
+    }
+
+
+    function getStatusContent(status) {
+
+        let statusContent = {};
+        // Forming the object that contains the information about the status so that it can be used later while rendering the cards
+        if (redStatus.includes(status)) {
+            statusContent = { "className": "cardStatusNew", "textContent": `${langIsAr() ? "جديد" : "New"}` }
+        } else if (orangeStatus.includes(status)) {
+            statusContent = { "className": "cardStatusPending", "textContent": `${langIsAr() ? status : "Pending Review"}` }
+        } else if (greenStatus.includes(status)) {
+            statusContent = { "className": "cardStatusComplete", "textContent": `${langIsAr() ? status : "Completed"}` }
+        }
+
+        return statusContent;
     }
 
     // Rendering Investigation Cards
@@ -487,4 +493,5 @@
         $("#reqCounter").html("")
         $("#reqCounter").append(content)
     }
+
 })()
