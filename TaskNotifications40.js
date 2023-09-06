@@ -1,12 +1,14 @@
 
 (function () {
+
     var baseURL;   // fetching the base URL
     var sortingOrder = ""  // the default sorting order is not specified
+    var sortingQuery = ""
 
     $(document).ready(function () {
 
         // Fetching the baseURL to use it in subsequent API Calls
-        if (!baseURL) baseURL = window.location.protocol + '//' + window.location.host + '/';
+        baseURL = window.location.protocol + '//' + window.location.host + '/';
 
         // Creating the notification Icon
         createNotificationIcon()
@@ -44,7 +46,7 @@
 
         $.ajax({
             type: 'GET',
-            url: `${baseURL}api/workflow/v1/Tasks`,
+            url: `${baseURL}api/workflow/v1/Tasks${sortingQuery}}`,
             dataType: 'json',
             crossDomain: false,
             beforeSend: function (xhr) {
@@ -114,17 +116,13 @@
         // Marking the loading as complete
         hideLoadingOverlay()
 
-        // Translate the rendered components based on the current language 
-        translateNotifications()
-
     }
 
     // Creates the structure for the tasks dropdown
     function createTaskDDStructure() {
 
-        let checkIfExists = $('.taskDD')
 
-        if (checkIfExists.length != 0) {
+        if (exists('.taskDD')) {
             return
         }
 
@@ -159,27 +157,6 @@
 `)
     }
 
-    // Translates rendered components according to the current language
-    function translateNotifications() {
-
-        langIsAr() ? (
-
-            $('.taskDD').css('left', '20%')
-            , $("#bellicon").css("float", "right")
-            , $('.taskDD a').css('flex-direction', 'row')
-            , $('.task-details p').css('text-align', 'right')
-            , $(".taskDD").css("flex-direction", "row-reverse")
-        )
-            :
-            (
-                $("#bellicon").css("float", "left")
-                , $('.taskDD a').css('flex-direction', 'row')
-                , $('.task-details p').css('text-align', 'left')
-                , $(".taskDD").css("flex-direction", "row-reverse")
-                , $(".taskDD").css('right', '20%')
-            )
-
-    }
 
     function sortByDateAndKeyword(tasks) {
 
