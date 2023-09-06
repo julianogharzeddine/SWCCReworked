@@ -1,5 +1,13 @@
+(function () {
 
-$(document).ready(function () {
+    var currentURL;
+
+    $(document).ready(function () {
+        currentURL = window.location.href;
+        if (currentURL.includes("Designer") && currentURL.includes("styleprofile")) setInterval(updateDescriptionDivs, 1000)
+    });
+
+
     // Function to update description divs
     function updateDescriptionDivs() {
         // Loop over all divs with class "description"
@@ -15,14 +23,4 @@ $(document).ready(function () {
         });
     }
 
-    // Add click event listener to .blue button
-    $('#Link.blue.ng-star-inserted').click(function () {
-        // Call the function to update description divs
-        setTimeout(updateDescriptionDivs, 2000)
-    });
-    setTimeout(function () {
-        // Initial update
-        updateDescriptionDivs();
-    }, 3000)
-});
-
+})()
