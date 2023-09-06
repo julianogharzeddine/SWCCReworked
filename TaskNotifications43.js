@@ -169,7 +169,6 @@
             task.activityName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             task.eventName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             task.serialNumber.toLowerCase().includes(searchKeyword.toLowerCase())
-
         );
 
         // Sort tasks by taskStartDate
@@ -188,8 +187,7 @@
     function setNoResultsFound() {
         $("#dropdownContent").append(`
     <p id="NoTasksNotice"> ${langIsAr() ? "لا توجد مهام" : "No Pending Tasks"} </p>
-    `
-        )
+    `)
     }
 
     function setOrderAscending() {
