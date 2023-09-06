@@ -3,7 +3,7 @@
 $(document).ready(function () {
     let currentURL = window.location.href;
     console.log(currentURL)
-    if (currentURL.includes("Designer") && currentURL.includes("styleprofile")) {
+    if (currentURL.includes("SPD+Preview+Form")) {
         setInterval(updateDescriptionDivs, 1000)
     }
 
