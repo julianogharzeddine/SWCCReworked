@@ -26,6 +26,7 @@
 
         // This initializes the default state of the worklist without the actual tasks
         waitForWorklistContainerWrapperRender()
+
         initializeFetchTasks()
     })
 
@@ -76,7 +77,6 @@
             setTimeout(waitForWorklistContainerWrapperRender, 500);
         }
     }
-
     function renderWorklist(data) {
 
         let worklistContainer = $("#worklist-items-wrapper")
@@ -91,12 +91,33 @@
             let taskSerialNo = task.serialNumber ?? ""
             let taskDate = formatDate(new Date(task.taskStartDate));
             let taskDueDate = formatDate(new Date(task.dueDate));
+            let taskStatus = task.status;
 
             worklistContainer.append(`
-            <div class="worklistItem" data-serial="${taskSerialNo}"><div class="itemInfoWrapper taskSerialNo"><p class="itemInfoHeading">${langIsAr() ? "الرقم التسلسلي" : "SERIAL NO."}</p><p class="itemInfoData"> <a href="${taskFormURL}" target="_blank">${taskSerialNo}</a> </p></div><div class="itemInfoWrapper taskTitle"> <p class="itemInfoHeading">${langIsAr() ? "الموضوع" : "TASK TITLE"}</p><p class="itemInfoData">${taskActivityName}</p></div><div class="itemInfoWrapper taskStartDate"> <p class="itemInfoHeading">${langIsAr() ? "التاريخ" : "ASSIGNED"}</p><p class="itemInfoData">${taskDate}</p></div><div class="itemInfoWrapper taskProgress"> <p class="itemInfoHeading">${langIsAr() ? "الحالة" : "STATUS"}</p><p class="itemInfoData"></p></div><div class="itemInfoWrapper taskDueDate"> <p class="itemInfoHeading">${langIsAr() ? "تاريخ الإنتهاء" : "DUE DATE"}</p><p class="itemInfoData">${taskDueDate}</p></div><div class="itemInfoWrapper taskActions"> <p class="itemInfoHeading">${langIsAr() ? "الإجراءات" : "ACTIONS"}</p><p class="itemInfoData"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/release-icon.png" id="release-task" data-serial="${taskSerialNo}" class="action-task" alt="release"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sleep-icon.png" id="sleep-task" data-serial="${taskSerialNo}" class="action-task" alt="sleep"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/redirect-icon.png" id="redirect-task" data-serial="${taskSerialNo}" class="action-task" alt="redirect"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/share-icon.png" id="share-task" data-serial="${taskSerialNo}" class="action-task" alt="share"> </p></div></div>
-            `)
-        })
+            <div class="worklistItem" data-serial="${taskSerialNo}"> <div class="itemInfoWrapper taskSerialNo"> <p class="itemInfoHeading">${langIsAr() ? "الرقم التسلسلي" : "SERIAL NO."}</p><p class="itemInfoData"> <a href="${taskFormURL}" target="_blank">${taskSerialNo}</a> </p></div><div class="itemInfoWrapper taskTitle"> <p class="itemInfoHeading">${langIsAr() ? "الموضوع" : "TASK TITLE"}</p><p class="itemInfoData">${taskActivityName}</p></div><div class="itemInfoWrapper taskStartDate"> <p class="itemInfoHeading">${langIsAr() ? "التاريخ" : "ASSIGNED"}</p><p class="itemInfoData">${taskDate}</p></div><div class="itemInfoWrapper taskProgress"> <p class="itemInfoHeading">${langIsAr() ? "الحالة" : "STATUS"}</p>${renderTaskStatusComponent(taskStatus)}</p></div><div class="itemInfoWrapper taskDueDate"> <p class="itemInfoHeading">${langIsAr() ? "تاريخ الإنتهاء" : "DUE DATE"}</p><p class="itemInfoData">${taskDueDate}</p></div><div class="itemInfoWrapper taskActions"> <p class="itemInfoHeading">${langIsAr() ? "الإجراءات" : "ACTIONS"}</p><p class="itemInfoData"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/release-icon.png" id="release-task" data-serial="${taskSerialNo}" class="action-task" alt="release"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sleep-icon.png" id="sleep-task" data-serial="${taskSerialNo}" class="action-task" alt="sleep"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/redirect-icon.png" id="redirect-task" data-serial="${taskSerialNo}" class="action-task" alt="redirect"> <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/share-icon.png" id="share-task" data-serial="${taskSerialNo}" class="action-task" alt="share"> </p></div></div>`)
+        });
 
+    }
+
+    function renderTaskStatusComponent(status) {
+        let statusComponent;
+
+        switch (status) {
+            case "Available":
+                statusComponent = `<div class='itemInfoData cardStatusNew'> ${langIsAr() ? "متاحة" : "Available"} </div>`;
+                break;
+            case "Allocated":
+                statusComponent = `<div class='itemInfoData cardStatusNew'> ${langIsAr() ? "معينة" : "Allocated"} </div>`;
+                break;
+            case "Open":
+                statusComponent = `<div class='itemInfoData cardStatusPending'> ${langIsAr() ? "قيد الانتظار" : "Pending"} </div>`;
+                break;
+            case "Completed":
+                statusComponent = `<div class='itemInfoData cardStatusComplete'> ${langIsAr() ? "مكتملة" : "Completed"} </div>`;
+                break;
+        }
+
+        return statusComponent;
     }
 
     function formatDate(date) {
