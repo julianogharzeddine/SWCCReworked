@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     // Function to update description divs
     function updateDescriptionDivs() {
@@ -14,13 +15,14 @@ $(document).ready(function () {
         });
     }
 
-    // Initial update
-    updateDescriptionDivs();
-
     // Add click event listener to .blue button
     $('#Link.blue.ng-star-inserted').click(function () {
         // Call the function to update description divs
         setTimeout(updateDescriptionDivs, 2000)
     });
+    setTimeout(function () {
+        // Initial update
+        updateDescriptionDivs();
+    }, 3000)
 });
 
