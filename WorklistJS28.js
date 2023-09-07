@@ -104,16 +104,16 @@
 
         switch (status) {
             case "Available":
-                statusComponent = `<div class='itemInfoData cardStatusNew'> ${langIsAr() ? "متاحة" : "Available"} </div>`;
+                statusComponent = `<div class='itemInfoData cardStatusComplete'> ${langIsAr() ? "متاحة" : "Available"} </div>`;
                 break;
             case "Allocated":
-                statusComponent = `<div class='itemInfoData cardStatusNew'> ${langIsAr() ? "معينة" : "Allocated"} </div>`;
+                statusComponent = `<div class='itemInfoData cardStatusComplete'> ${langIsAr() ? "معينة" : "Allocated"} </div>`;
                 break;
             case "Open":
                 statusComponent = `<div class='itemInfoData cardStatusPending'> ${langIsAr() ? "قيد الانتظار" : "Pending"} </div>`;
                 break;
             case "Completed":
-                statusComponent = `<div class='itemInfoData cardStatusComplete'> ${langIsAr() ? "مكتملة" : "Completed"} </div>`;
+                statusComponent = `<div class='itemInfoData cardStatusNew'> ${langIsAr() ? "مكتملة" : "Completed"} </div>`;
                 break;
         }
 
@@ -142,6 +142,8 @@
     }
 
 })()
+
+
 
 
 
