@@ -90,9 +90,6 @@
 
     function sortByDateAndKeyword(tasks) {
 
-        // Fetching the search keyword from the input field
-        const searchKeyword = searchKeyword;
-
         // Filter tasks by search keyword on relevant fields
         const filteredTasks = tasks.filter(task =>
             task.workflowDisplayName.toLowerCase().includes(searchKeyword.toLowerCase()) ||
