@@ -1,6 +1,7 @@
 (function () {
     var baseURL;
     var sortingOrder = "";
+    var searchKeyword = ""
 
     $(document).ready(function () {
 
@@ -45,6 +46,7 @@
 
         // When clicking on a task status option
         $(document).on('input', '.worklistSearchKeyword', function () {
+            searchKeyword = $(this).val()
             initializeFetchTasks()
         })
 
