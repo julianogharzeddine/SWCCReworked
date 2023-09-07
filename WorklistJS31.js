@@ -46,7 +46,7 @@
 
         // When clicking on a task status option
         $(document).on('input', '.worklistSearchKeyword', function () {
-            searchKeyword = $(this).val()
+            searchKeyword = $(this).val().trim()
             initializeFetchTasks()
         })
 
@@ -91,7 +91,7 @@
     function sortByDateAndKeyword(tasks) {
 
         // Fetching the search keyword from the input field
-        const searchKeyword = (searchKeyword.val() ?? "").trim();
+        const searchKeyword = searchKeyword;
 
         // Filter tasks by search keyword on relevant fields
         const filteredTasks = tasks.filter(task =>
