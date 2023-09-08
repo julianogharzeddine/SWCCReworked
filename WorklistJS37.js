@@ -26,20 +26,12 @@
         // When clicking on a task status option
         $(document).on('click', '.taskDateSort', function () {
 
-            if (sortingOrder !== $(this).data("order")) {
-                sortingOrder = $(this).data("order")
-                initializeFetchTasks()
-            }
-
-        })
-
-        // When clicking on a task status option
-        $(document).on('click', '.taskDateSort', function () {
-
             let dataOrder = $(this).data("order");
 
             if (sortingOrder !== dataOrder) {
-                $(this).data("order") == "ASC" ? setWorklistOrderAscending(dataOrder) : setWorklistOrderDescending(dataOrder)
+                sortingOrder = dataOrder
+                selectDateFilter($(this))
+                initializeFetchTasks()
             }
 
         })
@@ -55,6 +47,7 @@
         waitForWorklistContainerWrapperRender()
 
         initializeFetchTasks()
+        
     })
 
     function initializeFetchTasks() {
@@ -206,40 +199,9 @@
         $('#worklist-items-wrapper').css("pointer-events", "auto")
     }
 
-    function setWorklistOrderAscending(dataOrder) {
-
-        sortingOrder = dataOrder
-
-        $("#worklistAscending").css({
-            "scale": "1.2",
-            "opacity": "1"
-        })
-
-        $("#worklistDescending").css({
-            "scale": "1",
-            "opacity": "0.4"
-        })
-
-        initializeFetchTasks()
-
-    }
-
-    function setWorklistOrderDescending() {
-
-        sortingOrder = dataOrder
-
-        $("#worklistDescending").css({
-            "scale": "1.2",
-            "opacity": "1"
-        })
-
-        $("#worklistAscending").css({
-            "scale": "1",
-            "opacity": "0.4"
-        })
-
-        initializeFetchTasks()
-
+    function selectDateFilter(currentlyClicked) {
+        $("#WorklistContainer").find(".taskDateSort").removeClass("selected-date-filter")
+        currentlyClicked.addClass("selected-date-filter")
     }
 
 })()
