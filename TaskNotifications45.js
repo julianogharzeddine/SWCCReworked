@@ -18,7 +18,7 @@
         });
 
         // Click behaviors for the sorting icons 
-        $(document).on('click', '.taskDateSort', function () {
+        $(document).on('click', '.taskDD .taskDateSort', function () {
 
             let dataOrder = $(this).data("order");
 
