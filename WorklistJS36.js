@@ -228,12 +228,12 @@
 
         sortingOrder = dataOrder
 
-        $("#sortDescending").css({
+        $("#worklistDescending").css({
             "scale": "1.2",
             "opacity": "1"
         })
 
-        $("#sortAscending").css({
+        $("#worklistAscending").css({
             "scale": "1",
             "opacity": "0.4"
         })
