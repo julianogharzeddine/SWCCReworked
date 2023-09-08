@@ -32,6 +32,30 @@
 }
 
 
+/* --- OVERLAY STYLING --- */
+
+.worklistLoadingOverlay {
+    visibility: hidden;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(222, 222, 222);
+    background: linear-gradient(90deg, rgba(222, 222, 222, 0.4) 0%, rgba(227, 227, 227, 0.4) 100%, rgba(0, 212, 255, 0.4) 100%);
+    border-radius: var(--standard-border-radius);
+    z-index: 100;
+}
+
+.AnimatedLoading {
+    height: 120px;
+    width: 120px;
+}
+
+
 /* Wraps the filtration toolbar */
 #WorklistFilterToolbar {
     display: flex;
@@ -77,7 +101,15 @@
 .taskDateSort {
     height: var(--sortdateicon-height-width);
     cursor: pointer;
+    opacity: 0.5;
+    transition: scale 0.5s ease;
 }
+
+.selected-date-filter {
+    scale: 1.2 !important;
+    opacity: 1 !important;
+}
+
 
 /* ------------------------------- TASK STATUS OPTIONS STYLING ---------------------------- */
 
@@ -153,7 +185,6 @@
     padding-left: var(--padding-xl);
     padding-right: var(--padding-xl);
     gap: var(--gap-m);
-    );
 }
 
 .wrapIcon svg {
@@ -167,7 +198,7 @@
 #worklist-items-wrapper {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-2xl);
+    gap: var(--gap-h);
     padding: var(--padding-l);
 }
 
@@ -177,7 +208,7 @@
     align-items: center;
     border: 1px solid lightgray;
     border-radius: var(--root-radius-m);
-    padding: var(--padding-h);
+    padding: var(--padding-2xl);
     gap: var(--gap-m);
 }
 
@@ -262,37 +293,4 @@
     color: var(--root-new-font-color) !important;
     background: var(--root-new-bg-color) !important;
     border-color: var(--root-new-border-color) !important;
-}
-
-
-.worklistLoadingOverlay {
-    visibility: hidden;
-    position: absolute;
-    top: 100px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(222, 222, 222);
-    background: linear-gradient(90deg, rgba(222, 222, 222, 0.4) 0%, rgba(227, 227, 227, 0.4) 100%, rgba(0, 212, 255, 0.4) 100%);
-    border-radius: var(--standard-border-radius);
-    z-index: 100;
-}
-
-
-.selected-date-filter {
-    scale: 1.2 !important;
-    opacity: 1 !important;
-}
-
-.taskDateSort {
-    opacity: 0.5;
-    transition: scale 0.5s ease;
-}
-
-.AnimatedLoading {
-    height: 120px;
-    width: 120px;
 }
