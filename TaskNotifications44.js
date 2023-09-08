@@ -18,10 +18,15 @@
         });
 
         // Click behaviors for the sorting icons 
-        $(document).on('click', '.sortingIcon', function () {
-            let iconID = $(this).attr("id")
-            if (iconID == "sortAscending" && sortingOrder != "ASC") setOrderAscending()
-            else if (iconID == "sortDescending" && sortingOrder != "DESC") setOrderDescending()
+        $(document).on('click', '.taskDateSort', function () {
+
+            let dataOrder = $(this).data("order");
+
+            if (sortingOrder !== dataOrder) {
+                sortingOrder = dataOrder
+                selectDateFilter($(this))
+                createNotificationIcon()
+            }
 
         });
 
@@ -83,7 +88,7 @@
         }
 
         // Clearing the content of the tasks in case it already contains data
-        $('#dropdownContent').html(`<div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading" alt="Loading Animation"></div>`)
+        $('#dropdownContent').empty()
 
         // Fetching the filtered tasks based on the sorting order and the search keyword
         const filteredTasks = sortByDateAndKeyword(tasks)
@@ -133,7 +138,6 @@
         </div>
         <img id="bellicon" src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/BellIcon.png" alt="Bell Icon">
     </div>
-      
     <div id="taskDDMainWrapper">
         <div id="taskToolbarWrapper">
             <div id="taskSearchWrapper" class="filterOptionWrapper">
@@ -143,14 +147,17 @@
             <div id="taskDateWrapper" class="filterOptionWrapper">
                 <span>${langIsAr() ? "التاريخ" : "Date"}</span>
                 <div class="sortingIconsWrapper">
-                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" id="sortAscending" class="sortingIcon" alt="ASC">
+                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" data-order="ASC" id="sortNotificationTaskAscending" class="taskDateSort" alt="ASC">
                 </div>
                 <div class="sortingIconsWrapper">
-                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" id="sortDescending" class="sortingIcon" alt="DESC">
+                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" data-order="DESC" id="sortNotificationTaskDescending" class="taskDateSort" alt="DESC">
                 </div>
             </div>
         </div>
+        <div class="taskOverlayWrapper">
+        <div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading" alt="Loading Animation"></div>
         <div id="dropdownContent"></div>
+        </div>
     </div>
 </div>
 `)
@@ -190,40 +197,6 @@
     `)
     }
 
-    function setOrderAscending() {
-
-        sortingOrder = "ASC"
-
-        $("#sortAscending").css({
-            "scale": "1.2",
-            "opacity": "1"
-        })
-
-        $("#sortDescending").css({
-            "scale": "1",
-            "opacity": "0.4"
-        })
-
-        createNotificationIcon()
-    }
-
-    function setOrderDescending() {
-
-        sortingOrder = "DESC"
-
-        $("#sortDescending").css({
-            "scale": "1.2",
-            "opacity": "1"
-        })
-
-        $("#sortAscending").css({
-            "scale": "1",
-            "opacity": "0.4"
-        })
-
-        createNotificationIcon()
-
-    }
 
     function formatDate(date) {
         const dateObject = new Date(date);
@@ -262,4 +235,10 @@
         $("#redCircle").text(count)
     }
 
+    function selectDateFilter(currentlyClicked) {
+        $(".taskDD").find(".taskDateSort").removeClass("selected-date-filter")
+        currentlyClicked.addClass("selected-date-filter")
+    }
+
 })()
+
