@@ -24,7 +24,7 @@
         })
 
         // When clicking on a task status option
-        $(document).on('click', '.taskDateSort', function () {
+        $(document).on('click', '#WorklistContainer .taskDateSort', function () {
 
             let dataOrder = $(this).data("order");
 
@@ -47,7 +47,7 @@
         waitForWorklistContainerWrapperRender()
 
         initializeFetchTasks()
-        
+
     })
 
     function initializeFetchTasks() {
