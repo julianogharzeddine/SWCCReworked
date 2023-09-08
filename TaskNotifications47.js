@@ -3,6 +3,7 @@
 
     var baseURL;   // fetching the base URL
     var sortingOrder = ""  // the default sorting order is not specified
+    var searchKeyword = ""
 
     $(document).ready(function () {
 
@@ -32,6 +33,7 @@
 
         // Click behaviors for the sorting icons 
         $(document).on('input', '#taskSearchKeyword', function () {
+            searchKeyword = $(this).val()
             createNotificationIcon()
         });
 
@@ -84,6 +86,7 @@
         // If no tasks were found , display the notice saying so
         if (taskCount == 0) {
             setNoResultsFound()
+            hideLoadingOverlay()
             return
         }
 
@@ -96,6 +99,7 @@
         // If no tasks fit the criteria , we display the notice to the user
         if (filteredTasks.length == 0) {
             setNoResultsFound()
+            hideLoadingOverlay()
             return
         }
 
@@ -147,10 +151,10 @@
             <div id="taskDateWrapper" class="filterOptionWrapper">
                 <span>${langIsAr() ? "التاريخ" : "Date"}</span>
                 <div class="sortingIconsWrapper">
-                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" data-order="ASC" id="sortNotificationTaskAscending" class="taskDateSort" alt="ASC">
+                <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" data-order="DESC" id="sortNotificationTaskDescending" class="taskDateSort selected-date-filter" alt="DESC">
                 </div>
                 <div class="sortingIconsWrapper">
-                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-descending.png" data-order="DESC" id="sortNotificationTaskDescending" class="taskDateSort" alt="DESC">
+                    <img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/sort-ascending.png" data-order="ASC" id="sortNotificationTaskAscending" class="taskDateSort" alt="ASC">
                 </div>
             </div>
         </div>
@@ -165,10 +169,6 @@
 
 
     function sortByDateAndKeyword(tasks) {
-
-        // Fetching the search keyword from the input field
-        const searchKeywordElement = $("#taskSearchKeyword");
-        const searchKeyword = (searchKeywordElement.val() ?? "").trim();
 
         // Filter tasks by search keyword on relevant fields
         const filteredTasks = tasks.filter(task =>
