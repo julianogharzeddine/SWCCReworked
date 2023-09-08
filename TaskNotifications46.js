@@ -155,7 +155,7 @@
             </div>
         </div>
         <div class="taskOverlayWrapper">
-        <div class="loadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading" alt="Loading Animation"></div>
+        <div class="notifTasksLoadingOverlay"><img src="https://cdn.jsdelivr.net/gh/julianogharzeddine/SWCCIcons@main/AnimatedLoading.svg" class="AnimatedLoading" alt="Loading Animation"></div>
         <div id="dropdownContent"></div>
         </div>
     </div>
@@ -222,12 +222,12 @@
     }
 
     function showLoadingOverlay() {
-        $('.loadingOverlay').css("visibility", "visible")
+        $('.notifTasksLoadingOverlay').css("visibility", "visible")
         $('#dropdownContent').css("pointer-events", "none")
     }
 
     function hideLoadingOverlay() {
-        $('.loadingOverlay').css("visibility", "hidden")
+        $('.notifTasksLoadingOverlay').css("visibility", "hidden")
         $('#dropdownContent').css("pointer-events", "auto")
     }
 
