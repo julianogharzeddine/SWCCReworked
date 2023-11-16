@@ -18,6 +18,20 @@
     gap : 7px ;
 }
 
+
+.RuntimeEN .multi-select-box-list-item {
+    display : flex !important ;
+    flex-direction : row-reverse !important ;
+}
+
+
+.RuntimeEN  .multi-select-box-list-item label {
+    display : flex !important;
+    flex-direction : row-reverse !important ;
+    gap : 7px ;
+}
+
+
 /*General variables*/
 
 :root {
@@ -86,9 +100,6 @@ div[name="Navbar"] * {
     z-index: 2;
 }
 
-body{
-  background: var(--primary-bg-color) !important ;
-}
 [name="TranslatorHeader"] span {
     background: var(--secondarydark-bg-color) !important;
 }
@@ -594,27 +605,4 @@ span[name*="ChoicesInput"] .input-control-m-c {
 }
 
 
-
-.RuntimeAR .multi-select-box-list-item {
-    display : flex !important ;
-}
-
-
-.RuntimeAR  .multi-select-box-list-item label {
-    display : flex !important;
-    gap : 7px ;
-}
-
-
-.RuntimeAR .multi-select-box-list-item {
-    display : flex !important ;
-    flex-direction : row-reverse !important ;
-}
-
-
-.RuntimeAR  .multi-select-box-list-item label {
-    display : flex !important;
-    flex-direction : row-reverse !important ;
-    gap : 7px ;
-}
 
