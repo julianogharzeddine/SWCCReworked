@@ -1,0 +1,596 @@
+@font-face {
+    font-family: 'SWCC-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/julianogharzeddine/CustomFiles@main/SWCC-3-Medium.otf') format('opentype');
+    /* Adjust the path and font format */
+}
+
+* {
+    font-family: 'SWCC-Medium' !important;
+}
+
+.RuntimeAR .multi-select-box-list-item {
+    display : flex !important ;
+}
+
+
+.RuntimeAR  .multi-select-box-list-item label {
+    display : flex !important;
+    gap : 7px ;
+}
+
+/*General variables*/
+
+:root {
+    --card-title-color: #0066cc;
+    --secondarydark-bg-color: #0066cc;
+    --primary-bg-color : #edf0f4;
+    --border-bottom-header-color: #EAECF0;
+    --card-bg-color: white;
+    --card-border-radius: 16px;
+    --card-header-height: 40px;
+    --card-header-size : 24px;
+    --card-border-input-color: #D0D5DD;
+    --card-height: 60;
+    --input-border-radius: 8px;
+    --input-height: 38px;
+    --input-font-size: 14px;
+    --icon-size: 25px;
+    --icon-special-input-size: 20px;
+    --button-border-radius: 8px;
+    --button-font-size: 14px;
+    --button-width: 120px;
+    --button-height: 45px;
+    --button-icon-size: 20px;
+    --loading-color : #dfdfdf;
+    --table-header-background-color: #388ce1;
+    /* Icons url*/
+    --file--icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/file.png");
+    --download-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/download.png");
+    --trash-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/trash-can.png");
+    --send-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/send-icon.png");
+    --file-resize-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/file_resize.png");
+    --plus-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/plus_icon.png");
+    --user-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/user.svg");
+    --employeeNumber-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/EmployeeNumber.svg");
+    --department-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/Department.svg");
+    --job-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/Job.svg");
+    --search-icon: url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/Search.svg");
+    --calendar-icon : url("https://cdn.jsdelivr.net/gh/Nourjawhari/SWCC_Icons@main/calendar.png");
+}
+
+/* HEADER  STYLING */
+
+div[name="Navbar"] {
+    position: fixed !important;
+    top: 60px;
+    width: 100%;
+    right: 0;
+    z-index: 100;
+    overflow: visible;
+}
+
+div[name="Navbar"] * {
+    background-color: white;
+}
+
+[name="UserName"] {
+    color: var(--card-title-color);
+}
+
+/* TRANSLATOR STYLING */
+
+[name="TranslatorHeader"] {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+body{
+  background: var(--primary-bg-color) !important ;
+}
+[name="TranslatorHeader"] span {
+    background: var(--secondarydark-bg-color) !important;
+}
+
+/* Form Boundaries */
+
+.runtime-form {
+    position: absolute !important;
+    top: 150px;
+    left: 15%;
+    width: 70% !important;
+}
+
+/* Form styling*/
+.theme-entry .form {
+    background: var(--primary-bg-color);
+}
+
+/*Card Styling*/
+
+div[name*="Card"]{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: white !important;
+    border-radius: var(--card-border-radius) !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06);
+    box-shadow: 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+
+}
+
+
+/*Card header Styling*/
+
+div[name*="Card"] .panel-header-text,
+div[name*="Card"] .grid-header-text{
+    border-bottom: 1px solid var(--border-bottom-header-color);
+    font-size: var(--card-header-size) !important;
+    color: var(--card-title-color) !important;
+    height: 100% !important;
+}
+
+div[name*="Card"] .panel-header-text span,
+div[name*="Card"] .grid-header-text span{
+    height: 100%;
+    display: flex !important;
+    align-items: center;
+    padding-top: 5px;
+}
+
+div[name*="Card"] .panel-header,
+div[name*="Card"] .grid-header{
+    height: var(--card-header-height) !important;
+}
+
+div[name*="Card"] .panel-header-wrapper,
+div[name*="Card"] .grid-header-wrapper{
+    height: 100% !important;
+}
+
+div[name*="Card"] .panel-header-c,
+div[name*="Card"] .grid-header-c{
+    height: 100% !important;
+}
+
+div[name*="Card"] .panel-body-wrapper,
+div[name*="Card"] .grid-body-wrapper{
+    background: var(--card-bg-color) !important;
+}
+
+div[name*="Card"] .panel-header,
+div[name*="Card"] .grid-header{
+    background: var(--primary-bg-color) !important;
+}
+
+div[name*="Card"] .panel-header-wrapper,
+div[name*="Card"] .grid-header-wrapper{
+    background: var(--card-bg-color) !important;
+}
+
+/* Label, input, textarea and inputLabelContainer Styling*/
+/* labelInputSpecialContainer is a k2 control has icon */
+
+span[name*= "labelInputContainer"] textarea {
+    font-size: var(--inout-font-size) !important;
+    padding: 10px!important;
+}
+
+span[name*= "labelInputContainer"],
+span[name*= "labelInputSpecialContainer"]{
+    margin-top: 10px !important;
+}
+
+/* Label styling */
+span[name*= "labelInputContainer"] span:first,
+span[name*= "labelInputSpecialContainer"] span:first{
+    font-size: var(--input-font-size) !important;
+    font-weight: bold;
+    color: black !important;
+    margin-bottom: 4px !important;
+}
+
+span[name*= "labelInputSpecialContainer"] .input-control-wrapper .editable-area.input-control.styling-font.read-only {
+    display: flex;
+    align-items: center;
+    height: 100% !important;
+}
+
+span[name*= "labelInputSpecialContainer"] span.entity {
+    display: flex;
+    align-items: center;
+}
+
+span[name*= "labelInputContainer"] input,
+span[name*= "labelInputContainer"] .input-control-m-c,
+[name*= "FileNameAttachmentInput"]{
+    border-radius: var(--input-border-radius) !important;
+    border: 1px solid var(--card-border-input-color) !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
+} 
+
+span[name*= "labelInputContainer"] input,
+span[name*= "labelInputSpecialContainer"] input,
+span[name*= "labelInputContainer"] .input-control-m-c,
+[name*= "FileNameAttachmentInput"]{
+    font-size: var(--input-font-size) !important;
+} 
+
+span[name*= "labelInputContainer"] .input-control-m-c {
+    padding: 0px !important;
+}
+
+span[name*= "labelInputContainer"] .input-control-m-c .editable-area.input-control.styling-font {
+    height: 100% !important;
+}
+
+/*Runtime Arabic*/
+
+.RuntimeAR span[name*= "labelInputContainer"] .input-control-m-c,
+.RuntimeAR span[name*= "labelInputSpecialContainer"] .input-control-wrapper a span{
+    padding: 0px 10px!important;
+}
+
+span[name*= "labelInputContainer"] input,
+[name*= "FileNameAttachmentInput"] {
+    padding: 0px 10px  !important;
+}
+
+.RuntimeEN span[name*= "labelInputContainer"] .input-control-watermark,
+.RuntimeEN span[name*= "labelInputCalenderContainer"] .input-control-watermark,
+.RuntimeEN span[name*= "labelInputContainer"] input,
+.RuntimeEN span[name*= "labelInputSpecialContainer"] input,
+.RuntimeEN [name*= "FileNameAttachmentInput"],
+.RuntimeEN span[name*= "labelInputContainer"] textarea,
+.RuntimeEN span[name*= "labelInputSpecialContainer"] .input-control-wrapper a span{
+    text-align: left !important;
+}
+
+.RuntimeAR span[name*= "labelInputContainer"] .input-control-watermark,
+.RuntimeAR span[name*= "labelInputCalenderContainer"] .input-control-watermark,
+.RuntimeAR span[name*= "labelInputContainer"] input,
+.RuntimeAR span[name*= "labelInputSpecialContainer"] input,
+.RuntimeAR [name*= "FileNameAttachmentInput"],
+.RuntimeAR span[name*= "labelInputContainer"] textarea,
+.RuntimeAR span[name*= "labelInputSpecialContainer"] .input-control-wrapper a span{
+    text-align: right !important;
+}
+
+span[name*= "labelInputContainer"] input,
+[name*= "FileNameAttachmentInput"]{
+    height: var(--input-height) !important;
+}
+/*Label, input and inputLabelContainer for search, Date Piker , clock input Styling */
+
+span[name*= "labelInputSpecialContainer"] .input-control-m-c{
+    height: var(--input-height) !important;
+    border: none !important; 
+    border-radius: var(--input-border-radius) !important;
+    display: flex;
+    align-items: center;
+}
+
+span[name*= "labelInputSpecialContainer"] .input-control-buttons{
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+span[name*= "labelInputSpecialContainer"] > div {
+    border: 1px solid var(--card-border-input-color) !important;
+    border-radius: 8px !important;
+    box-sizing: border-box;
+    /* padding: 0px 10px; */
+}
+
+span[name*= "labelInputSearchContainer"] a {
+    padding-top: 20px !important;
+} 
+
+/* Change and style the calender icon*/
+span[name*= "labelInputCalenderContainer"] .input-control-buttons a,
+div[name*="AttachmentsTable"] div[name*= "Calendar"] .input-control-buttons a{
+    content: var(--calendar-icon);
+    width: var(--icon-special-input-size) !important;
+    height: var(--icon-special-input-size) !important; 
+    margin: 0px 10px;
+    padding: 0px !important;
+}
+
+/* ------LIST VIEW WITH SPECIAL INPUT LIKE PICKER< CALENDER-------*/
+/*Search and input in the list view styling*/
+
+div[name*= "AttachmentsTable"] .picker,
+input[name*= "ListViewInputControl"],
+div[name*="AttachmentsTable"] div[name*= "Calendar"]{
+    display: flex !important;
+    align-items: center;
+    border: 1px solid var(--card-border-input-color) !important;
+    border-radius: 6px !important;
+    background: white;
+    margin-bottom: 1px;
+}
+
+input[name*= "ListViewInputControl"] {
+    height: 32px !important;
+}
+
+div[name*= "AttachmentsTable"] .picker,
+div[name*= "Calendar"]{
+    height: 30px;
+}
+
+div[name*= "AttachmentsTable"] .picker .input-control .input-control-m-c,
+div[name*= "AttachmentsTable"] .picker .input-control .input-control-buttons,
+div[name*= "Calendar"].input-control .input-control-m-c,
+div[name*= "Calendar"].input-control .input-control-buttons{
+    border: none !important;
+}
+
+
+/*Attachment field styling*/
+
+span[name*= "labelInputContainer"] div[name*="FileAttachmentIcon"],
+div[name*="AttachmentsTable"] div[name*="FileAttachmentIcon"],
+div[name*="AttachmentsTable"] div[name*= "ListViewAttachmentControl"]{
+    width: 100% !important;
+    height: var(--input-height) !important;
+    border-radius: var(--input-border-radius);
+    border: 1px dashed var(--card-border-input-color) !important;
+}
+
+span[name*= "labelInputContainer"] div[name*="FileAttachmentIcon"] table,
+div[name*="AttachmentsTable"] div[name*="FileAttachmentIcon"] table,
+div[name*="AttachmentsTable"] div[name*="FileAttachmentIcon"].active table{
+    width: 100% !important;
+}
+
+span[name*= "labelInputContainer"] div[name*="FileAttachmentIcon"] table td,
+div[name*="AttachmentsTable"] div[name*="FileAttachmentIcon"] table td,
+div[name*="AttachmentsTable"] div[name*= "ListViewAttachmentControl"] table td{
+    width: 100% !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+}
+
+span[name*= "labelInputContainer"] div[name*="FileAttachmentIcon"] table td img,
+div[name*="AttachmentsTable"] div[name*="FileAttachmentIcon"] table td img,
+div[name*="AttachmentsTable"] div[name*= "ListViewAttachmentControl"] table td img{
+    width: var(--icon-size) !important;
+    height: var(--icon-size) !important;
+    content: var(--download-icon);
+    margin: 8px 2px;
+}
+
+div[name*="FileAttachmentIcon"].file-wrapper.no-info.uploaded table td {
+    justify-content: flex-start;
+    align-content: center !important;
+}
+
+div[name*="FileAttachmentIcon"].file-wrapper.no-info.uploaded table td img {
+    width: var(--icon-size) !important;
+    height: calc(var(--icon-size) - 5%) !important;
+    content: var(--file--icon);
+    margin-left: 5px;
+    margin-top: 5px !important;
+}
+
+div[name*= "FileAttachmentIcon"] .file-delete {
+    width: calc(var(--icon-size)- 10%) !important;
+    height: calc(var(--icon-size) - 10%) !important;
+    margin-top: 7px !important;
+    content: var(--trash-icon);
+}
+
+.RuntimeAR div[name*= "FileAttachmentIcon"] .file-delete {
+    right: auto !important;
+    left: 0 !important;
+}
+
+/*Display space betwen two fields in the same row */
+
+span[name*="leftComponent"] {
+    margin-right: 1rem;
+}
+
+span[name*="rightComponent"] {
+    margin-left: 1rem;
+}
+
+a[name*= "Btn"] {
+    width: var(--button-width) !important;
+    height: var(--button-height) !important;
+    border-radius: var(--button-border-radius) !important;
+    border: 0px !important;
+    font-size: var(--button-font-size);
+    margin: 0px 5px;
+}
+
+a[name*= "Send"],
+a[name*= "Approve"],
+a[name*= "ActionButton"]{
+    background: var(--secondarydark-bg-color) !important;
+}
+
+a[name*= "Return"],
+a[name*="Back"],
+a[name*= "Reject"]{
+    border: 1px solid var(--secondarydark-bg-color) !important;
+    background: var(--primary-bg-color) !important;
+    color: var(--secondarydark-bg-color) !important;
+}
+
+.RuntimeEN a[name*= "Send"]::before {
+    content: "";
+    background-image :var(--send-icon) ;
+    width: var(--button-icon-size) !important;
+    height: var(--button-icon-size) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 10px;
+    transform: rotate(90deg);
+}
+
+.RuntimeAR a[name*= "Send"]::before {
+    content: "";
+    background-image : var(--send-icon);
+    width: var(--button-icon-size) !important;
+    height: var(--button-icon-size) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-left: 10px; 
+}
+
+/* Change the loading icon color in the attachment field*/
+.theme-entry .file-progress-wrapper>svg circle:nth-child(1){
+    fill: var(--loading) !important;
+}
+
+div[name*= "AttachmentsTable"] .last {
+    height: 38px !important;
+
+}
+
+div[name*= "AttachmentsTable"] .last a,
+div[name*= "DisplayTable"] .last a{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    margin-top: 6px !important; 
+    padding: 0px !important;
+    padding-left: 5px !important;
+    display: flex !important;
+    align-items: center;
+}
+
+div[name*= "AttachmentsTable"] .last a::before,
+div[name*= "DisplayTable"] .last a::before{
+    content: var(--file-resize-icon);
+    margin-right: 5px !important;
+}
+
+div[name*= "AttachmentsTable"] .first .grid-content-cell-wrapper {
+    text-align: center;
+}
+
+div[name*="AttachmentsTable"] a[name*="Delete"] .button-icon,
+div[name*="AttachmentsTable"] a[name*="Add"] .button-icon {
+    background-position: 20px !important;
+    min-height: 0px !important;
+}
+
+/*Add margin between the icon and the word in arabic runtime in the list view*/
+.RuntimeAR div[name*="AttachmentsTable"] .button-text{
+    margin-right : 5px !important;
+}
+
+/*Change the ADD icon*/
+div[name*="AttachmentsTable"] a[name*="Add"] .button-icon {
+    content: var(--plus-icon);
+    width: var(--icon-special-input-size);
+    height: var(--icon-special-input-size);
+}
+
+/*Change the DELETE icon*/
+div[name*="AttachmentsTable"] a[name*="Delete"] .button-icon {
+   content: var(--trash-icon);
+    width: var(--icon-special-input-size);
+    height: var(--icon-special-input-size);
+}
+
+/* Tables Header text styling*/
+div[name*="AttachmentsTable"] .grid-column-headers .grid-column-header-text,
+div[name*="DisplayTable"] .grid-column-headers .grid-column-header-text{
+    color: white !important;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--input-font-size);
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 1 !important;
+}
+
+/*Change the tables header background*/
+.theme-entry .grid .grid-column-headers div,
+.theme-entry .grid .grid-column-headers span {
+    background: var(--table-header-background-color) !important;
+}
+
+span[name*= "labelInputContainerWrapper"] input {
+    border: none !important;
+}
+
+/*.imgwrapper class added using script to wrap the input in a div and then add the  specific icon for each input */
+.imgwrapper {
+    display : flex !important ;
+    width : 100% ;
+    align-items : center ;
+    border : .5px solid var(--card-border-input-color) ;
+    border-radius: 8px;
+    box-sizing : border-box !important;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
+}
+.imgwrapper img {
+    margin : 0px 10px ;
+}
+
+/*Applicant Data and Offernder Data Icons*/
+
+span[name*= "RequesterName"] .inputIcon{
+    content : var(--user-icon);
+}
+
+span[name*= "EmployeeNumber"] .inputIcon{
+    content : var(--employeeNumber-icon);
+}
+
+span[name*= "Department"] .inputIcon{
+    content : var(--department-icon);
+}
+
+span[name*= "Job"] .inputIcon{
+    content : var(--job-icon);
+}
+
+span[name*= "OffenderName"] .picker-search {
+    background-image: var(--search-icon);
+    background-repeat: no-repeat;
+    background-position: -2px 10px;
+    padding: 10px;
+    margin: 0px 10px;
+}
+
+/*Disable the old search icon*/
+span[name*= "OffenderName"] .picker-search span {
+    opacity: 0;
+}
+
+/*Add a margin in the card have only a table and this table has add icon*/
+div[name*= "CardListViewWithAdd"] .grid-header {
+    margin-bottom: 17px;
+}
+
+.RuntimeAR.row:has([name*="Card"]) {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0px !important;
+    gap: 12px;
+    padding: 0px !important;
+}
+
+.RuntimeAR.row:has([name*="Card"]) .innerpanel {
+    margin: 0px !important
+}
+
+/*Radio buttons and checkboxes style*/
+span[name*="ChoicesInput"] .input-control-m-c {
+    border: none !important;
+}
+
+
