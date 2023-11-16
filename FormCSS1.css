@@ -594,3 +594,27 @@ span[name*="ChoicesInput"] .input-control-m-c {
 }
 
 
+
+.RuntimeAR .multi-select-box-list-item {
+    display : flex !important ;
+}
+
+
+.RuntimeAR  .multi-select-box-list-item label {
+    display : flex !important;
+    gap : 7px ;
+}
+
+
+.RuntimeAR .multi-select-box-list-item {
+    display : flex !important ;
+    flex-direction : row-reverse !important ;
+}
+
+
+.RuntimeAR  .multi-select-box-list-item label {
+    display : flex !important;
+    flex-direction : row-reverse !important ;
+    gap : 7px ;
+}
+
