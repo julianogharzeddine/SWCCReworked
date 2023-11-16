@@ -8,6 +8,7 @@
     font-family: 'SWCC-Medium' !important;
 }
 
+
 .RuntimeAR .multi-select-box-list-item {
     display : flex !important ;
 }
@@ -83,6 +84,9 @@ div[name="Navbar"] {
     overflow: visible;
 }
 
+body{
+    background : var(--primary-bg-color) !important;
+}
 div[name="Navbar"] * {
     background-color: white;
 }
